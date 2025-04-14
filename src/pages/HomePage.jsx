@@ -7,6 +7,7 @@ import AboutSection from '../components/home/AboutSection';
 import FoodWasteCounter from '../components/home/FoodWasteCounter';
 import ProductSection from '../components/home/ProductSection';
 import TechnologySection from '../components/home/TechnologySection';
+import BeforeAfterComparison from '../components/home/BeforeAfterComparison';
 
 /**
  * Home page component
@@ -35,6 +36,9 @@ const HomePage = () => {
 
       {/* Technology Section */}
       <TechnologySection />
+
+      {/* Before/After Comparison Section */}
+      <BeforeAfterComparison />
 
       {/* Product Section */}
       <ProductSection />

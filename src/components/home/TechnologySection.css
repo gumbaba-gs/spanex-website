@@ -45,7 +45,7 @@ S/* src/components/home/TechnologySection.css
 
 /* Container styles */
 .tech-section__container {
-  max-width: 1000px;
+  max-width: var(--container-max-width, 1200px);
   width: 100%;
   margin: 0 auto;
   position: relative;
