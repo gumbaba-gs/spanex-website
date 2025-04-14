@@ -1,0 +1,509 @@
+/* ===== Sustainability Section Styles ===== */
+.sustainability-section {
+    padding: var(--spacing-xxl) 0;
+    background-color: var(--section-bg-secondary);
+  }
+  
+  .sustainability-section__header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .sustainability-section__title {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .sustainability-section__subtitle {
+    color: var(--color-text-secondary);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .sustainability-section__container {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  .sustainability-section__container.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .sustainability-section__content-card {
+    background-color: var(--section-card-bg);
+    border-radius: var(--border-radius-lg, 1.25rem);
+    box-shadow: var(--shadow-md, 0 2px 8px rgba(0,0,0,0.05));
+    padding: var(--spacing-xl, 2.5rem);
+    overflow: hidden;
+  }
+  
+  .sustainability-section__text-container {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .sustainability-section__text {
+    margin-bottom: var(--spacing-md);
+    line-height: var(--line-height-relaxed);
+  }
+  
+  .sustainability-section__highlight {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-medium);
+  }
+  
+  .sustainability-section__highlight--secondary {
+    color: var(--color-evergreen-fog);
+    font-weight: var(--font-weight-medium);
+  }
+  
+  .sustainability-section__highlight--accent {
+    color: var(--color-redend-point);
+    font-weight: var(--font-weight-medium);
+  }
+  
+  .sustainability-section__highlight--success {
+    color: var(--color-evergreen-fog);
+    font-weight: var(--font-weight-medium);
+  }
+  
+  /* Dashboard styles */
+  .sustainability-dashboard {
+    background-color: var(--color-pure-white);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .sustainability-dashboard.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .dashboard-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    background: var(--color-sea-salt);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+  }
+  
+  .market-penetration-control {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+  
+  .control-label {
+    font-weight: var(--font-weight-medium);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .penetration-value {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+  }
+  
+  .penetration-slider {
+    width: 100%;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--color-repose-gray);
+    outline: none;
+    border-radius: 3px;
+  }
+  
+  .penetration-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .penetration-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .penetration-slider:hover::-webkit-slider-thumb {
+    background: var(--color-accent);
+  }
+  
+  .penetration-slider:hover::-moz-range-thumb {
+    background: var(--color-accent);
+  }
+  
+  .timeframe-control {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-xs);
+  }
+  
+  .timeframe-button {
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: var(--color-repose-gray);
+    border: none;
+    border-radius: var(--border-radius-full);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .timeframe-button.active {
+    background: var(--color-primary);
+    color: var(--color-pure-white);
+  }
+  
+  .timeframe-button:hover:not(.active) {
+    background: var(--color-muted);
+  }
+  
+  /* Dashboard Tabs */
+  .dashboard-tabs {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    border-bottom: 1px solid var(--color-repose-gray);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: 0;
+  }
+  
+  .dashboard-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .tab-button {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: none;
+    border: none;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    position: relative;
+    transition: color var(--transition-fast);
+  }
+  
+  .tab-button::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-primary);
+    transform: scaleX(0);
+    transition: transform var(--transition-fast);
+  }
+  
+  .tab-button.active {
+    color: var(--color-primary);
+  }
+  
+  .tab-button.active::after {
+    transform: scaleX(1);
+  }
+  
+  .tab-button:hover:not(.active) {
+    color: var(--color-primary);
+  }
+  
+  /* Dashboard Content */
+  .dashboard-content {
+    min-height: 400px;
+    padding: var(--spacing-md);
+  }
+  
+  /* Metrics Grid */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .metric-card {
+    background-color: var(--color-sea-salt);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .metric-icon-container {
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--spacing-sm);
+  }
+  
+  .metric-icon {
+    font-size: 2rem;
+  }
+  
+  .metric-title {
+    margin-bottom: var(--spacing-xs);
+    font-size: var(--font-size-md);
+  }
+  
+  .metric-value {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .metric-description {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+  }
+  
+  /* Theme colors for metric cards */
+  .metric-card.waste {
+    background: linear-gradient(135deg, rgba(255, 152, 0, 0.1) 0%, rgba(255, 152, 0, 0.2) 100%);
+  }
+  
+  .metric-card.carbon {
+    background: linear-gradient(135deg, rgba(46, 125, 50, 0.1) 0%, rgba(46, 125, 50, 0.2) 100%);
+  }
+  
+  .metric-card.water {
+    background: linear-gradient(135deg, rgba(3, 169, 244, 0.1) 0%, rgba(3, 169, 244, 0.2) 100%);
+  }
+  
+  .metric-card.packaging {
+    background: linear-gradient(135deg, rgba(121, 85, 72, 0.1) 0%, rgba(121, 85, 72, 0.2) 100%);
+  }
+  
+  /* Detailed Metric View */
+  .detailed-metric-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+  
+  .metric-highlight-card {
+    background-color: var(--color-sea-salt);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .metric-highlight-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .metric-highlight-title {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .metric-highlight-value {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+  }
+  
+  .counter {
+    transition: all 0.8s ease;
+  }
+  
+  .unit {
+    font-size: var(--font-size-lg);
+    margin-left: var(--spacing-xs);
+    color: var(--color-text-secondary);
+  }
+  
+  .metric-highlight-description {
+    font-size: var(--font-size-md);
+    color: var(--color-text-secondary);
+  }
+  
+  /* Theme colors for highlight icons */
+  .metric-highlight-icon.waste {
+    color: #FF9800;
+  }
+  
+  .metric-highlight-icon.carbon {
+    color: #2E7D32;
+  }
+  
+  .metric-highlight-icon.water {
+    color: #03A9F4;
+  }
+  
+  .metric-highlight-icon.packaging {
+    color: #795548;
+  }
+  
+  /* Impact visualization */
+  .impact-visualization {
+    background-color: var(--color-pure-white);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .visualization-title {
+    font-size: var(--font-size-md);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+  }
+  
+  .chart-placeholder {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-sea-salt);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+  }
+  
+  .chart-message {
+    text-align: center;
+    max-width: 400px;
+    color: var(--color-text-secondary);
+  }
+  
+  /* Environmental Equivalents */
+  .environmental-equivalents {
+    margin-top: var(--spacing-xl);
+    background-color: var(--color-sea-salt);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+  }
+  
+  .equivalents-title {
+    font-size: var(--font-size-md);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+  }
+  
+  .equivalents-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+  
+  .equivalent-card {
+    background-color: var(--color-pure-white);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease;
+  }
+  
+  .equivalent-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .equivalent-icon {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .equivalent-value {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .equivalent-description {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+  }
+  
+  /* Theme colors for environmental equivalents */
+  .equivalent-card.trees .equivalent-icon {
+    color: #2E7D32;
+  }
+  
+  .equivalent-card.cars .equivalent-icon {
+    color: #F44336;
+  }
+  
+  .equivalent-card.homes .equivalent-icon {
+    color: #FFC107;
+  }
+  
+  .equivalent-card.pools .equivalent-icon {
+    color: #03A9F4;
+  }
+  
+  /* Footnote */
+  .dashboard-footnote {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background-color: var(--color-alabaster);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+  }
+  
+  /* Responsive adjustments */
+  @media (min-width: 768px) {
+    .dashboard-controls {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--spacing-md) var(--spacing-lg);
+    }
+    
+    .market-penetration-control {
+      flex: 1;
+      max-width: 60%;
+    }
+    
+    .timeframe-control {
+      justify-content: flex-end;
+    }
+    
+    .metrics-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .detailed-metric-container {
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    .equivalents-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }

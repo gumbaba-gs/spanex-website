@@ -9,6 +9,8 @@ import ProductSection from '../components/home/ProductSection';
 import TechnologySection from '../components/home/TechnologySection';
 import BeforeAfterComparison from '../components/home/BeforeAfterComparison';
 import ComparisonSection from '../components/home/ComparisonSection';
+import SustainabilitySection from '../components/home/SustainabilitySection';
+import ContactSection from '../components/home/ContactSection';
 
 /**
  * Home page component
@@ -44,12 +46,18 @@ const HomePage = () => {
       {/* Comparison Section */}
       <ComparisonSection />
 
+      {/* SustainabilitySection */}
+      <SustainabilitySection/>
+      
       {/* Product Section */}
       <ProductSection />
 
+      {/* Contact Section */}
+      <ContactSection />
+
       
       {/* Featured Section */}
-      <section className="section">
+      {/* <section className="section">
         <Container>
           <div className="text-center">
             <h2>Why Choose Us</h2>
@@ -92,131 +100,12 @@ const HomePage = () => {
             </div>
           </div>
         </Container>
-      </section>
+      </section> */}
       
       {/* Featured Products */}
-      <section className="section" style={{ backgroundColor: 'var(--color-alabaster)' }}>
-        <Container>
-          <div className="text-center">
-            <h2>Featured Products</h2>
-            <p className="my-2">Explore our selection of fresh and organic produce.</p>
-          </div>
-          
-          <div className="grid grid-4 my-4">
-            {/* Product Card 1 */}
-            <div className="product-card">
-              <div className="product-image">
-                <img src="/images/product-1.jpg" alt="Organic Apples" />
-              </div>
-              <div className="product-content">
-                <h3 className="product-title">Organic Apples</h3>
-                <p className="product-price">$4.99 / lb</p>
-                <button className="btn btn-primary">Add to Cart</button>
-              </div>
-            </div>
-            
-            {/* Product Card 2 */}
-            <div className="product-card">
-              <div className="product-image">
-                <img src="/images/product-2.jpg" alt="Fresh Strawberries" />
-              </div>
-              <div className="product-content">
-                <h3 className="product-title">Fresh Strawberries</h3>
-                <p className="product-price">$3.99 / basket</p>
-                <button className="btn btn-primary">Add to Cart</button>
-              </div>
-            </div>
-            
-            {/* Product Card 3 */}
-            <div className="product-card">
-              <div className="product-image">
-                <img src="/images/product-3.jpg" alt="Organic Avocados" />
-              </div>
-              <div className="product-content">
-                <h3 className="product-title">Organic Avocados</h3>
-                <p className="product-price">$2.49 / each</p>
-                <button className="btn btn-primary">Add to Cart</button>
-              </div>
-            </div>
-            
-            {/* Product Card 4 */}
-            <div className="product-card">
-              <div className="product-image">
-                <img src="/images/product-4.jpg" alt="Fresh Kale" />
-              </div>
-              <div className="product-content">
-                <h3 className="product-title">Fresh Kale</h3>
-                <p className="product-price">$3.29 / bunch</p>
-                <button className="btn btn-primary">Add to Cart</button>
-              </div>
-            </div>
-          </div>
-          
-          <div className="text-center my-4">
-            <a href="/products" className="btn btn-outline">View All Products</a>
-          </div>
-        </Container>
-      </section>
-      
+     
       {/* Testimonials Section */}
-      <section className="section">
-        <Container>
-          <div className="text-center">
-            <h2>What Our Customers Say</h2>
-            <p className="my-2">Hear from our satisfied customers who enjoy our fresh produce every day.</p>
-          </div>
-          
-          <div className="grid grid-3 my-4">
-            {/* Testimonial 1 */}
-            <div className="testimonial-card">
-              <div className="testimonial-content">
-                <p>"I've been ordering from this service for months now, and the quality is consistently excellent. The produce always arrives fresh and tastes amazing!"</p>
-              </div>
-              <div className="testimonial-author">
-                <div className="testimonial-avatar">
-                  <img src="/images/avatar-1.jpg" alt="Sarah J." />
-                </div>
-                <div className="testimonial-info">
-                  <h4>Sarah J.</h4>
-                  <p>Regular Customer</p>
-                </div>
-              </div>
-            </div>
-            
-            {/* Testimonial 2 */}
-            <div className="testimonial-card">
-              <div className="testimonial-content">
-                <p>"The convenience of having farm-fresh produce delivered to my door has been a game-changer. The selection is great and everything is always top quality."</p>
-              </div>
-              <div className="testimonial-author">
-                <div className="testimonial-avatar">
-                  <img src="/images/avatar-2.jpg" alt="Michael T." />
-                </div>
-                <div className="testimonial-info">
-                  <h4>Michael T.</h4>
-                  <p>Weekly Subscriber</p>
-                </div>
-              </div>
-            </div>
-            
-            {/* Testimonial 3 */}
-            <div className="testimonial-card">
-              <div className="testimonial-content">
-                <p>"As a chef, I'm extremely picky about my ingredients. This service consistently provides restaurant-quality produce that I'm proud to use in my dishes."</p>
-              </div>
-              <div className="testimonial-author">
-                <div className="testimonial-avatar">
-                  <img src="/images/avatar-3.jpg" alt="Chef Amanda" />
-                </div>
-                <div className="testimonial-info">
-                  <h4>Chef Amanda</h4>
-                  <p>Professional Customer</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
+
       
       {/* CTA Section */}
       <section className="section-lg" style={{ backgroundColor: 'var(--color-naval)', color: 'var(--color-pure-white)' }}>

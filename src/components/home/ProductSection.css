@@ -1,7 +1,7 @@
 /* ===== Product Section Styles ===== */
 .products-section {
   padding: var(--spacing-xxl) 0;
-  background-color: var(--color-pure-white);
+  background-color: var(--color-alabaster);
 }
 
 .products-section__container {
