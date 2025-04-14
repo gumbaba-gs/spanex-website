@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './FoodWasteCounter.css';
+import StandardizedTabs from '../common/StandardizedTabs';
 
 const FoodWasteCounter = () => {
   // Tab state for interaction
@@ -10,6 +11,12 @@ const FoodWasteCounter = () => {
   const sectionRef = useRef(null);
   const hasAnimated = useRef(false);
   const [isCounterVisible, setIsCounterVisible] = useState(false);
+
+  // Tabs configuration for the standardized component
+  const tabs = [
+    { id: 'impact', title: 'Business Impact' },
+    { id: 'roi', title: 'ROI Potential' }
+  ];
 
   // Define the startRealTimeCounter function
   const startRealTimeCounter = (baseValue) => {
@@ -110,51 +117,35 @@ const FoodWasteCounter = () => {
         </p>
       </div>
       
-      {/* Main content container - match AboutSection structure exactly */}
+      {/* Main content container */}
       <div className="container">
         <div 
           ref={sectionRef}
           className={`foodwaste-section__container ${isVisible ? 'visible' : ''}`}
         >
           <div className="foodwaste-section__content-card">
-            {/* Main text container - same as AboutSection */}
+            {/* Main text container */}
             <div className="foodwaste-section__text-container">
               <p className="foodwaste-section__text">
                 The fresh produce industry faces <span className="foodwaste-section__highlight">annual losses of over {formatCurrency(counterValue)}</span> due to spoilage. With <span className="foodwaste-section__highlight--secondary">40-50% of harvested produce</span> lost before reaching consumers, this represents a <span className="foodwaste-section__highlight--accent">major financial challenge</span> for packhouses, distributors, and retailers.
               </p>
-              
               <p className="foodwaste-section__text">
                 These losses translate to <span className="foodwaste-section__highlight">approximately $12,500 per truckload</span> and can amount to <span className="foodwaste-section__highlight--secondary">$3.8 million annually</span> for a single distribution center. This significantly impacts bottom-line profitability while creating logistical inefficiencies.
               </p>
-              
               <p className="foodwaste-section__text">
                 <span className="foodwaste-section__highlight">Spanex Shelf Max</span> technology directly addresses this challenge by <span className="foodwaste-section__highlight--secondary">extending shelf life by 3-5×</span> and potentially <span className="foodwaste-section__highlight--accent">reducing waste by up to 75%</span>, offering significant ROI for businesses throughout the supply chain.
               </p>
             </div>
             
-            {/* Tab navigation - same as AboutSection */}
-            <div className="foodwaste-section__tabs">
-              <button
-                type="button"
-                onClick={() => setActiveTab('impact')}
-                className={`foodwaste-section__tab-button ${activeTab === 'impact' ? 'active' : ''}`}
-                aria-selected={activeTab === 'impact'}
-                role="tab"
-              >
-                Business Impact
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveTab('roi')}
-                className={`foodwaste-section__tab-button ${activeTab === 'roi' ? 'active' : ''}`}
-                aria-selected={activeTab === 'roi'}
-                role="tab"
-              >
-                ROI Potential
-              </button>
-            </div>
+            {/* Standardized Tab navigation */}
+            <StandardizedTabs 
+              tabs={tabs} 
+              activeTab={activeTab} 
+              setActiveTab={setActiveTab} 
+              theme="alternate"
+            />
             
-            {/* Tab content container - same as AboutSection */}
+            {/* Tab content container */}
             <div className="foodwaste-section__tab-content" role="tabpanel">
               {activeTab === 'impact' && (
                 <div className="foodwaste-section__offerings">
@@ -276,6 +267,7 @@ const FoodWasteCounter = () => {
                   </div>
                 </div>
               )}
+              
               {activeTab === 'roi' && (
                 <div className="foodwaste-section__offerings">
                   <h3 className="foodwaste-section__offerings-title">ROI Potential</h3>
@@ -372,7 +364,6 @@ const FoodWasteCounter = () => {
               )}
             </div>
           </div>
-
         </div>
       </div>
     </section>
