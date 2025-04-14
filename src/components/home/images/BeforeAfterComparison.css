@@ -1,0 +1,894 @@
+/* src/components/home/BeforeAfterComparison.css */
+
+/* ==== SECTION STYLES ==== */
+
+/* Match AboutSection container for consistent centering and width */
+.comparison-section__container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.comparison-section__container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Add container class for consistent centering and width */
+.container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+.comparison-section {
+  padding: var(--space-12) 0;
+  position: relative;
+  overflow: hidden;
+  
+  /* Background with gradient overlay */
+  background: linear-gradient(
+    rgba(11, 61, 145, 0.9), 
+    rgba(0, 128, 128, 0.9)
+  );
+  position: relative;
+}
+
+/* Glowing effect overlay */
+.comparison-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.15), transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Section header */
+.comparison-section__header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+  position: relative;
+  z-index: 2;
+  padding: 0 var(--space-4);
+}
+
+.comparison-section__title {
+  color: white;
+  margin-bottom: var(--space-3);
+  font-size: var(--font-size-2xl) !important;
+  font-weight: 700;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-align: center !important;
+}
+
+.comparison-section__subtitle {
+  color: white;
+  opacity: 0.9;
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: var(--font-size-base) !important;
+  line-height: 1.5;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  text-align: center !important;
+}
+
+/* Main container styles */
+.comparison-section__container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  overflow: visible !important;
+}
+
+.comparison-section__container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.comparison-section__content-card {
+  background: linear-gradient(45deg, rgba(11, 61, 145, 0.8), rgba(0, 128, 128, 0.9));
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 255, 255, 0.3);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 0.75rem;
+  overflow: visible !important;
+  position: relative;
+  padding-bottom: 2.5rem;
+  padding: 2rem 2rem 2.5rem 2rem;
+  margin-bottom: var(--space-6);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Text styling */
+.comparison-section__text-container {
+  margin-bottom: 1.5rem;
+}
+
+.comparison-section__text {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: white;
+}
+
+.comparison-section__highlight {
+  color: #00FFFF;
+  font-weight: 600;
+}
+
+.comparison-section__highlight--secondary {
+  color: #92F9F9;
+  font-weight: 600;
+}
+
+/* CTA button styling - section level */
+.comparison-section__cta {
+  display: inline-block;
+  background: linear-gradient(45deg, rgba(11, 61, 145, 0.8), rgba(0, 128, 128, 0.9));
+  color: white;
+  font-weight: 600;
+  padding: 0.875rem 1.5rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  margin: var(--space-4) 0;
+}
+
+.comparison-section__cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15), 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+/* Section footnote styling */
+.comparison-section__footnote {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 255, 255, 0.2);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  text-align: center;
+  color: white;
+}
+
+.comparison-section__footnote-text {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: var(--space-4);
+}
+
+/* ==== UPDATED TAB NAVIGATION STYLES (To match AboutSection) ==== */
+.comparison-section__tabs {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1.5rem 0 1rem 0;
+  padding-bottom: 0;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+.comparison-section__tabs::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.comparison-section__tabs::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+  display: flex;
+  justify-content: center;
+  contnet:center;
+}
+
+.comparison-section__tab-button {
+  padding: 0.75rem 1.25rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+  border: 1.5px solid rgba(0, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 9999px !important;
+  cursor: pointer;
+  transition:
+    background 0.25s,
+    color 0.25s,
+    border-color 0.25s,
+    box-shadow 0.25s;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0,255,255,0.05);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: none !important;
+}
+
+.comparison-section__tab-button:hover,
+.comparison-section__tab-button:focus {
+  background: rgba(0, 255, 255, 0.12);
+  color: #fff;
+  border-color: var(--accent-color);
+}
+
+.comparison-section__tab-button.active {
+  background: linear-gradient(45deg, var(--secondary-color), var(--accent-color)) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  border-color: var(--accent-color) !important;
+  box-shadow: 0 4px 16px rgba(0,255,255,0.15) !important;
+  z-index: 1;
+}
+
+/* Tab content */
+.comparison-section__tab-content {
+  min-height: 300px;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* COMPARISON VIEWER STYLES */
+.comparison-section__viewer {
+  margin-bottom: 1.5rem;
+}
+
+.comparison-section__viewer-title {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.comparison-section__image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  margin-bottom: 0rem;
+}
+
+.comparison-section__headers {
+  z-index: 10;
+  display: flex;
+  height: 60px;
+}
+
+.comparison-section__header {
+  display: flex;
+  /* align-items: center; */
+  /* justify-content: center; */
+  flex: 1;
+  font-weight: 600;
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: white;
+  height: 60px
+}
+
+.comparison-section__header--treated {
+  background-color: rgb(23, 49, 123);
+  border-right: `1px solid rgba(255, 255, 255, 0.3);
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  
+}
+
+.comparison-section__header--untreated {
+  background-color: rgb(216, 80, 80);
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.comparison-section__images {
+  display: flex;
+  flex-direction: row;
+  height: 350px;
+  background-color: rgb(4, 93, 122);
+  position: relative;
+}
+
+.comparison-section__images--stacked {
+  flex-direction: column;
+  height: auto;
+}
+
+.comparison-section__image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.comparison-section__image-wrapper--treated {
+  width: 50%;
+  height: 100%;
+  border-right: 1px solid white;
+}
+
+.comparison-section__image-wrapper--untreated {
+  width: 50%;
+  height: 100%;
+  border-left: 1px solid white;
+}
+
+.comparison-section__images--stacked .comparison-section__image-wrapper--treated,
+.comparison-section__images--stacked .comparison-section__image-wrapper--untreated {
+  width: 100%;
+  height: 250px;
+}
+
+.comparison-section__images--stacked .comparison-section__image-wrapper--treated {
+  border-right: none;
+  border-bottom: 1px solid white;
+}
+
+.comparison-section__images--stacked .comparison-section__image-wrapper--untreated {
+  border-left: none;
+  border-top: 1px solid white;
+}
+
+.comparison-section__image {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.comparison-section__day-badge {
+  position: absolute;
+  top: 10px;
+  left: 16px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  z-index: 40;
+}
+
+.comparison-section__divider {
+  position: absolute;
+  top: 40px;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background-color: white;
+  z-index: 30;
+  transform: translateX(-50%);
+}
+
+.comparison-section__caption {
+  margin-top: 1rem;
+  text-align: center;
+  color: white;
+  opacity: 0.9;
+  font-size: 0.9rem;
+}
+
+/* UPDATED OBSERVATIONS SECTION (To match AboutSection offerings) */
+.comparison-section__observations {
+  margin-top: 1.5rem;
+}
+
+.comparison-section__observations-title {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Use the same offerings list styles from AboutSection */
+.comparison-section__offerings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.comparison-section__offering {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.comparison-section__offering:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+.comparison-section__offering--expanded {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+.comparison-section__offering-header {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: white;
+}
+
+.comparison-section__offering-icon {
+  font-size: 1.25rem;
+  background-color: rgba(11, 61, 145, 0.3);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.comparison-section__offering-info {
+  flex: 1;
+  min-width: 0; /* Allows text truncation to work */
+}
+
+.comparison-section__offering-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 0.25rem;
+}
+
+.comparison-section__offering-description {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+.comparison-section__offering-toggle {
+  margin-left: 0.5rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.comparison-section__toggle-icon--expanded {
+  transform: rotate(180deg);
+}
+
+/* Details when expanded */
+.comparison-section__offering-details {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.75rem;
+  padding-left: calc(36px + 1.5rem);
+  animation: slideDown 0.3s ease-out;
+  display: block;
+  visibility: visible;
+}
+
+@keyframes slideDown {
+  from { 
+    opacity: 0; 
+    transform: translateY(-10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+/* List styling fixes */
+.comparison-section__details-list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  list-style-type: disc;
+}
+
+.comparison-section__details-item {
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+  display: list-item;
+}
+
+/* Indicator bars */
+.comparison-section__indicator-bars {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.comparison-section__indicator-bar {
+  height: 8px;
+  width: 30px;
+  background: rgba(0, 255, 255, 0.1);
+  border-radius: 4px;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.1);
+  transition: background 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.comparison-section__indicator-bar--active {
+  background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+  border: 1px solid rgba(0, 255, 255, 0.5);
+}
+
+/* Mobile-specific and landscape orientation adjustments */
+@media (max-width: 767px), (orientation: landscape) and (max-height: 500px) {
+  .comparison-section__offering {
+    /* Explicitly set background for mobile devices regardless of orientation */
+    background-color: rgba(11, 61, 145, 0.6);
+    /* Fallback for devices that don't support backdrop-filter */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* Fallback for browsers that don't support backdrop-filter */
+@supports not (backdrop-filter: blur(5px)) {
+  .comparison-section__offering {
+    background-color: rgba(11, 61, 145, 0.6);
+  }
+}
+
+/* ==== RESPONSIVE DESIGN ==== */
+
+/* Small tablet and large phones */
+@media (max-width: 768px) {
+  .comparison-section {
+    padding: var(--space-8) 0;
+  }
+  
+  .comparison-section__title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .comparison-section__subtitle {
+    font-size: var(--font-size-sm);
+  }
+  
+  .comparison-section__content-card {
+    padding: 1.5rem;
+  }
+  
+  .comparison-section__viewer-title,
+  .comparison-section__observations-title {
+    font-size: 1.1rem;
+  }
+  
+  .comparison-section__tab-button {
+    padding: 0.5rem 1rem;
+    min-width: 70px;
+    font-size: 0.85rem;
+  }
+  
+  .comparison-section__headers {
+    height: 36px;
+  }
+  
+  .comparison-section__header {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+  
+  .comparison-section__day-badge {
+    font-size: 0.75rem;
+  }
+  
+  .comparison-section__images {
+    height: 300px;
+  }
+  
+  .comparison-section__divider {
+    top: 36px;
+  }
+  
+  .comparison-section__caption {
+    font-size: 0.85rem;
+  }
+  
+  .comparison-section__offering-title {
+    font-size: 0.9rem;
+  }
+  
+  .comparison-section__offering-header {
+    padding: 0.6rem;
+  }
+  
+  .comparison-section__indicator-bar {
+    height: 6px;
+    width: 25px;
+  }
+  
+  .comparison-section__cta {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+  }
+  
+  .comparison-section__offering-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 1.1rem;
+  }
+}
+
+/* Mobile design adjustments */
+@media (max-width: 480px) {
+  .comparison-section {
+    padding: var(--space-6) 0;
+  }
+  
+  .comparison-section__content-card {
+    padding: 1rem;
+  }
+  
+  .comparison-section__tabs {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2.5rem 0 1rem 0; /* Increased top margin for spacing */
+    padding-bottom: 0;
+    border-bottom: none; /* Explicitly ensure no border */
+  }
+  
+  /* Fix the tab button styling to match AboutSection */
+  .comparison-section__tab-button {
+    padding: 0.75rem 1.25rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+    border: 1.5px solid rgba(0, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 9999px; /* Ensure pill shape */
+    cursor: pointer;
+    transition:
+      background 0.25s,
+      color 0.25s,
+      border-color 0.25s,
+      box-shadow 0.25s;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(0,255,255,0.05);
+    position: relative;
+  }
+  
+  .comparison-section__tab-button:hover,
+.comparison-section__tab-button:focus {
+  background: rgba(0, 255, 255, 0.12);
+  color: #fff;
+  border-color: var(--accent-color); /* Green border on hover */
+}
+
+  .comparison-section__observations {
+    padding: 0;
+  }
+  
+  .comparison-section__images {
+    height: 250px;
+  }
+  
+  .comparison-section__images--stacked .comparison-section__image-wrapper--treated,
+  .comparison-section__images--stacked .comparison-section__image-wrapper--untreated {
+    height: 200px;
+  }
+  
+  .comparison-section__offering-details {
+    padding-left: calc(32px + 1.25rem);
+  }
+  
+  .comparison-section__details-item {
+    font-size: 0.8rem;
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1024px) {
+  .comparison-section {
+    padding: var(--space-16) 0;
+  }
+  
+  .comparison-section__title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .comparison-section__subtitle {
+    font-size: var(--font-size-lg);
+  }
+  
+  .comparison-section__content-card {
+    padding: 2.5rem;
+  }
+  
+  .comparison-section__images {
+    height: 400px;
+  }
+  
+  .comparison-section__tab-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .comparison-section__offering-header {
+    padding: 1rem;
+  }
+  
+  .comparison-section__offering-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+  }
+  
+  .comparison-section__offering-title {
+    font-size: 1rem;
+  }
+  
+  .comparison-section__offering-description {
+    font-size: 0.875rem;
+  }
+}
+
+/* High density display adjustments */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .comparison-section__day-badge {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  }
+  
+  .comparison-section__tab-button.active {
+    box-shadow: 0 2px 8px rgba(0, 255, 255, 0.2);
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 600px) {
+  .comparison-section__images {
+    height: 200px;
+  }
+  
+  .comparison-section__tab-content {
+    min-height: 200px;
+  }
+}
+/* Tab styles to match AboutSection exactly */
+
+
+
+/* Fix the tab button styling to match AboutSection */
+.comparison-section__tab-button {
+  padding: 0.75rem 1.25rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+  border: 1.5px solid rgba(0, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 9999px; /* Ensure pill shape */
+  cursor: pointer;
+  transition:
+    background 0.25s,
+    color 0.25s,
+    border-color 0.25s,
+    box-shadow 0.25s;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0,255,255,0.05);
+  position: relative;
+}
+
+/* Hover state - green border */
+.comparison-section__tab-button:hover,
+.comparison-section__tab-button:focus {
+  background: rgba(0, 255, 255, 0.12);
+  color: #fff;
+  border-color: var(--accent-color); /* Green border on hover */
+}
+
+/* Active state - green background */
+.comparison-section__tab-button.active {
+  background: linear-gradient(45deg, var(--secondary-color), var(--accent-color)); /* Green gradient */
+  color: #fff;
+  font-weight: 700;
+  border-color: var(--accent-color);
+  box-shadow: 0 4px 16px rgba(0,255,255,0.15);
+  z-index: 1;
+}
+
+/* Fix header alignment issues */
+.comparison-section__headers {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  height: 60px;
+}
+
+.comparison-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  font-weight: 600;
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: white;
+}
+
+/* Fix for the treated header */
+.comparison-section__header--treated {
+  background-color: rgb(23, 49, 123);
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Fix for the untreated header */
+.comparison-section__header--untreated {
+  background-color: rgb(216, 80, 80);
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Add more space after the image container */
+.comparison-section__image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  margin-bottom: 2rem; /* More space before the tabs */
+}
+
+/* Fix divider position for proper alignment */
+.comparison-section__divider {
+  position: absolute;
+  top: 60px; /* Match the header height */
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background-color: white;
+  z-index: 30;
+  transform: translateX(-50%);
+}

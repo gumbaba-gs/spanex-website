@@ -1,0 +1,1 @@
+The background color of the FoodWasteCounter section has been updated to use var(--color-sea-salt), creating a visually distinct alternating section effect that matches the website's design palette. AboutSection remains with var(--color-alabaster), ensuring clear separation between the two sections.

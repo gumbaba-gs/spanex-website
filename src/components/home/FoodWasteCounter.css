@@ -1,0 +1,202 @@
+/* ===== Food Waste Counter Section Styles ===== */
+.foodwaste-section {
+  padding: var(--spacing-xxl) 0;
+  background-color: var(--color-sea-salt);
+}
+
+.foodwaste-section__header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.foodwaste-section__title {
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.foodwaste-section__subtitle {
+  color: var(--color-text-secondary);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.foodwaste-section__container {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--transition-normal), transform var(--transition-normal);
+}
+
+.foodwaste-section__container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.foodwaste-section__content-card {
+  background-color: var(--color-pure-white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-xl);
+  overflow: hidden;
+}
+
+.foodwaste-section__text-container {
+  margin-bottom: var(--spacing-lg);
+}
+
+.foodwaste-section__text {
+  margin-bottom: var(--spacing-md);
+  line-height: var(--line-height-relaxed);
+}
+
+.foodwaste-section__highlight {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.foodwaste-section__highlight--secondary {
+  color: var(--color-evergreen-fog);
+  font-weight: var(--font-weight-medium);
+}
+
+.foodwaste-section__highlight--accent {
+  color: var(--color-redend-point);
+  font-weight: var(--font-weight-medium);
+}
+
+.foodwaste-section__highlight--success {
+  color: var(--color-evergreen-fog);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Tabs */
+.foodwaste-section__tabs {
+  display: flex;
+  border-bottom: 1px solid var(--color-repose-gray);
+  margin-bottom: var(--spacing-lg);
+}
+
+.foodwaste-section__tab-button {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: none;
+  border: none;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.foodwaste-section__tab-button::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-primary);
+  transform: scaleX(0);
+  transition: transform var(--transition-fast);
+}
+
+.foodwaste-section__tab-button.active {
+  color: var(--color-primary);
+}
+
+.foodwaste-section__tab-button.active::after {
+  transform: scaleX(1);
+}
+
+.foodwaste-section__tab-button:hover {
+  color: var(--color-primary);
+}
+
+/* Tab Content */
+.foodwaste-section__tab-content {
+  min-height: 300px;
+}
+
+.foodwaste-section__offerings-title {
+  margin-bottom: var(--spacing-md);
+  color: var(--color-primary);
+}
+
+/* Offerings */
+.foodwaste-section__offerings-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.foodwaste-section__offering {
+  border: 1px solid var(--color-repose-gray);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+}
+
+.foodwaste-section__offering-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--spacing-md);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color var(--transition-fast);
+}
+
+.foodwaste-section__offering-header:hover {
+  background-color: var(--color-alabaster);
+}
+
+.foodwaste-section__offering-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-sea-salt);
+  border-radius: var(--border-radius-full);
+  margin-right: var(--spacing-md);
+  font-size: var(--font-size-lg);
+}
+
+.foodwaste-section__offering-info {
+  flex: 1;
+}
+
+.foodwaste-section__offering-title {
+  margin: 0 0 var(--spacing-xs);
+  font-size: var(--font-size-md);
+}
+
+.foodwaste-section__offering-description {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.foodwaste-section__offering-toggle {
+  margin-left: var(--spacing-md);
+}
+
+.foodwaste-section__toggle-icon--expanded {
+  transform: rotate(180deg);
+}
+
+.foodwaste-section__offering-details {
+  padding: var(--spacing-md);
+  border-top: 1px solid var(--color-repose-gray);
+  background-color: var(--color-alabaster);
+}
+
+.foodwaste-section__details-list {
+  list-style-type: disc;
+  padding-left: var(--spacing-lg);
+  margin: 0;
+}
+
+.foodwaste-section__details-item {
+  margin-bottom: var(--spacing-xs);
+  line-height: var(--line-height-relaxed);
+}

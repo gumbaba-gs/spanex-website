@@ -1,0 +1,462 @@
+/* src/components/home/TechnologySection.css */
+
+.tech-section {
+  padding: var(--space-12) 0;
+  position: relative;
+  overflow: hidden;
+  
+  /* Background with gradient overlay */
+  background: linear-gradient(
+    135deg,
+    rgba(var(--primary-color-rgb), 0.9),
+    rgba(var(--secondary-color-rgb), 0.9),
+    rgba(var(--pink-color-rgb), 0.9)
+  );
+  position: relative;
+}
+
+/* Glowing effect overlay */
+.tech-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(var(--pink-color-rgb), 0.15), transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Section header */
+.tech-section__header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+  position: relative;
+  z-index: 2;
+  padding: 0 var(--space-4);
+}
+
+.tech-section__title {
+  color: white;
+  margin-bottom: var(--space-3);
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.tech-section__subtitle {
+  color: white;
+  opacity: 0.9;
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Container styles */
+.tech-section__container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.tech-section__container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tech-section__content-card {
+  background: linear-gradient(45deg, rgba(var(--primary-color-rgb), 0.8), rgba(var(--secondary-color-rgb), 0.9), rgba(var(--pink-color-rgb), 0.8));
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 15px rgba(var(--pink-color-rgb), 0.3);
+  border: 1px solid rgba(var(--accent-color-rgb), 0.2);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  margin-bottom: var(--space-6);
+  color: white;
+}
+
+/* Text styling */
+.tech-section__text-container {
+  margin-bottom: 1.5rem;
+}
+
+.tech-section__text {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: white;
+}
+
+.tech-section__highlight {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.tech-section__highlight--secondary {
+  color: var(--pink-color);
+  font-weight: 600;
+}
+
+/* Updated Tab Navigation to match AboutSection */
+.tech-section__tabs {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1.5rem 0 1rem 0;
+  padding-bottom: 0;
+  border-bottom: none; /* Removed the line under buttons */
+}
+
+.tech-section__tabs::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.tech-section__tab-button {
+  padding: 0.75rem 1.25rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+  border: 1.5px solid rgba(var(--accent-color-rgb), 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition:
+    background 0.25s,
+    color 0.25s,
+    border-color 0.25s,
+    box-shadow 0.25s;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(var(--accent-color-rgb), 0.05);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tech-section__tab-button:hover,
+.tech-section__tab-button:focus {
+  background: rgba(var(--accent-color-rgb), 0.12);
+  color: #fff;
+  border-color: var(--accent-color);
+}
+
+.tech-section__tab-button.active {
+  background: linear-gradient(45deg, var(--secondary-color), var(--accent-color), var(--pink-color));
+  color: #fff;
+  font-weight: 700;
+  border-color: var(--accent-color);
+  box-shadow: 0 4px 16px rgba(var(--pink-color-rgb), 0.15);
+  z-index: 1;
+}
+
+.tech-section__tab-icon {
+  font-size: 1.1rem;
+}
+
+/* Tab Content */
+.tech-section__tab-content {
+  min-height: 300px;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Additional styles to match AboutSection offerings */
+.tech-section__mechanisms {
+  /* Match the offerings styling in AboutSection */
+}
+
+.tech-section__mechanisms-title {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Use the same offerings list styles from AboutSection */
+.tech-section__offerings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tech-section__offering {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.tech-section__offering:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), 0 0 15px rgba(var(--accent-color-rgb), 0.2);
+}
+
+.tech-section__offering--expanded {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), 0 0 15px rgba(var(--accent-color-rgb), 0.2);
+}
+
+.tech-section__offering-header {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: white;
+}
+
+.tech-section__offering-icon {
+  font-size: 1.25rem;
+  background-color: rgba(var(--primary-color-rgb), 0.3);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.tech-section__offering-info {
+  flex: 1;
+  min-width: 0; /* Allows text truncation to work */
+}
+
+.tech-section__offering-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 0.25rem;
+}
+
+.tech-section__offering-description {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+.tech-section__offering-toggle {
+  margin-left: 0.5rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.tech-section__toggle-icon--expanded {
+  transform: rotate(180deg);
+}
+
+/* Details when expanded */
+.tech-section__offering-details {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.75rem;
+  padding-left: calc(36px + 1.5rem);
+  animation: slideDown 0.3s ease-out;
+  display: block;
+  visibility: visible;
+}
+
+@keyframes slideDown {
+  from { 
+    opacity: 0; 
+    transform: translateY(-10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* List styling fixes */
+.tech-section__details-list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  list-style-type: disc;
+}
+
+.tech-section__details-item {
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+  display: list-item;
+}
+
+/* CTA button styling - matches content card background */
+.tech-section__cta {
+  display: inline-block;
+  background: linear-gradient(45deg, rgba(var(--primary-color-rgb), 0.8), rgba(var(--secondary-color-rgb), 0.9), rgba(var(--pink-color-rgb), 0.8));
+  color: white;
+  font-weight: 600;
+  padding: 0.875rem 1.5rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(var(--accent-color-rgb), 0.2);
+  margin: var(--space-4) 0;
+}
+
+.tech-section__cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15), 0 0 20px rgba(var(--accent-color-rgb), 0.3);
+}
+
+/* Indicator bars */
+.tech-section__indicator-bars {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  margin: 1rem 0 0.5rem;
+  /* Move inside content card per template */
+}
+
+.tech-section__indicator-bar {
+  height: 8px;
+  width: 30px;
+  background: rgba(var(--pink-color-rgb), 0.1);
+  border-radius: 4px;
+  border: 1px solid rgba(var(--pink-color-rgb), 0.2);
+  box-shadow: 0 0 5px rgba(var(--pink-color-rgb), 0.1);
+  transition: background 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.tech-section__indicator-bar--active {
+  background: linear-gradient(to right, var(--secondary-color), var(--accent-color), var(--pink-color));
+  box-shadow: 0 0 10px rgba(var(--pink-color-rgb), 0.4);
+  border: 1px solid rgba(var(--pink-color-rgb), 0.5);
+}
+
+/* Footnote styling */
+.tech-section__footnote {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 0 15px rgba(var(--accent-color-rgb), 0.2);
+  border: 1px solid rgba(var(--accent-color-rgb), 0.2);
+  text-align: center;
+  color: white;
+}
+
+.tech-section__footnote-text {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* Mobile-specific and landscape orientation adjustments */
+@media (max-width: 767px), (orientation: landscape) and (max-height: 500px) {
+  .tech-section__offering {
+    /* Explicitly set background for mobile devices regardless of orientation */
+    background-color: rgba(var(--primary-color-rgb), 0.6);
+    /* Fallback for devices that don't support backdrop-filter */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* Fallback for browsers that don't support backdrop-filter */
+@supports not (backdrop-filter: blur(5px)) {
+  .tech-section__offering {
+    background-color: rgba(var(--primary-color-rgb), 0.6);
+  }
+}
+
+/* Responsive adjustments */
+@media (min-width: 480px) {
+  .tech-section__content-card {
+    padding: 1.75rem;
+  }
+  
+  .tech-section__text {
+    font-size: 1rem;
+  }
+  
+  .tech-section__details-item {
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .tech-section {
+    padding: 5rem 0;
+  }
+  
+  .tech-section__title {
+    font-size: 2.5rem;
+  }
+  
+  .tech-section__subtitle {
+    font-size: 1.125rem;
+  }
+  
+  .tech-section__content-card {
+    padding: 2rem;
+  }
+  
+  .tech-section__tab-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .tech-section__offering-title {
+    font-size: 1rem;
+  }
+  
+  .tech-section__offering-description {
+    font-size: 0.875rem;
+  }
+  
+  .tech-section__offering-header {
+    padding: 1rem;
+  }
+  
+  .tech-section__offering-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+  }
+  
+  .tech-section__footnote {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .tech-section {
+    padding: 6rem 0;
+  }
+  
+  .tech-section__content-card {
+    padding: 2.5rem;
+  }
+  
+  .tech-section__title {
+    font-size: 3rem;
+  }
+}
