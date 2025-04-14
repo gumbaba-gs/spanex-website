@@ -156,7 +156,7 @@ const AboutSection = () => {
               tabs={tabs}
               activeTab={activeTab}
               setActiveTab={setActiveTab}
-              theme="default"
+              theme="alternate"
             />
             
             {/* Tab content container */}

@@ -1,5 +1,28 @@
 /* src/styles/components.css */
 :root {
+  /* Brand Colors */
+  --color-primary: #2d5500;         /* Dark Green */
+  --color-brown: #87643e;           /* Brown */
+  --color-coral: #ff6e4e;           /* Coral/Orange */
+  --color-bright-orange: #fea201;   /* Bright Orange */
+  --color-bright-yellow: #ffe02a;   /* Bright Yellow */
+
+  /* Neutrals */
+  --color-pure-white: #fff;
+  --color-alabaster: #f8f8f5;
+  --color-sea-salt: #f4f6f8;
+
+  /* Text */
+  --color-text-primary: #222;
+  --color-text-secondary: #666;
+  --color-muted: #b0b0b0;
+
+  /* Status/Utility */
+  --color-success: #2d5500;
+  --color-warning: #fea201;
+  --color-error: #ff6e4e;
+
+  /* Section backgrounds */
   --section-bg-primary: var(--color-alabaster);
   --section-bg-secondary: var(--color-sea-salt);
   --section-card-bg: var(--color-pure-white);

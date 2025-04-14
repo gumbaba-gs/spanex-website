@@ -33,9 +33,11 @@
   --color-background: var(--color-pure-white);
   --color-text-primary: var(--color-iron-ore);
   --color-text-secondary: var(--color-agreeable-gray);
-  --color-primary: var(--color-naval);
-  --color-secondary: var(--color-evergreen-fog);
-  --color-accent: var(--color-redend-point);
+  --color-primary: #2d5500;         /* Dark Green */
+  --color-secondary: #87643e;       /* Brown */
+  --color-accent: #ff6e4e;          /* Coral/Orange */
+  --color-bright-orange: #fea201;   /* Bright Orange */
+  --color-bright-yellow: #ffe02a;   /* Bright Yellow */
   --color-muted: var(--color-repose-gray);
   
   /* Spacing System */
@@ -174,23 +176,23 @@ a:hover {
 }
 
 .btn-primary {
-  background-color: var(--color-primary);
+  background-color: var(--color-accent); /* Coral/Orange for CTAs */
   color: var(--color-pure-white);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-naval);
+  background-color: #e85c36; /* Slightly darker coral for hover */
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 
 .btn-secondary {
-  background-color: var(--color-secondary);
+  background-color: var(--color-bright-orange); /* Bright Orange for secondary */
   color: var(--color-pure-white);
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-evergreen-fog);
+  background-color: #d18c4e; /* Slightly darker brown/orange for hover */
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }

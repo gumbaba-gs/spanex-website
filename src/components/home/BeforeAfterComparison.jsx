@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './BeforeAfterComparison.css';
 import './TechnologySection.css';
+import StandardizedTabs from '../common/StandardizedTabs';
 
 // Import images directly to ensure they're properly bundled by webpack
 import treatedDay0 from './images/spanex-treated/0.png';
@@ -23,6 +24,7 @@ const BeforeAfterComparison = () => {
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 768);
 
   const days = [0, 3, 7, 11, 14];
+  const tabs = days.map(day => ({ id: day, title: `Day ${day}` }));
 
   const toggleFeature = (id) => {
     setExpandedFeature(prevId => prevId === id ? null : id);
@@ -166,20 +168,13 @@ const BeforeAfterComparison = () => {
                 </div>
               </div>
             </div>
-            <div className="comparison-section__tabs" role="tablist" aria-label="Day Selector">
-              {days.map((day) => (
-                <button
-                  key={day}
-                  type="button"
-                  onClick={() => setActiveTab(day)}
-                  className={`comparison-section__tab-button${activeTab === day ? ' active' : ''}`}
-                  aria-selected={activeTab === day}
-                  role="tab"
-                >
-                  Day {day}
-                </button>
-              ))}
-            </div>
+            {/* StandardizedTabs for day selector */}
+            <StandardizedTabs
+              tabs={tabs}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+              theme="alternate"
+            />
             <div className="comparison-section__tab-content" role="tabpanel">
               <div className="comparison-section__observations">
                 <h3 className="comparison-section__observations-title">Observations at Day {activeTab}</h3>
