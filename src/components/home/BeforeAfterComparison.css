@@ -3,7 +3,7 @@
 
 .comparison-section {
   padding: var(--spacing-xxl, 6rem) 0;
-  background-color: var(--color-sea-salt, #f8fafc);
+  background-color: var(--section-bg-secondary);
   position: relative;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .comparison-section__content-card {
-  background-color: var(--color-sea-salt, #f8fafc);
+  background-color: var(--section-card-bg);
   border-radius: var(--border-radius-lg, 1.25rem);
   box-shadow: var(--shadow-md, 0 2px 8px rgba(0,0,0,0.05));
   padding: var(--spacing-xl, 2.5rem);

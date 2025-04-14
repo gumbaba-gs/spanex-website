@@ -1,4 +1,9 @@
 /* src/styles/components.css */
+:root {
+  --section-bg-primary: var(--color-alabaster);
+  --section-bg-secondary: var(--color-sea-salt);
+  --section-card-bg: var(--color-pure-white);
+}
 
 /* ===== Header Styles ===== */
 .header {
