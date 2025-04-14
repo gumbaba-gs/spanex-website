@@ -8,17 +8,6 @@ S/* src/components/home/TechnologySection.css
 }
 
 /* Glowing effect overlay */
-.tech-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(var(--pink-color-rgb), 0.15), transparent 70%);
-  pointer-events: none;
-  z-index: 1;
-}
 
 /* Section header */
 .tech-section__header {
@@ -94,12 +83,10 @@ S/* src/components/home/TechnologySection.css
   overflow-x: auto;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
-  gap: 0.5rem;
   flex-wrap: wrap;
-  justify-content: center;
   margin: 1.5rem 0 1rem 0;
   padding-bottom: 0;
-  border-bottom: none; /* Removed the line under buttons */
+  border-bottom: 1px solid var(--color-repose-gray);
 }
 
 .tech-section__tabs::-webkit-scrollbar {
@@ -107,46 +94,39 @@ S/* src/components/home/TechnologySection.css
 }
 
 .tech-section__tab-button {
-  padding: 0.75rem 1.25rem;
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-  white-space: nowrap;
-  border: 1.5px solid rgba(var(--accent-color-rgb), 0.2);
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 1rem;
-  font-weight: 500;
-  border-radius: 9999px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: none;
+  border: none;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
   cursor: pointer;
-  transition:
-    background 0.25s,
-    color 0.25s,
-    border-color 0.25s,
-    box-shadow 0.25s;
-  outline: none;
-  box-shadow: 0 2px 8px rgba(var(--accent-color-rgb), 0.05);
   position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  transition: color var(--transition-fast);
 }
 
-.tech-section__tab-button:hover,
-.tech-section__tab-button:focus {
-  background: rgba(var(--accent-color-rgb), 0.12);
-  color: var(--color-pure-white);
-  border-color: var(--color-accent);
+.tech-section__tab-button::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-primary);
+  transform: scaleX(0);
+  transition: transform var(--transition-fast);
 }
 
 .tech-section__tab-button.active {
-  background: linear-gradient(45deg, var(--color-primary), var(--color-accent), var(--color-secondary));
-  color: var(--color-pure-white);
-  font-weight: 700;
-  border-color: var(--color-accent);
-  box-shadow: 0 4px 16px rgba(var(--accent-color-rgb), 0.15);
-  z-index: 1;
+  color: var(--color-primary);
 }
 
+.tech-section__tab-button.active::after {
+  transform: scaleX(1);
+}
+
+.tech-section__tab-button:hover {
+  color: var(--color-primary);
+}
 .tech-section__tab-icon {
   font-size: 1.1rem;
 }
@@ -291,8 +271,8 @@ S/* src/components/home/TechnologySection.css
 /* CTA button styling - matches content card background */
 .tech-section__cta {
   display: inline-block;
-  background: linear-gradient(45deg, var(--color-primary), var(--color-accent), var(--color-secondary));
-  color: var(--color-pure-white);
+  background-color: var(--color-alabaster);
+  color: var(--color-text-primary);
   font-weight: 600;
   padding: 0.875rem 1.5rem;
   border-radius: 9999px;
@@ -352,7 +332,7 @@ S/* src/components/home/TechnologySection.css
 @media (max-width: 767px), (orientation: landscape) and (max-height: 500px) {
   .tech-section__offering {
     /* Explicitly set background for mobile devices regardless of orientation */
-    background-color: rgba(var(--primary-color-rgb), 0.6);
+    background-color: var(--color-alabaster);
     /* Fallback for devices that don't support backdrop-filter */
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
@@ -362,7 +342,7 @@ S/* src/components/home/TechnologySection.css
 /* Fallback for browsers that don't support backdrop-filter */
 @supports not (backdrop-filter: blur(5px)) {
   .tech-section__offering {
-    background-color: rgba(var(--primary-color-rgb), 0.6);
+    background-color: var(--color-pure-white);
   }
 }
 
@@ -436,6 +416,6 @@ S/* src/components/home/TechnologySection.css
   }
   
   .tech-section__title {
-    font-size: 3rem;
+    font-size: var(--font-size-2xl);
   }
 }

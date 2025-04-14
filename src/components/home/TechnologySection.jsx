@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './TechnologySection.css';
+import StandardizedTabs from '../common/StandardizedTabs';
 
 const TechnologySection = () => {
   // Core state variables as per template requirements
@@ -162,6 +163,13 @@ const TechnologySection = () => {
       ]
     }
   ];
+  // Tab configuration for standardized component
+  const tabs = [
+    { id: 'respiration', title: 'Respiration Control', icon: '🍃' },
+    { id: 'moisture', title: 'Moisture Optimization', icon: '💧' },
+    { id: 'microbial', title: 'Microbial Inhibition', icon: '🦠' },
+    { id: 'oxidation', title: 'Oxidation Prevention', icon: '⚛️' }
+  ];
 
   return (
     <section className="tech-section" id="technology">
@@ -193,21 +201,13 @@ const TechnologySection = () => {
             </div>
             
             {/* Tab navigation - Updated to match AboutSection style */}
-            <div className="tech-section__tabs">
-              {mechanismTypes.map((mechanismType) => (
-                <button
-                  key={mechanismType.id}
-                  type="button"
-                  onClick={() => setActiveTab(mechanismType.id)}
-                  className={`tech-section__tab-button ${activeTab === mechanismType.id ? 'active' : ''}`}
-                  aria-selected={activeTab === mechanismType.id}
-                  role="tab"
-                >
-                  <span className="tech-section__tab-icon">{mechanismType.features[0].icon}</span>
-                  {mechanismType.title}
-                </button>
-              ))}
-            </div>
+            {/* Standardized Tab navigation with alternate theme */}
+            <StandardizedTabs
+              tabs={tabs}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+              theme="alternate"
+            />
             
             {/* Tab content - Using exact same pattern as AboutSection */}
             <div className="tech-section__tab-content" role="tabpanel">

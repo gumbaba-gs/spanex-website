@@ -1,6 +1,7 @@
 // src/components/home/AboutSection.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import './AboutSection.css';
+import StandardizedTabs from '../common/StandardizedTabs';
 
 const AboutSection = () => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -80,6 +81,12 @@ const AboutSection = () => {
     { value: 'Testing Phase', label: 'Not Yet Launched' }
   ];
 
+  // Tabs configuration for the standardized component
+  const tabs = [
+    { id: 'overview', title: 'Company Overview' },
+    { id: 'offerings', title: 'Product Line' }
+  ];
+
   // Toggle feature expansion
   const toggleFeature = (id) => {
     setExpandedFeature(prevId => prevId === id ? null : id);
@@ -144,27 +151,13 @@ const AboutSection = () => {
               </p>
             </div>
             
-            {/* Tab navigation */}
-            <div className="about-section__tabs">
-              <button
-                type="button"
-                onClick={() => setActiveTab('overview')}
-                className={`about-section__tab-button ${activeTab === 'overview' ? 'active' : ''}`}
-                aria-selected={activeTab === 'overview'}
-                role="tab"
-              >
-                Company Overview
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveTab('offerings')}
-                className={`about-section__tab-button ${activeTab === 'offerings' ? 'active' : ''}`}
-                aria-selected={activeTab === 'offerings'}
-                role="tab"
-              >
-                Product Line
-              </button>
-            </div>
+            {/* Standardized Tab navigation */}
+            <StandardizedTabs
+              tabs={tabs}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+              theme="default"
+            />
             
             {/* Tab content container */}
             <div className="about-section__tab-content" role="tabpanel">
