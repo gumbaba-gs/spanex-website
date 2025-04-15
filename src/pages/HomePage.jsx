@@ -3,6 +3,7 @@ import React from 'react';
 import Layout from '../components/layout/Layout';
 import Container from '../components/layout/Container';
 import Hero from '../components/heroes/Hero';
+import SpanexShieldHeroWithStyles from '../components/heroes/SpanexShieldHero';
 import AboutSection from '../components/home/AboutSection';
 import FoodWasteCounter from '../components/home/FoodWasteCounter';
 import ProductSection from '../components/home/ProductSection';
@@ -19,7 +20,7 @@ const HomePage = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <Hero
+      {/* <Hero
         backgroundImage="/images/hero-background.jpg"
         // backgroundVideo="/videos/hero-background.mp4" // Uncomment to use video
         title="Extending Nature's Freshness"
@@ -30,7 +31,8 @@ const HomePage = () => {
         alignment="center"
         textColor="light"
         fullHeight={true}
-      />
+      /> */}
+      <SpanexShieldHeroWithStyles />
 
       {/* About Section */}
       <AboutSection />

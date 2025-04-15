@@ -34,3 +34,24 @@ The bright colors (orange and yellow) should be used sparingly as accents
 Add complementary neutral colors (whites, off-whites, and grays) to balance the vibrant palette
 
 This tropical-inspired palette gives your website a warm, energetic feel while ensuring good contrast for readability. The colors evoke natural, organic themes that would work well for a food, agriculture, or eco-friendly business website.
+
+
+  // Fruit data for background animation
+  const fruits = [
+    { emoji: "🍎", size: 40, rotation: 15 },    // Apple
+    { emoji: "🍇", size: 35, rotation: -10 },   // Grapes
+    { emoji: "🍓", size: 30, rotation: 5 },     // Strawberry
+    { emoji: "🥑", size: 45, rotation: -5 },    // Avocado
+    { emoji: "🫐", size: 25, rotation: 20 },    // Blueberries
+    { emoji: "🍊", size: 35, rotation: -15 },   // Orange
+    { emoji: "🍋", size: 32, rotation: 8 },     // Lemon
+    { emoji: "🥭", size: 40, rotation: -8 },    // Mango
+    { emoji: "🍍", size: 48, rotation: 12 },    // Pineapple
+    { emoji: "🍑", size: 35, rotation: -12 },   // Peach
+    { emoji: "🍉", size: 50, rotation: 5 },     // Watermelon
+    { emoji: "🥝", size: 28, rotation: -5 },    // Kiwi
+    { emoji: "🍈", size: 40, rotation: 10 },    // Melon
+    { emoji: "🍐", size: 38, rotation: -10 },   // Pear
+    { emoji: "🥕", size: 35, rotation: 25 },    // Carrot
+    { emoji: "🥬", size: 40, rotation: -20 },   // Leafy Green
+  ];
