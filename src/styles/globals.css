@@ -20,7 +20,7 @@
   /* Accent Colors */
   --color-naval: #2F3A59;
   --color-evergreen-fog: #9CA698;
-  --color-redend-point: #AD8174;
+  --color-redend-point: #ff6e4e;
   --color-urbane-bronze: #545045;
   
   /* Complementary Colors */
@@ -49,28 +49,29 @@
   --spacing-xxl: 5rem;    /* 80px */
   
   /* Typography */
+   /* Typography */
   --font-family-primary: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  
-  /* Font Sizes */
-  --font-size-xs: 0.75rem;    /* 12px */
-  --font-size-sm: 0.875rem;   /* 14px */
-  --font-size-base: 1rem;     /* 16px */
-  --font-size-md: 1.125rem;   /* 18px */
-  --font-size-lg: 1.5rem;     /* 24px */
-  --font-size-xl: 1.875rem;   /* 30px */
-  --font-size-2xl: 2.25rem;   /* 36px */
-  --font-size-3xl: 3rem;      /* 48px */
-  
-  /* Font Weights */
-  --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-weight-bold: 700;
-  
-  /* Line Heights */
-  --line-height-tight: 1.2;
-  --line-height-base: 1.5;
-  --line-height-relaxed: 1.8;
+   Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+ 
+ /* Increased Font Sizes (approximately 20% larger) */
+ --font-size-xs: 0.875rem;    /* 14px (up from 12px) */
+ --font-size-sm: 1rem;        /* 16px (up from 14px) */
+ --font-size-base: 1.125rem;  /* 18px (up from 16px) */
+ --font-size-md: 1.25rem;     /* 20px (up from 18px) */
+ --font-size-lg: 1.75rem;     /* 28px (up from 24px) */
+ --font-size-xl: 2.25rem;     /* 36px (up from 30px) */
+ --font-size-2xl: 2.75rem;    /* 44px (up from 36px) */
+ --font-size-3xl: 3.5rem;     /* 56px (up from 48px) */
+ 
+ /* Font Weights */
+ --font-weight-regular: 400;
+ --font-weight-medium: 500;
+ --font-weight-bold: 700;
+ 
+ /* Line Heights - Slightly increased */
+ --line-height-tight: 1.3;    /* Was 1.2 */
+ --line-height-base: 1.6;     /* Was 1.5 */
+ --line-height-relaxed: 1.9;  /* Was 1.8 */
   
   /* Border Radius */
   --border-radius-sm: 0.25rem;  /* 4px */
@@ -329,5 +330,50 @@ a:hover {
 @media (min-width: 1280px) {
   .grid-4 {
     grid-template-columns: repeat(4, 1fr);
+  }
+}
+/* Component-specific adjustments */
+.hero-title {
+  font-size: var(--font-size-3xl);
+  line-height: 1.1;  /* Tighter line height for headings */
+}
+
+.hero-subtitle {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-base);
+}
+
+.section-title {
+  font-size: var(--font-size-2xl);
+}
+
+.section-subtitle {
+  font-size: var(--font-size-md);
+}
+
+/* Card content on the mechanism cards */
+.mechanism-name {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+}
+
+/* CTA Buttons - make text slightly larger */
+.btn {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: var(--font-size-2xl); /* Smaller on mobile but still larger than before */
+  }
+  
+  .hero-subtitle {
+    font-size: var(--font-size-md);
+  }
+  
+  .section-title {
+    font-size: var(--font-size-xl);
   }
 }

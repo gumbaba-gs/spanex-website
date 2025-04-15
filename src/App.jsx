@@ -1,5 +1,5 @@
 // src/App.jsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import HomePage from './pages/HomePage';
 
 // Import global styles
@@ -8,10 +8,18 @@ import './styles/components.css';
 
 /**
  * Main App component
- * In a real application, this would include routing
  */
 const App = () => {
-  return <HomePage />;
+  // Scroll to top on page load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <div className="app">
+      <HomePage />
+    </div>
+  );
 };
 
 export default App;
