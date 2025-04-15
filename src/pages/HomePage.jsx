@@ -22,9 +22,10 @@ const HomePage = () => {
       <Hero
         backgroundImage="/images/hero-background.jpg"
         // backgroundVideo="/videos/hero-background.mp4" // Uncomment to use video
-        title="Fresh Produce, Delivered Daily"
-        subtitle="Experience the freshness of locally sourced fruits and vegetables, delivered straight to your doorstep."
-        ctaText="Shop Now"
+        title="Extending Nature's Freshness"
+        subtitle="Revolutionary patented Spanex Shelf Max formulations that extend produce shelf life by up to 5x,
+          reducing losses for packhouses, growers, and retailers."
+        ctaText="Our Solutions"
         ctaLink="/products"
         alignment="center"
         textColor="light"

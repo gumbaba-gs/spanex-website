@@ -1,10 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import StandardizedTabs from '../common/StandardizedTabs';
+import TeamGrid from './TeamGrid';
 import './ContactSection.css';
-import asmitaImage from './images/ASmita.png';
-import rasulImage from './images/rasul.png';
-import gbImage from './images/GB.png';
-import bbImage from './images/bb.png';
 
 const ContactSection = () => {
   const [activeTab, setActiveTab] = useState('contact');
@@ -97,73 +94,10 @@ const ContactSection = () => {
   // Tabs for StandardizedTabs
   const tabs = [
     { id: 'contact', title: 'Contact Us' },
+    { id: 'team', title: 'Our Team' },
     { id: 'support', title: 'Support' },
-    { id: 'partnership', title: 'Partnerships' },
-    { id: 'team', title: 'Team' }
+    { id: 'partnership', title: 'Partnerships' }
   ];
-
-  // Team data
-  const teamMembers = [
-    {
-      id: 'asmita',
-      name: 'Dr. Asmita Prabhune',
-      image: asmitaImage,
-      role: 'Chief Scientist & Founder',
-      bio: 'Leading chemist with extensive experience in food preservation technology and multiple patents to her name.',
-      category: 'leadership',
-      social: {
-        linkedin: 'https://www.linkedin.com/in/asmita-prabhune-01580732/',
-        email: '#contact'
-      }
-    },
-    {
-      id: 'gum',
-      name: 'Gum Shahid',
-      image: gbImage,
-      role: 'CTO & Co-Founder',
-      bio: 'IT expert with 20 years of experience in technology implementation and system design for scientific applications.',
-      category: 'leadership',
-      social: {
-        linkedin: 'https://www.linkedin.com/in/gumshahid/',
-        email: '#contact'
-      }
-    },
-    {
-      id: 'khaja',
-      name: 'Khaja Nayub Rasul Sheik',
-      image: rasulImage,
-      role: 'Business Development & Co-Founder',
-      bio: 'Expert in international trade with 15+ years of experience in import/export operations and global market expansion.',
-      category: 'leadership',
-      social: {
-        linkedin: 'https://www.linkedin.com/in/khaja-nayub-rasul-sheik-20b6a6145/',
-        email: '#contact'
-      }
-    },
-    {
-      id: 'khaderi',
-      name: 'Khaderi Sharief Karimullasha',
-      image: bbImage,
-      role: 'COO, American Region',
-      bio: 'Operations expert specializing in American markets with extensive experience in scaling science-based startups.',
-      category: 'operations',
-      social: {
-        linkedin: 'https://www.linkedin.com/in/khaderi-sharief-karimullasha-35110b19/',
-        email: '#contact'
-      }
-    }
-  ];
-
-  // Team tabs for filtering
-  const teamTabs = [
-    { id: 'all', label: 'All Team' },
-    { id: 'leadership', label: 'Leadership' },
-    { id: 'operations', label: 'Operations' }
-  ];
-  const [activeTeamTab, setActiveTeamTab] = useState('all');
-  const filteredMembers = activeTeamTab === 'all'
-    ? teamMembers
-    : teamMembers.filter(member => member.category === activeTeamTab);
 
   return (
     <section
@@ -189,7 +123,6 @@ const ContactSection = () => {
         <div className={`contact-section__content ${isVisible ? 'visible' : ''}`}>
           {activeTab === 'contact' && (
             <div className="contact-card">
-              {/* ...contact info and form as before... */}
               <div className="contact-info">
                 <h3 className="card-title">Contact Information</h3>
                 <div className="contact-item">
@@ -325,6 +258,13 @@ const ContactSection = () => {
               </div>
             </div>
           )}
+          
+          {activeTab === 'team' && (
+            <div className="team-container contact-card">
+              <TeamGrid />
+            </div>
+          )}
+          
           {activeTab === 'support' && (
             <div className="contact-support-card">
               <h3 className="card-title">Support</h3>
@@ -336,6 +276,7 @@ const ContactSection = () => {
               </p>
             </div>
           )}
+          
           {activeTab === 'partnership' && (
             <div className="contact-partnership-card">
               <h3 className="card-title">Partnerships</h3>
@@ -345,82 +286,6 @@ const ContactSection = () => {
               <p>
                 Please email <a href="mailto:partnerships@spanexsciences.com">partnerships@spanexsciences.com</a> with your inquiry, and our business development team will respond promptly.
               </p>
-            </div>
-          )}
-          {activeTab === 'team' && (
-            <div className="team-tab-panel">
-              <div className="team-tab-container">
-                {teamTabs.map(tab => (
-                  <button
-                    key={tab.id}
-                    className={`team-tab-button ${activeTeamTab === tab.id ? 'active' : ''}`}
-                    onClick={() => setActiveTeamTab(tab.id)}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
-              </div>
-              <div className="team-grid">
-                {filteredMembers.map((member, index) => (
-                  <div
-                    key={member.id}
-                    className={`team-card ${isVisible ? 'visible' : ''}`}
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <div className="member-image-container">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="member-image"
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="member-content">
-                      <h3 className="member-name">{member.name}</h3>
-                      <p className="member-role">{member.role}</p>
-                      <p className="member-bio">{member.bio}</p>
-                      <div className="member-social">
-                        {member.social.linkedin && (
-                          <a
-                            href={member.social.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`${member.name}'s LinkedIn profile`}
-                            className="social-link linkedin"
-                          >
-                            <i className="fab fa-linkedin-in"></i>
-                          </a>
-                        )}
-                        {member.social.email && (
-                          <a
-                            href={member.social.email}
-                            aria-label={`Email ${member.name}`}
-                            className="social-link email"
-                          >
-                            <i className="fas fa-envelope"></i>
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="team-cta-card">
-                <p className="team-cta-text">
-                  Interested in joining our team or learning more about our work?
-                </p>
-                <a href="#contact" className="team-cta-button">
-                  Contact Our Team
-                </a>
-                <div className="team-indicator-bars">
-                  {[...Array(8)].map((_, index) => (
-                    <div
-                      key={index}
-                      className={`team-indicator-bar ${index < 5 ? 'active' : ''}`}
-                    ></div>
-                  ))}
-                </div>
-              </div>
             </div>
           )}
         </div>
