@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './AboutSection.css';
 import StandardizedTabs from '../common/StandardizedTabs';
 
+
 const AboutSection = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const [expandedFeature, setExpandedFeature] = useState(null);
