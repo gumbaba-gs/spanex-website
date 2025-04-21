@@ -164,11 +164,16 @@
   cursor: pointer;
 }
 
-.tech-section__offering:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-color: var(--color-redend-point);
+.tech-section__offering-header:hover {
   background-color: var(--color-alabaster);
 }
+
+.tech-section__offering:hover {
+  color: var(--color-primary);
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-redend-point);
+  background-color: var(--color-alabaster); */
+} 
 
 .tech-section__offering--expanded {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), 0 0 15px rgba(var(--accent-color-rgb), 0.2);

@@ -507,3 +507,149 @@
       grid-template-columns: repeat(4, 1fr);
     }
   }
+  /* Mobile-first responsive adjustments */
+@media (max-width: 767px) {
+  /* Section title and content text size reduction */
+  .sustainability-section__title {
+    font-size: 1.75rem; /* Reduced from standard title size */
+  }
+  
+  .sustainability-section__subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .sustainability-section__text {
+    font-size: 0.95rem;
+  }
+  
+  /* Reduce padding for content card on mobile */
+  .sustainability-section__content-card {
+    padding: var(--spacing-md, 1.25rem);
+  }
+  
+  /* Dashboard adjustments */
+  .sustainability-dashboard {
+    padding: var(--spacing-md, 1.25rem);
+  }
+  
+  /* Metrics grid - single column on very small screens */
+  @media (max-width: 480px) {
+    .metrics-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .equivalents-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Reduce font sizes in metric cards */
+  .metric-title {
+    font-size: 0.9rem;
+  }
+  
+  .metric-value {
+    font-size: 1.5rem;
+  }
+  
+  .metric-description {
+    font-size: 0.8rem;
+  }
+  
+  /* Reduce size of highlight metrics */
+  .metric-highlight-value {
+    font-size: var(--font-size-xl, 1.75rem);
+  }
+  
+  .metric-highlight-title {
+    font-size: var(--font-size-md, 1.1rem);
+  }
+  
+  .metric-highlight-description {
+    font-size: var(--font-size-sm, 0.9rem);
+  }
+  
+  .unit {
+    font-size: var(--font-size-md, 1.1rem);
+  }
+  
+  /* Reduce icon sizes */
+  .metric-highlight-icon {
+    font-size: 2rem;
+  }
+  
+  .metric-icon {
+    font-size: 1.5rem;
+  }
+  
+  .metric-icon-container {
+    width: 50px;
+    height: 50px;
+  }
+  
+  /* Make tab buttons smaller and better for touch */
+  .tab-button {
+    padding: var(--spacing-xs, 0.5rem) var(--spacing-sm, 0.75rem);
+    font-size: 0.9rem;
+  }
+  
+  /* Adjust dashboard controls for better touch interaction */
+  .dashboard-controls {
+    gap: var(--spacing-sm, 0.75rem);
+  }
+  
+  .timeframe-button {
+    padding: var(--spacing-xs, 0.5rem) var(--spacing-sm, 0.75rem);
+    font-size: 0.85rem;
+  }
+  
+  /* Make slider easier to use on mobile */
+  .penetration-slider::-webkit-slider-thumb {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .penetration-slider::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+  }
+  
+  /* Environmental equivalents */
+  .equivalent-value {
+    font-size: var(--font-size-md, 1.1rem);
+  }
+  
+  .equivalent-description {
+    font-size: 0.8rem;
+  }
+  
+  .equivalent-icon {
+    font-size: 1.5rem;
+  }
+}
+
+/* Fix heading responsiveness across all section types */
+@media (max-width: 767px) {
+  /* This will apply to all section titles */
+  .about-section__title,
+  .technology-section__title,
+  .comparison-section__title,
+  .sustainability-section__title,
+  .products-section__title,
+  .contact-section__title {
+    font-size: 1.75rem !important;
+    line-height: 1.2;
+    word-wrap: break-word;
+  }
+  
+  /* And all section subtitles */
+  .about-section__subtitle,
+  .technology-section__subtitle,
+  .comparison-section__subtitle,
+  .sustainability-section__subtitle,
+  .products-section__subtitle,
+  .contact-section__subtitle {
+    font-size: 0.95rem !important;
+    line-height: 1.5;
+  }
+}

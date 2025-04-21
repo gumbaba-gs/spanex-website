@@ -1,20 +1,31 @@
 // src/components/Navbar.js
 import React, { useState, useEffect } from 'react';
-import '../App.css';
+import './Navbar.css';
+import '../App.css'
 
 /**
- * Responsive Navbar with accessible toggle for mobile.
+ * Responsive Navbar that transforms when scrolling.
  */
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
 
-  // Handle scroll event to change navbar style
+  // Handle scroll event to change navbar style and collapse status
   useEffect(() => {
     const handleScroll = () => {
+      // Check if page is scrolled more than 20px
       const isScrolled = window.scrollY > 20;
+      
+      // Check if page is scrolled more than 100px for collapsing
+      const shouldCollapse = window.scrollY > 100;
+      
       if (isScrolled !== scrolled) {
         setScrolled(isScrolled);
+      }
+      
+      if (shouldCollapse !== collapsed) {
+        setCollapsed(shouldCollapse);
       }
     };
     
@@ -23,10 +34,11 @@ const Navbar = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [scrolled]);
+  }, [scrolled, collapsed]);
 
   return (
-    <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`} role="navigation" aria-label="Main Navigation">
+    <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''} ${collapsed ? 'navbar-collapsed' : ''}`} 
+         role="navigation" aria-label="Main Navigation">
       <div className="container navbar-content">
         <a href="#home" className="navbar-logo">Spanex</a>
         <button

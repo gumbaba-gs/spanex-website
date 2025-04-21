@@ -122,7 +122,7 @@ const ProductSection = () => {
     }
   ];
 
-  // Setup intersection observer for animation on scroll
+  // Setup intersection observer for animahttps://iremote.infosysapps.com/tion on scroll
   useEffect(() => {
     const currentRef = sectionRef.current;
     const observer = new IntersectionObserver(

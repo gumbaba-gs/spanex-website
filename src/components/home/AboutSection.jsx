@@ -76,10 +76,26 @@ const AboutSection = () => {
 
   // Company metrics for the overview tab
   const companyMetrics = [
-    { value: 'Patented', label: 'Technology' },
-    { value: '3-5×', label: 'Shelf Life Extension' },
-    { value: '75%', label: 'Potential Waste Reduction' },
-    { value: 'Testing Phase', label: 'Not Yet Launched' }
+    { 
+      value: 'Patented', 
+      label: 'Technology',
+      icon: '📜'
+    },
+    { 
+      value: '3-5×', 
+      label: 'Shelf Life Extension',
+      icon: '⏱️'
+    },
+    { 
+      value: '75%', 
+      label: 'Waste Reduction',
+      icon: '♻️'
+    },
+    { 
+      value: 'GRAS', 
+      label: 'Certified Ingredients',
+      icon: '✅'
+    }
   ];
 
   // Tabs configuration for the standardized component
@@ -146,11 +162,11 @@ const AboutSection = () => {
                 Developed specifically for <span className="about-section__highlight">commercial applications</span>, our solutions address the <span className="about-section__highlight--accent">critical challenge of food waste</span> that impacts profit margins throughout the supply chain. Each formulation is designed to <span className="about-section__highlight">integrate seamlessly with existing packing processes</span> while offering significant <span className="about-section__highlight--success">ROI through reduced spoilage and extended marketable periods</span>.
               </p>
             </div>
-            <div className="about-section__disclaimer">
+            {/* <div className="about-section__disclaimer">
               <p>
                 <strong>Note:</strong> Our Spanex Shelf Max product line is currently in the <strong>testing phase</strong> and has <strong>not yet been launched commercially</strong>. All ingredients used are <strong>GRAS (Generally Recognized As Safe)</strong> certified.
               </p>
-            </div>
+            </div> */}
             
             {/* Standardized Tab navigation */}
             <StandardizedTabs
@@ -173,10 +189,12 @@ const AboutSection = () => {
                       We're now preparing to launch our Spanex Shelf Max product line, targeting commercial clients like packhouses, distributors, and retailers who face significant challenges with fresh produce spoilage and waste.
                     </p>
                     
-                    {/* Metrics grid with improved structure */}
+                    
+                    {/* Metrics grid with improved structure and design */}
                     <div className="about-section__metrics-grid">
                       {companyMetrics.map((metric, index) => (
                         <div className="about-section__metric-card" key={index}>
+                          {metric.icon && <div className="about-section__metric-icon">{metric.icon}</div>}
                           <div className="about-section__metric-value">{metric.value}</div>
                           <p className="about-section__metric-label">{metric.label}</p>
                         </div>

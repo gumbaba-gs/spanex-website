@@ -1,6 +1,6 @@
 // src/pages/HomePage.jsx
 import React from 'react';
-import Navbar from '../components/Navbar';
+import Navbar from '../components/TransformingNavbar';
 import Footer from '../components/Footer';
 import BackToTop from '../components/BackToTop';
 import SpanexShieldHeroWithStyles from '../components/heroes/SpanexShieldHero';
@@ -20,7 +20,7 @@ const HomePage = () => {
   return (
     <div className="main-layout">
       {/* Accessibility skip link */}
-      <a href="#main-content" className="skip-to-content">Skip to main content</a>
+      {/* <a href="#main-content" className="skip-to-content">Skip to main content</a> */}
       
       {/* Navigation */}
       <Navbar />

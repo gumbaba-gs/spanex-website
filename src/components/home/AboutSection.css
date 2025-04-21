@@ -135,19 +135,37 @@
   line-height: var(--line-height-relaxed);
 }
 
-/* Metrics Grid */
+/* Enhanced styling for the metrics grid */
 .about-section__metrics-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: var(--spacing-md);
-  margin-top: var(--spacing-lg);
+  margin: var(--spacing-lg) 0;
 }
 
 .about-section__metric-card {
-  background-color: var(--color-sea-salt);
-  padding: var(--spacing-md);
+  background-color: var(--color-background-alternate);
   border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
   text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-section__metric-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.about-section__metric-icon {
+  font-size: 1.75rem;
+  margin-bottom: var(--spacing-xs);
 }
 
 .about-section__metric-value {
@@ -158,8 +176,23 @@
 }
 
 .about-section__metric-label {
+  font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
   margin: 0;
+}
+
+/* GRAS certification info styling */
+.about-section__certification-info {
+  background-color: rgba(var(--color-success-rgb), 0.1);
+  border-left: 4px solid var(--color-success);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  margin-top: var(--spacing-md);
+}
+
+.about-section__certification-info p {
+  margin: 0;
+  font-size: var(--font-size-sm);
 }
 
 /* Offerings */

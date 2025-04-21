@@ -27,8 +27,7 @@
   border-radius: var(--border-radius-lg, 1.25rem);
   box-shadow: var(--shadow-md, 0 2px 8px rgba(0,0,0,0.05));
   padding: var(--spacing-xl, 2.5rem);
-  margin-bottom: var(--spacing-lg, 2rem);
-  color: var(--color-text-primary, #222);
+  overflow: hidden;
 }
 
 .comparison-section__header {
@@ -208,8 +207,11 @@
   cursor: pointer;
   overflow: hidden;
 }
+.comparison-section__offering-header:hover {
+  background-color: var(--color-alabaster);
+}
 .comparison-section__offering--expanded {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12), 0 0 15px rgba(var(--accent-color-rgb, 229,115,115), 0.2);
+  /* box-shadow: 0 4px 12px rgba(0,0,0,0.12), 0 0 15px rgba(var(--accent-color-rgb, 229,115,115), 0.2); */
 }
 .comparison-section__offering-header {
   display: flex;
@@ -292,6 +294,18 @@
     gap: 0.5rem;
   }
 }
+
+@media (max-width: 767px) {
+  .comparison-section__title {
+    font-size: 1.75rem; /* Smaller on mobile */
+    word-wrap: break-word; /* Ensures text wraps properly */
+    margin-bottom: 0.75rem; /* Tighter spacing */
+  }
+  .comparison-section__subtitle {
+    font-size: 1rem; /* Smaller subtitle on mobile */
+  }
+}
+
 @media (min-width: 768px) {
   .comparison-section__title {
     font-size: 2.5rem;

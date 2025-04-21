@@ -901,7 +901,7 @@ a:not(.btn):not(.navbar-link):not(.footer-social a):hover:after {
   transform: scale(1.2);
 }
 
-@media (max-width: 768px) {
+@media () {
   .hero-title {
     font-size: 2.25rem;
   }

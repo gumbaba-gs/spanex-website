@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.21b9c570.css",
+    "main.js": "/static/js/main.97854ce3.js",
+    "static/media/apple.jpg": "/static/media/apple.d8fbfe5821b1043448ee.jpg",
+    "static/media/ASmita.png": "/static/media/ASmita.c4f39073ac8e1e8e3fd3.png",
+    "static/media/0.png": "/static/media/0.6a855904295af25e1112.png",
+    "static/media/3.png": "/static/media/3.d01a59752b522d98f0c1.png",
+    "static/media/14.png": "/static/media/14.e41c7be9969561ddcfaa.png",
+    "static/media/7.png": "/static/media/7.d01a59752b522d98f0c1.png",
+    "static/media/11.png": "/static/media/11.a546fc26bce3de455ab1.png",
+    "static/media/rasul.png": "/static/media/rasul.2249198f442b233e9d8f.png",
+    "static/media/bb.png": "/static/media/bb.a879cae1ecf1675f8363.png",
+    "static/media/GB.png": "/static/media/GB.e2e6ad574142cd771f25.png",
+    "static/media/spanex.png": "/static/media/spanex.4b2788651d702d22096e.png",
+    "static/media/oranges.jpg": "/static/media/oranges.9c8a81e50a3e63ccc712.jpg",
+    "static/media/avocado.jpg": "/static/media/avocado.ac6bf4254392b85b6413.jpg",
+    "static/media/leafyveg.jpeg": "/static/media/leafyveg.5015c3f1fb3b4d6a2ca1.jpeg",
+    "static/media/flowers.jpeg": "/static/media/flowers.04cc242865628a63aaf4.jpeg",
+    "static/media/blueberries.jpeg": "/static/media/blueberries.b3811cd16ce859f9004c.jpeg",
+    "index.html": "/index.html",
+    "main.21b9c570.css.map": "/static/css/main.21b9c570.css.map",
+    "main.97854ce3.js.map": "/static/js/main.97854ce3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.21b9c570.css",
+    "static/js/main.97854ce3.js"
+  ]
+}
