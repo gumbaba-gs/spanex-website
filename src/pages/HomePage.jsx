@@ -1,68 +1,51 @@
 // src/pages/HomePage.jsx
 import React from 'react';
-import Navbar from '../components/TransformingNavbar';
-import Footer from '../components/Footer';
-import BackToTop from '../components/BackToTop';
-import SpanexShieldHeroWithStyles from '../components/heroes/SpanexShieldHero';
+import Layout from '../components/layout/Layout';
+import SpanexShieldHero from '../components/heroes/SpanexShieldHero';
 import AboutSection from '../components/home/AboutSection';
 import FoodWasteCounter from '../components/home/FoodWasteCounter';
-import ProductSection from '../components/home/ProductSection';
+import ProductSection from '../components/products/ProductSection';
 import TechnologySection from '../components/home/TechnologySection';
-import BeforeAfterComparison from '../components/home/BeforeAfterComparison';
-import ComparisonSection from '../components/home/ComparisonSection';
+import BeforeAfterComparison from '../components/products/BeforeAfterComparison';
+import ComparisonSection from '../components/products/ComparisonSection';
 import SustainabilitySection from '../components/home/SustainabilitySection';
-import ContactSection from '../components/home/ContactSection';
+import ContactSection from '../components/products/ContactSection';
 
 /**
- * Home page component with custom navigation structure
+ * Home page component with all sections of the Spanex Sciences website
  */
 const HomePage = () => {
   return (
-    <div className="main-layout">
-      {/* Accessibility skip link */}
-      {/* <a href="#main-content" className="skip-to-content">Skip to main content</a> */}
-      
-      {/* Navigation */}
-      <Navbar />
-      
+    <Layout>
       {/* Hero Section */}
       <section id="home">
-        <SpanexShieldHeroWithStyles />
+        <SpanexShieldHero />
       </section>
 
-      {/* Main Content */}
-      <main id="main-content">
-        {/* About Section */}
-        <AboutSection />
+      {/* About Section */}
+      <AboutSection />
 
-        {/* Food Waste Counter Section */}
-        <FoodWasteCounter />
+      {/* Food Waste Counter Section */}
+      <FoodWasteCounter />
 
-        {/* Technology Section */}
-        <TechnologySection />
+      {/* Technology Section */}
+      <TechnologySection />
 
-        {/* Before/After Comparison Section */}
-        <BeforeAfterComparison />
+      {/* Before/After Comparison Section */}
+      <BeforeAfterComparison />
 
-        {/* Comparison Section */}
-        <ComparisonSection />
+      {/* Comparison Section */}
+      <ComparisonSection />
 
-        {/* SustainabilitySection */}
-        <SustainabilitySection/>
-        
-        {/* Product Section */}
-        <ProductSection />
-
-        {/* Contact Section */}
-        <ContactSection />
-      </main>
+      {/* SustainabilitySection */}
+      <SustainabilitySection/>
       
-      {/* Back to Top Button */}
-      <BackToTop />
-      
-      {/* Footer */}
-      <Footer />
-    </div>
+      {/* Product Section */}
+      <ProductSection />
+
+      {/* Contact Section */}
+      <ContactSection />
+    </Layout>
   );
 };
 

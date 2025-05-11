@@ -1,16 +1,18 @@
 // src/components/layout/Container.jsx
 import React from 'react';
+import styles from './Container.module.css';
 
 /**
- * Container component for consistent content width and padding
+ * Container component for consistent width and padding
  * 
- * @param {boolean} fluid - Whether container should be full-width or fixed-width
- * @param {string} className - Additional classes for customization
- * @param {React.ReactNode} children - Child components
+ * @param {Object} props - Component props
+ * @param {React.ReactNode} props.children - Child elements
+ * @param {boolean} props.fluid - Whether the container should be full-width
+ * @param {string} props.className - Additional CSS classes
  */
-const Container = ({ fluid = false, className = '', children }) => {
+const Container = ({ children, fluid = false, className = '' }) => {
   return (
-    <div className={`${fluid ? 'container-fluid' : 'container'} ${className}`}>
+    <div className={`${styles.container} ${fluid ? styles.fluid : ''} ${className}`}>
       {children}
     </div>
   );

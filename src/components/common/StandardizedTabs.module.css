@@ -1,0 +1,99 @@
+/* src/components/common/StandardizedTabs.module.css */
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: var(--spacing-lg);
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.tabButton {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: none;
+  border: none;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  position: relative;
+  transition: color var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tabButton::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-primary);
+  transform: scaleX(0);
+  transition: transform var(--transition-fast);
+}
+
+.tabButton.active {
+  color: var(--color-primary);
+}
+
+.tabButton.active::after {
+  transform: scaleX(1);
+}
+
+.tabButton:hover {
+  color: var(--color-primary);
+}
+
+.tabIcon {
+  font-size: 1.25rem;
+}
+
+/* Theme variations */
+.themeDefault .tabButton::after {
+  background-color: var(--color-primary);
+}
+
+.themeDefault .tabButton.active,
+.themeDefault .tabButton:hover {
+  color: var(--color-primary);
+}
+
+.themeAlternate .tabButton::after {
+  background-color: var(--color-accent);
+}
+
+.themeAlternate .tabButton.active,
+.themeAlternate .tabButton:hover {
+  color: var(--color-accent);
+}
+
+.themeSecondary .tabButton::after {
+  background-color: var(--color-secondary);
+}
+
+.themeSecondary .tabButton.active,
+.themeSecondary .tabButton:hover {
+  color: var(--color-secondary);
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .tabButton {
+    padding: 0.75rem 1.75rem;
+  }
+  
+  .tabIcon {
+    font-size: 1.3rem;
+  }
+}
+
+/* Smaller screens - ensure text is still readable */
+@media (max-width: 767px) {
+  .tabButton {
+    font-size: var(--font-size-small);
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+}

@@ -1,0 +1,365 @@
+/* src/components/products/ComparisonSection.module.css */
+
+.section {
+  padding: var(--spacing-xxl) 0;
+  background-color: var(--color-neutral);
+  position: relative;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  position: relative;
+  z-index: 2;
+  padding: 0 var(--spacing-md);
+}
+
+.sectionTitle {
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+}
+
+.sectionSubtitle {
+  color: var(--color-text-secondary);
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contentCard {
+  background-color: var(--color-background);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text-primary);
+}
+
+.textContainer {
+  margin-bottom: var(--spacing-md);
+}
+
+.text {
+  margin-bottom: var(--spacing-md);
+  line-height: var(--line-height-body);
+  color: var(--color-text-primary);
+}
+
+.highlight {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.highlightSecondary {
+  color: var(--color-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Tabs */
+.tabs {
+  margin-bottom: var(--spacing-md);
+}
+
+.tabContent {
+  min-height: 300px;
+  margin-top: var(--spacing-md);
+}
+
+/* Overview metrics grid */
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+  margin: var(--spacing-lg) 0;
+}
+
+.metricCard {
+  background-color: var(--color-surface);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.metricValue {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.metricLabel {
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Overview section */
+.overview {
+  margin-top: var(--spacing-md);
+}
+
+.overviewTitle {
+  color: var(--color-primary);
+  font-size: var(--font-size-h4);
+  margin-bottom: var(--spacing-md);
+}
+
+.overviewText {
+  margin-bottom: var(--spacing-md);
+  line-height: var(--line-height-body);
+}
+
+/* Methods grid */
+.methodsOverview {
+  margin-top: var(--spacing-lg);
+}
+
+.methodsTitle {
+  font-size: var(--font-size-h5);
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-primary);
+}
+
+.methodsGrid {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.methodCard {
+  flex: 1 1 180px;
+  background: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-md);
+  cursor: pointer;
+  transition: box-shadow var(--transition-fast), background var(--transition-fast);
+  border: 2px solid transparent;
+}
+
+.methodCard.highlighted {
+  border-color: var(--color-primary);
+  background: rgba(45, 85, 0, 0.05);
+  box-shadow: var(--shadow-md);
+}
+
+.methodName {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-xs);
+}
+
+.methodDescription {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+}
+
+/* Product selector */
+.produce {
+  margin-top: var(--spacing-md);
+}
+
+.selectorTitle {
+  font-size: var(--font-size-h5);
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-primary);
+}
+
+.productSelector {
+  display: flex;
+  gap: var(--spacing-md);
+  margin: var(--spacing-md) 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.productButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  background: var(--color-surface);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+  position: relative;
+}
+
+.productButton.active {
+  background: var(--color-primary);
+  color: var(--color-background);
+  border-color: var(--color-primary);
+}
+
+.productButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+.productButton.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.productIcon {
+  font-size: var(--font-size-h5);
+}
+
+.comingSoon {
+  background: var(--color-warning);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-small);
+  border-radius: var(--border-radius-pill);
+  padding: 0.1rem var(--spacing-sm);
+  margin-left: var(--spacing-xs);
+}
+
+/* Comparison results */
+.comparisonResults {
+  margin-top: var(--spacing-lg);
+}
+
+.resultsTitle {
+  font-size: var(--font-size-h5);
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-primary);
+}
+
+/* Metrics detail grid */
+.metricsDetailGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.metricDetailCard {
+  background: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-md);
+}
+
+.metricHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.metricIcon {
+  font-size: var(--font-size-h4);
+}
+
+.metricTitle {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+  margin: 0;
+}
+
+.metricDescription {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+  margin: 0;
+}
+
+/* Values grid */
+.valuesGrid {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.valueCard {
+  flex: 1 1 120px;
+  background: var(--color-background);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-sm);
+  text-align: center;
+  transition: box-shadow var(--transition-fast), background var(--transition-fast);
+  border: 2px solid transparent;
+}
+
+/* This is the key change - only highlight Spanex cards */
+.spanexHighlighted {
+  border-color: var(--color-primary);
+  background: rgba(45, 85, 0, 0.05);
+  box-shadow: var(--shadow-md);
+}
+
+.valueMethod {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-xs);
+}
+
+.value {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+}
+
+.valueGood {
+  color: var(--color-success, #2d5500);
+}
+
+.valueMedium {
+  color: var(--color-warning, #fea201);
+}
+
+.valuePoor {
+  color: var(--color-error, #ff6e4e);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .contentCard {
+    padding: var(--spacing-md);
+  }
+  
+  .metricsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 900px) {
+  .metricsDetailGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  .contentCard {
+    padding: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 992px) {
+  .contentCard {
+    padding: var(--spacing-xl);
+  }
+}

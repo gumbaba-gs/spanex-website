@@ -1,0 +1,55 @@
+/* src/components/BackToTop.module.css */
+
+.backToTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--color-accent);
+  color: var(--color-background);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-normal), 
+              visibility var(--transition-normal), 
+              transform var(--transition-fast),
+              background-color var(--transition-fast);
+  z-index: var(--z-index-fixed);
+  box-shadow: var(--shadow-md);
+}
+
+.backToTop.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.backToTop:hover {
+  transform: translateY(-5px);
+  background-color: #e85c36;
+}
+
+.backToTop:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 110, 78, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .backToTop {
+    width: 40px;
+    height: 40px;
+    bottom: 15px;
+    right: 15px;
+  }
+  
+  .backToTop svg {
+    width: 20px;
+    height: 20px;
+  }
+}

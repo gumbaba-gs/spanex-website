@@ -1,20 +1,17 @@
 // src/App.jsx
-import React, { useEffect } from 'react';
+import React from 'react';
 import HomePage from './pages/HomePage';
-
-// Import global styles
+import './styles/variables.css';
 import './styles/globals.css';
 import './styles/components.css';
+import './styles/section-transitions.css';
+import './styles/enhanced-animations.css';
 
 /**
  * Main App component
+ * Imports global styles and renders the HomePage component
  */
 const App = () => {
-  // Scroll to top on page load
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div className="app">
       <HomePage />

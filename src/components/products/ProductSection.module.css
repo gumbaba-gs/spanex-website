@@ -1,0 +1,313 @@
+/* src/components/products/ProductSection.module.css */
+
+.section {
+  padding: var(--spacing-xl) 0;
+  background-color: var(--color-neutral);
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-h2);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.sectionSubtitle {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: var(--line-height-body);
+}
+
+.categoryTabs {
+  margin-bottom: var(--spacing-lg);
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.productItem {
+  height: 100%;
+}
+
+/* Modal styles */
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-index-modal-backdrop);
+  padding: var(--spacing-md);
+}
+
+.modalContent {
+  background-color: var(--color-background);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: var(--z-index-modal);
+  position: relative;
+}
+
+.closeButton {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  z-index: 1;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.closeButton:hover {
+  color: var(--color-text-primary);
+  transform: rotate(90deg);
+}
+
+.modalHeader {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalImage {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  background-color: var(--color-surface);
+}
+
+.modalImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modalHeaderContent {
+  padding: var(--spacing-lg);
+  background-color: var(--color-primary);
+  color: var(--color-background);
+}
+
+.modalTitle {
+  font-size: var(--font-size-h3);
+  margin-bottom: var(--spacing-sm);
+}
+
+.modalBadge {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-pill);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-sm);
+}
+
+.modalBadgePrimary {
+  background-color: var(--color-background);
+  color: var(--color-primary);
+}
+
+.modalBadgeSecondary {
+  background-color: var(--color-background);
+  color: var(--color-secondary);
+}
+
+.modalBadgeAccent {
+  background-color: var(--color-background);
+  color: var(--color-accent);
+}
+
+.modalDescription {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  margin-bottom: 0;
+}
+
+.modalBody {
+  padding: var(--spacing-lg);
+}
+
+.modalSection {
+  margin-bottom: var(--spacing-lg);
+}
+
+.modalSection:last-child {
+  margin-bottom: 0;
+}
+
+.modalSectionTitle {
+  font-size: var(--font-size-h5);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 2px solid var(--color-primary);
+  display: inline-block;
+}
+
+.benefitsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.benefitItem {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.benefitItem:before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+.techSpecs {
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+}
+
+.techSpecRow {
+  display: flex;
+  margin-bottom: var(--spacing-sm);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.techSpecRow:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.techSpecLabel {
+  flex: 0 0 40%;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.techSpecValue {
+  flex: 0 0 60%;
+}
+
+.modalFooter {
+  margin-top: var(--spacing-lg);
+}
+
+.b2bCta {
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-lg);
+  border-left: 4px solid var(--color-accent);
+}
+
+.ctaTitle {
+  font-size: var(--font-size-h5);
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-primary);
+}
+
+.ctaButtons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: var(--button-padding-y) var(--button-padding-x);
+  background-color: var(--color-accent);
+  color: var(--color-background);
+  border: none;
+  border-radius: var(--button-border-radius);
+  font-weight: var(--button-font-weight);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: var(--font-size-small);
+  text-align: center;
+  text-decoration: none;
+}
+
+.ctaButton:hover {
+  background-color: #e85c36;
+  transform: translateY(-2px);
+}
+
+.ctaButtonOutline {
+  display: inline-block;
+  padding: var(--button-padding-y) var(--button-padding-x);
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--button-border-radius);
+  font-weight: var(--button-font-weight);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: var(--font-size-small);
+  text-align: center;
+  text-decoration: none;
+}
+
+.ctaButtonOutline:hover {
+  background-color: rgba(45, 85, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Responsive styles */
+@media (min-width: 768px) {
+  .productsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .modalHeader {
+    flex-direction: row;
+  }
+  
+  .modalImage {
+    width: 40%;
+    height: auto;
+  }
+  
+  .modalHeaderContent {
+    width: 60%;
+  }
+  
+  .ctaButtons {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 992px) {
+  .productsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

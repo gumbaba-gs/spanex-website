@@ -1,0 +1,19 @@
+/* src/components/layout/Container.module.css */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.fluid {
+  max-width: 100%;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-lg);
+  }
+}

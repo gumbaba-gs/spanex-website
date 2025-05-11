@@ -1,0 +1,252 @@
+
+refactor the website to a polished, professional single-page B2B website for Spanex Sciences' food preservation technology. Maintain existing content, React components and animations while implementing consistent design standards, improved code organization, and B2B-focused enhancements.
+
+Navbar/Header (PRESERVE AS IS)
+
+Keep the existing transforming navbar functionality that:
+
+Appears semi-transparent over the hero section
+Transforms when scrolling down (becomes more compact/opaque)
+Maintains all current interactive behaviors and animations
+
+
+Retain all existing styling, transitions, and responsive behaviors
+Preserve the current menu button and mobile menu implementation
+Do not change any aspects of the navbar appearance or functionality
+
+
+Code Structure & Organization
+
+File Naming Consistency
+    Standardize all component files to .jsx extension
+    Follow consistent naming patterns (PascalCase for components)
+    Organize components by feature, not by type
+
+
+CSS Management
+    Implement CSS modules approach for component-specific styles
+    Create a centralized design token system in a single variables file
+    Remove duplicate style definitions across files
+
+Component Hierarchy
+    Consolidate navbar components into a single, flexible component
+    Create proper component composition with clear parent-child relationships
+    Implement a shared layout wrapper for consistent page structure
+
+
+Design System Implementation
+
+Typography System
+
+Implement the following font hierarchy:
+    Headings: Montserrat Bold (700)
+    Subheadings: Montserrat Medium (500)
+    Body: Montserrat Regular (400)
+
+
+Define specific font sizes for different heading levels (h1-h6)
+Ensure consistent line-heights across all text elements
+
+
+Color System
+
+Primary: #2d5500 (Dark Green) - Brand color
+Secondary: #87643e (Brown) - Supporting color
+Accent: #ff6e4e (Coral/Orange) - Call-to-action elements
+Neutral: #f8f8f5 (Alabaster) - Backgrounds
+Text: #222222 (Near Black) - Primary text
+Text Secondary: #666666 (Dark Gray) - Secondary text
+
+
+Spacing System
+
+Use 8-point grid system (8px, 16px, 24px, 32px, 48px, 64px)
+Consistent padding/margin throughout components
+Standardize section spacing for visual rhythm
+
+
+Component Design Standards
+
+Cards: Consistent corner radius (8px), shadow, and padding
+Buttons: Unified styling, sizes, and states
+Inputs: Standardized form element styling
+Icons: Consistent size and color treatment
+
+
+
+Responsive Framework
+
+Breakpoint System
+
+Extra Small: < 576px (Mobile)
+Small: 576px - 767px (Mobile Landscape)
+Medium: 768px - 991px (Tablet)
+Large: 992px - 1199px (Desktop)
+Extra Large: ≥ 1200px (Large Desktop)
+
+
+Container Widths
+
+Fixed max-width of 1200px with proper padding
+Fluid containers for full-width sections
+
+
+Grid System
+
+Implement 12-column grid for layout consistency
+Use CSS Grid or Flexbox consistently
+
+
+
+B2B-Specific Enhancements
+
+Content Strategy
+
+Add more technical specifications for products
+Include industry compliance certification details
+Add patent and intellectual property information
+Create ROI-focused content for business decision-makers
+
+
+Conversion Optimization
+
+Replace generic CTAs with B2B-specific actions:
+
+"Request Technical Specifications"
+"Schedule Product Demonstration"
+"Get Custom ROI Analysis"
+"Request Trial Sample"
+
+
+Add lead qualification form fields
+
+
+Trust Elements
+
+Create a "Partner Logos" section
+Include certification badges
+
+Interactive Elements:
+Hero Section
+
+Animated mechanism cards with hover effects
+Rotating center fruit icon
+Pulsing effect around the center element
+Interactive mechanism selection (clicking changes active mechanism)
+
+About Section
+
+Scroll-triggered animations for content appearance
+Tab navigation between "Company Overview" and "Product Line"
+Expandable/collapsible product feature cards
+Interactive team member grid with filtering options
+
+Problem/Food Waste Section
+
+Animated counter showing food waste metrics in real-time
+Tab navigation between "Business Impact" and "ROI Potential"
+Expandable/collapsible business challenge cards
+
+Technology Section
+
+Tab navigation between different technology mechanisms
+Expandable/collapsible technology feature details
+Interactive mechanism visualization
+
+Comparison Section
+
+Before/After image comparison with day selection
+Standardized tab navigation between days
+Expandable/collapsible observation details
+Interactive comparison method selection with highlighting
+
+Sustainability Dashboard
+
+Market penetration slider control
+Timeframe selection buttons
+Tab navigation between impact categories
+Animated metric counter
+Interactive equivalents display
+
+Products Section
+
+Product cards with hover effects
+Modal dialog for detailed product information
+"Coming Soon" product indicators
+Product category filtering
+
+Contact Section
+
+Tab navigation between contact options
+Interactive form with validation
+Form submission with loading/success/error states
+Team member grid with filtering options
+Social media link interactions
+
+Additional Interactive Elements to Consider
+
+ROI Calculator Component
+
+Input fields for current waste metrics
+Sliders for product usage parameters
+Real-time calculation of projected savings
+Graphical representation of ROI timeline
+Option to email or download results
+
+
+Interactive Product Comparison Tool
+
+Side-by-side comparison of different Spanex products
+Feature checkbox selection to customize comparison
+Visual indicators of feature differences
+Handling for competing products comparison
+
+
+Expandable Technical Specification Sections
+
+Detailed spec sheets that expand/collapse
+Search functionality within specifications
+Unit conversion options (metric/imperial)
+Downloadable PDF version option
+
+
+Interactive Product Timeline Visualization
+
+Visual timeline showing shelf-life extension
+Day-by-day comparison of treated vs untreated produce
+Interactive points showing key degradation moments
+Animation showing progression over time
+
+
+Interactive Application Process Demonstration
+
+Step-by-step visual guide for product application
+Interactive elements to show before/during/after states
+Equipment compatibility checker
+Integration point visualization for existing operations
+
+
+Customer Case Study Interactive Map
+
+Geographic map showing implementation locations
+Filterable by industry, product type, and results
+Popup details for each case study
+Metrics visualization for each implementation
+
+
+Certification & Compliance Interactive Guide
+
+Expandable regulatory compliance details
+Country/region-specific information
+Interactive timeline for certification processes
+Documentation request system
+
+
+Supply Chain Impact Calculator
+
+Interactive supply chain diagram
+Input fields for supply chain parameters
+Visual representation of waste reduction points
+Financial impact calculation at each stage
+
+maintain the hero-visual-coloumn intact exactly as it is. and also link it technology section where detail descript of each mechanism s discribed.
