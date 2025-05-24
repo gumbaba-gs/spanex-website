@@ -65,15 +65,15 @@ const Footer = () => {
             <address>
               <p>
                 <span className={styles.contactIcon}>📍</span>
-                <span>123 Innovation Drive, Suite 200<br />San Francisco, CA 94107</span>
+                <span>4 Cabrini Street<br />Point Cook, Victoria 3030</span>
               </p>
               <p>
                 <span className={styles.contactIcon}>📞</span>
-                <span>(555) 123-4567</span>
+                <span>0452 199 786</span>
               </p>
               <p>
                 <span className={styles.contactIcon}>✉️</span>
-                <span>info@spanexsciences.com</span>
+                <span>info@spanex.com.au</span>
               </p>
             </address>
             

@@ -125,9 +125,9 @@ const Footer = () => {
           <div>
             <h4 style={styles.footerHeading}>Contact Us</h4>
             <address style={styles.footerContact}>
-              <p style={styles.footerContactItem}>123 Innovation Drive, Tech Park, CA 94105</p>
-              <p style={styles.footerContactItem}>+1 (555) 123-4567</p>
-              <p style={styles.footerContactItem}>info@spanexsciences.com</p>
+              <p style={styles.footerContactItem}>13275 Early Crimson St, Eastvale, CA 92880</p>
+              <p style={styles.footerContactItem}>+61 452 199 786</p>
+              <p style={styles.footerContactItem}>info@spanex.com.au</p>
             </address>
           </div>
         </div>

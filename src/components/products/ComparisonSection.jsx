@@ -36,7 +36,7 @@ const ComparisonSection = () => {
 
   const products = [
     { id: 'berries', name: 'Berries', icon: '🫐' },
-    { id: 'apples', name: 'Apples', icon: '🍎' },
+    { id: 'avocado', name: 'Avocados', icon: '🥑' },
     { id: 'leafy', name: 'Leafy Greens', icon: '🥬', comingSoon: true },
     { id: 'citrus', name: 'Citrus', icon: '🍊', comingSoon: true },
   ];
@@ -71,7 +71,7 @@ const ComparisonSection = () => {
       chemical: { shelfLife: 2.5, organic: false, taste: 'SIGNIFICANT', application: 'HIGH', cost: 'LOW', mechanism: false },
       map: { shelfLife: 2.0, organic: true, taste: 'MINIMAL', application: 'LOW', cost: 'MODERATE', mechanism: false },
     },
-    apples: {
+    avocado: {
       spanex: { shelfLife: 3.0, organic: true, taste: 'NONE', application: 'HIGH', cost: 'LOW', mechanism: true },
       waxes: { shelfLife: 2.0, organic: false, taste: 'MODERATE', application: 'HIGH', cost: 'HIGH', mechanism: false },
       chemical: { shelfLife: 2.5, organic: false, taste: 'MODERATE', application: 'HIGH', cost: 'LOW', mechanism: false },

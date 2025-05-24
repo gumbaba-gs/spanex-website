@@ -199,7 +199,7 @@ const ContactSection = () => {
                   </div>
                   <div className={styles.contactText}>
                     <h4 className={styles.contactLabel}>US Office</h4>
-                    <p className={styles.contactValue}>123 Innovation Drive, Tech Park, CA 94105</p>
+                    <p className={styles.contactValue}>13275 Early Crimson St, Eastvale, CA 92880</p>
                   </div>
                 </div>
                 <div className={styles.contactItem}>
@@ -208,7 +208,7 @@ const ContactSection = () => {
                   </div>
                   <div className={styles.contactText}>
                     <h4 className={styles.contactLabel}>Email</h4>
-                    <p className={styles.contactValue}>info@spanexsciences.com</p>
+                    <p className={styles.contactValue}>info@spanex.com.au</p>
                   </div>
                 </div>
                 <div className={styles.contactItem}>
@@ -217,7 +217,7 @@ const ContactSection = () => {
                   </div>
                   <div className={styles.contactText}>
                     <h4 className={styles.contactLabel}>Phone</h4>
-                    <p className={styles.contactValue}>+1 (555) 123-4567</p>
+                    <p className={styles.contactValue}>+61 452 199 786</p>
                   </div>
                 </div>
                 <div className={styles.socialWrapper}>
@@ -516,10 +516,10 @@ const ContactSection = () => {
             <div className={styles.supportCard}>
               <h3 className={styles.cardTitle}>Support</h3>
               <p>
-                For technical support, troubleshooting, or product usage questions, please email <a href="mailto:support@spanexsciences.com">support@spanexsciences.com</a> or call our support line at <strong>+1 (555) 987-6543</strong>.
+                For technical support, troubleshooting, or product usage questions, please email <a href="mailto:support@spanex.com.au">support@spanex.com.au</a> or call our support line at <strong>+61 452 199 786</strong>.
               </p>
               <p>
-                Our support team is available Monday–Friday, 9am–6pm PST.
+                Our support team is available Monday–Friday, 9am–6PM AEST.
               </p>
             </div>
           )}
@@ -531,7 +531,7 @@ const ContactSection = () => {
                 Interested in partnering with Spanex Sciences? We welcome collaboration with growers, distributors, retailers, and research institutions.
               </p>
               <p>
-                Please email <a href="mailto:partnerships@spanexsciences.com">partnerships@spanexsciences.com</a> with your inquiry, and our business development team will respond promptly.
+                Please email <a href="mailto:partnerships@spanex.com.au">partnerships@spanex.com.au</a> with your inquiry, and our business development team will respond promptly.
               </p>
               <div className={styles.partnershipCta}>
                 <a href="#contact" onClick={switchToContactTab} className={styles.partnershipContactBtn}>
