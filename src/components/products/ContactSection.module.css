@@ -1,5 +1,49 @@
 /* src/components/products/ContactSection.module.css */
 
+.successState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  min-height: 300px;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.successIcon {
+  font-size: 4rem;
+  color: #22c55e;
+  margin-bottom: 1.25rem;
+  line-height: 1;
+}
+
+.successTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text, #1a1a1a);
+  margin: 0 0 0.75rem 0;
+}
+
+.successText {
+  font-size: 1rem;
+  color: var(--color-text-secondary, #555);
+  line-height: 1.6;
+  max-width: 380px;
+  margin: 0 0 1.75rem 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .section {
   padding: var(--spacing-xxl) 0;
   background-color: var(--color-neutral);

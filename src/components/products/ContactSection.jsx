@@ -16,7 +16,7 @@ const ContactSection = () => {
     name: '',
     email: '',
     company: '',
-    interest: 'berry',
+    interest: 'bio-capsule',
     message: ''
   });
 
@@ -26,6 +26,13 @@ const ContactSection = () => {
     error: false,
     message: ''
   });
+
+  const interestLabels = {
+    'bio-capsule': 'Bio-Capsule Solutions',
+    'shelf-life': 'Shelf Life Solutions',
+    'partnership': 'Partnership Opportunities',
+    'other': 'Other'
+  };
 
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
@@ -61,7 +68,7 @@ const ContactSection = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setFormStatus({
@@ -71,7 +78,23 @@ const ContactSection = () => {
       message: 'Sending your message...'
     });
 
-    setTimeout(() => {
+    try {
+      const response = await fetch('https://fow53ak54f.execute-api.ap-southeast-2.amazonaws.com/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          interest: interestLabels[formData.interest] || formData.interest,
+          message: formData.message
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
       setFormStatus({
         submitted: true,
         success: true,
@@ -83,19 +106,17 @@ const ContactSection = () => {
         name: '',
         email: '',
         company: '',
-        interest: 'berry',
+        interest: 'bio-capsule',
         message: ''
       });
-
-      setTimeout(() => {
-        setFormStatus({
-          submitted: false,
-          success: false,
-          error: false,
-          message: ''
-        });
-      }, 5000);
-    }, 1500);
+    } catch (err) {
+      setFormStatus({
+        submitted: false,
+        success: false,
+        error: true,
+        message: 'Sorry, there was an error sending your message. Please email info@spanex.com.au directly.'
+      });
+    }
   };
 
   // Function to switch to contact tab
@@ -195,29 +216,11 @@ const ContactSection = () => {
                 </div>
                 <div className={styles.contactItem}>
                   <div className={styles.contactIcon}>
-                    <i className="fas fa-map-marker-alt"></i>
-                  </div>
-                  <div className={styles.contactText}>
-                    <h4 className={styles.contactLabel}>US Office</h4>
-                    <p className={styles.contactValue}>13275 Early Crimson St, Eastvale, CA 92880</p>
-                  </div>
-                </div>
-                <div className={styles.contactItem}>
-                  <div className={styles.contactIcon}>
                     <i className="fas fa-envelope"></i>
                   </div>
                   <div className={styles.contactText}>
                     <h4 className={styles.contactLabel}>Email</h4>
                     <p className={styles.contactValue}>info@spanex.com.au</p>
-                  </div>
-                </div>
-                <div className={styles.contactItem}>
-                  <div className={styles.contactIcon}>
-                    <i className="fas fa-phone"></i>
-                  </div>
-                  <div className={styles.contactText}>
-                    <h4 className={styles.contactLabel}>Phone</h4>
-                    <p className={styles.contactValue}>+61 452 199 786</p>
                   </div>
                 </div>
                 <div className={styles.socialWrapper}>
@@ -240,8 +243,32 @@ const ContactSection = () => {
               </div>
               <div className={styles.formContainer}>
                 <h3 className={styles.cardTitle}>Send Us a Message</h3>
-                {formStatus.submitted && (
-                  <div className={`${styles.formMessage} ${formStatus.success ? styles.success : formStatus.error ? styles.error : styles.sending}`}>
+                {formStatus.success ? (
+                  <div className={styles.successState}>
+                    <div className={styles.successIcon}>
+                      <i className="fas fa-check-circle"></i>
+                    </div>
+                    <h4 className={styles.successTitle}>Thank you!</h4>
+                    <p className={styles.successText}>
+                      Your message has been sent successfully. Our team will get back to you within 1-2 business days.
+                    </p>
+                    <button
+                      type="button"
+                      className={styles.formSubmit}
+                      onClick={() => setFormStatus({ submitted: false, success: false, error: false, message: '' })}
+                    >
+                      Send Another Message
+                    </button>
+                  </div>
+                ) : (
+                <>
+                {formStatus.error && (
+                  <div className={`${styles.formMessage} ${styles.error}`}>
+                    {formStatus.message}
+                  </div>
+                )}
+                {formStatus.submitted && !formStatus.success && (
+                  <div className={`${styles.formMessage} ${styles.sending}`}>
                     {formStatus.message}
                   </div>
                 )}
@@ -295,9 +322,8 @@ const ContactSection = () => {
                       onChange={handleChange}
                       disabled={formStatus.submitted}
                     >
-                      <option value="berry">Berry Preservation</option>
-                      <option value="apple">Apple Preservation</option>
-                      <option value="custom">Custom Formulation</option>
+                      <option value="bio-capsule">Bio-Capsule Solutions</option>
+                      <option value="shelf-life">Shelf Life Solutions</option>
                       <option value="partnership">Partnership Opportunities</option>
                       <option value="other">Other</option>
                     </select>
@@ -323,6 +349,8 @@ const ContactSection = () => {
                     {formStatus.submitted ? 'Sending...' : 'Send Message'}
                   </button>
                 </form>
+                </>
+                )}
               </div>
             </div>
           )}
@@ -516,7 +544,7 @@ const ContactSection = () => {
             <div className={styles.supportCard}>
               <h3 className={styles.cardTitle}>Support</h3>
               <p>
-                For technical support, troubleshooting, or product usage questions, please email <a href="mailto:support@spanex.com.au">support@spanex.com.au</a> or call our support line at <strong>+61 452 199 786</strong>.
+                For technical support, troubleshooting, or product usage questions, please email <a href="mailto:support@spanex.com.au">support@spanex.com.au</a>.
               </p>
               <p>
                 Our support team is available Monday–Friday, 9am–6PM AEST.
@@ -533,11 +561,6 @@ const ContactSection = () => {
               <p>
                 Please email <a href="mailto:partnerships@spanex.com.au">partnerships@spanex.com.au</a> with your inquiry, and our business development team will respond promptly.
               </p>
-              <div className={styles.partnershipCta}>
-                <a href="#contact" onClick={switchToContactTab} className={styles.partnershipContactBtn}>
-                  Schedule a Consultation
-                </a>
-              </div>
             </div>
           )}
         </div>
