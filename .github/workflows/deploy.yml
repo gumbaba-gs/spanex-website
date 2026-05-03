@@ -33,7 +33,11 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Deploy to S3
-        run: aws s3 sync build/ s3://spanex.com.au --delete
+        # NOTE: --exclude "explainer/*" preserves the biocap-explainer subpath
+        # which is deployed independently from a separate source folder
+        # (bio-capsules/biocap-explainer). Removing this exclusion will wipe
+        # https://spanex.com.au/explainer/ on next deploy.
+        run: aws s3 sync build/ s3://spanex.com.au --delete --exclude "explainer/*"
 
       - name: Invalidate CloudFront cache
         if: vars.CLOUDFRONT_DISTRIBUTION_ID != ''

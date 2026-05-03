@@ -33,6 +33,7 @@ const Navbar = () => {
         <div className={styles.navMeta}>
           <a href="#about">About</a>
           <a href="#biocapsules">Bio-Capsule</a>
+          <a href="#primer">Primer</a>
           <a href="#shelflife">Shelf-Life</a>
           <a href="#pack">Pack</a>
           <a href="#products">Products</a>
@@ -60,6 +61,7 @@ const Navbar = () => {
           <a href="#home" onClick={() => setOpen(false)}>Home</a>
           <a href="#about" onClick={() => setOpen(false)}>About</a>
           <a href="#biocapsules" onClick={() => setOpen(false)}>Bio-Capsule</a>
+          <a href="#primer" onClick={() => setOpen(false)}>Primer</a>
           <a href="#shelflife" onClick={() => setOpen(false)}>Shelf-Life</a>
           <a href="#pack" onClick={() => setOpen(false)}>Pack</a>
           <a href="#products" onClick={() => setOpen(false)}>Products</a>

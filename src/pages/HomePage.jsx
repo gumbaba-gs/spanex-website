@@ -9,6 +9,7 @@ import CompareSection from '../components/home/CompareSection';
 import ShelfLifeSection from '../components/home/ShelfLifeSection';
 import CredentialsSection from '../components/home/CredentialsSection';
 import SalesPackSection from '../components/home/SalesPackSection';
+import FieldPrimerSection from '../components/home/FieldPrimerSection';
 import EditorialQuote from '../components/home/EditorialQuote';
 import ProductSection from '../components/products/ProductSection';
 import ContactSection from '../components/products/ContactSection';
@@ -27,6 +28,9 @@ const HomePage = () => {
 
       {/* IV — Bio-Capsule Technology + Crop Schedules */}
       <BioCapsuleSection />
+
+      {/* IV·A — Field Primer (interactive web companion to Sales Pack) */}
+      <FieldPrimerSection />
 
       {/* V — Sales Pack monograph (closes out the Bio-Capsule chapter) */}
       <SalesPackSection />
