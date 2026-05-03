@@ -122,9 +122,10 @@ const BioCapsuleSection = () => {
         </h3>
         <p className="biocap-sub-lede reveal" data-delay="2">
           Lyophilised cells are dormant until rehydrated. The activation soak
-          gives them back the moisture, temperature, and time to <em>multiply</em>
-          before contacting soil — so the live count at the root zone is an
-          order of magnitude higher than dry-format application.
+          <em>rehydrates and metabolically activates</em> the dormant cells
+          so they are primed to colonise the rhizosphere on application —
+          rather than waking up over 1–2 days in the soil. The maximum
+          delivered count remains 10¹² CFU per capsule.
         </p>
 
         <ol className="biocap-steps reveal" data-delay="3">

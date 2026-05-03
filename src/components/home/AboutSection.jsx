@@ -36,8 +36,8 @@ const AboutSection = () => {
     {
       num: 'iii.',
       title: 'Activated before application',
-      body: 'A 6–8 hour cold-water soak hydrates the cells and lets them multiply up to ten-fold before the solution ever touches soil. Field-effective CFU at point of root delivery is dramatically higher than dry powder formats.',
-      data: ['10× pre-field multiplication', '30–70% field survival', 'Direct rhizosphere delivery'],
+      body: 'A 6–8 hour cold-water soak rehydrates and metabolically activates the dormant lyophilised cells so they are field-ready on contact with soil — primed to colonise the rhizosphere immediately rather than waking up over 1–2 days. The labelled count of 10¹² CFU per capsule is preserved through activation; survival from tank to root zone, not multiplication, is what matters.',
+      data: ['10¹² CFU field-ready', '30–70% field survival', 'Direct rhizosphere delivery'],
     },
     {
       num: 'iv.',
