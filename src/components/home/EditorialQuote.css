@@ -1,0 +1,56 @@
+/* EditorialQuote — pull-quote editorial section */
+
+.editorial {
+  padding: 10rem 2.5rem;
+  background: var(--c-cream-warm);
+  position: relative;
+}
+.editorial::before {
+  content: '"';
+  position: absolute;
+  top: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: 12rem;
+  line-height: 1;
+  color: var(--c-gold);
+  opacity: 0.15;
+  pointer-events: none;
+}
+.editorial-inner {
+  max-width: 920px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+.editorial-quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.25;
+  color: var(--c-forest);
+  letter-spacing: -0.01em;
+  margin-bottom: 2.5rem;
+}
+.editorial-quote strong {
+  font-weight: 600;
+  font-style: normal;
+  color: var(--c-rust);
+}
+.editorial-attr {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--c-ink-soft);
+}
+.editorial-attr-name {
+  color: var(--c-forest);
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .editorial { padding: 6rem 1.25rem; }
+}

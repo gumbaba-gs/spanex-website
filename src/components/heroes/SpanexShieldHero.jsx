@@ -1,146 +1,102 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './SpanexShieldHero.css';
 
-
 const SpanexHero = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [centerFruitIndex, setCenterFruitIndex] = useState(0);
-
-  // Mechanism data
-  const mechanisms = [
-    {
-      id: 0,
-      name: "Respiration Control",
-      color: "#2d5500", 
-      icon: "🍃",
-    },
-    {
-      id: 1,
-      name: "Moisture Optimization",
-      color: "#87643e", 
-      icon: "💧",
-    },
-    {
-      id: 2,
-      name: "Microbial Inhibition",
-      color: "#ff6e4e", 
-      icon: "🦠",
-    },
-    {
-      id: 3,
-      name: "Oxidation Prevention",
-      color: "#fea201", 
-      icon: "⚛️",
-    }
-  ];
-
-  // Fruits for center display
-  const protectedFruits = ["🍎", "🫐", "🥑", "🍓", "🍊", "🍋", "🍇"];
-
-  // Auto-rotate mechanisms every 5 seconds
+  // Trigger scroll reveal observer once on mount
   useEffect(() => {
-    const mechanismTimer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % mechanisms.length);
-    }, 5000);
-    
-    return () => clearInterval(mechanismTimer);
-  }, [mechanisms.length]);
-
-  // Change center fruit every 2 seconds
-  useEffect(() => {
-    const fruitTimer = setInterval(() => {
-      setCenterFruitIndex((prev) => (prev + 1) % protectedFruits.length);
-    }, 2000);
-    
-    return () => clearInterval(fruitTimer);
-  }, [protectedFruits.length]);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -80px 0px' }
+    );
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  }, []);
 
   return (
-    <section className="hero-section" id="home">
-      <div className="hero-overlay"></div>
-      
-      <div className="hero-container">
-        <div className="hero-layout">
-          {/* Content column */}
-          <div className="hero-content-column">
-            <h2 className="hero-title">
-              Extending Nature's Freshness
-            </h2>
-            
-            <p className="hero-subtitle">
-              Revolutionary patented Spanex Sciences formulations extend produce shelf life, reducing industry losses.
-            </p>
-            <div className="hero-badge">
-              <div className="hero-badge-icon">🛡️</div>
-              <div className="hero-badge-content">
-                <div className="hero-badge-title">Multi-Mechanism Protection</div>
-                <div className="hero-badge-text">All 4 mechanisms work together for complete protection</div>
+    <section className="hero" id="home">
+      {/* Decorative patent number rotated 90° on the left edge */}
+      <div className="hero-patent-stamp">IN&nbsp;361021&nbsp;/&nbsp;CHE&nbsp;/&nbsp;2013</div>
+
+      <div className="hero-grid">
+        {/* === LEFT — TEXT === */}
+        <div className="hero-text">
+          <div className="hero-eyebrow">
+            <span>Patented Microbial Encapsulation · IN&nbsp;361021/CHE/2013</span>
+          </div>
+
+          <h1 className="hero-headline">
+            Living biology<br />
+            delivered as a <em>capsule</em>—<br />
+            <span className="hero-headline-strong">not a bag.</span>
+          </h1>
+
+          <p className="hero-lede">
+            One gram. One trillion microbes. Two-year ambient shelf life. Engineered for the distance and discipline of Australian agriculture.
+          </p>
+
+          <div className="hero-data">
+            <div className="data-cell">
+              <div className="data-value">10<sup>12+</sup></div>
+              <div className="data-unit">CFU per capsule</div>
+            </div>
+            <div className="data-cell">
+              <div className="data-value">2<span className="data-value-sub">yr</span></div>
+              <div className="data-unit">Ambient shelf life</div>
+            </div>
+            <div className="data-cell">
+              <div className="data-value">8</div>
+              <div className="data-unit">Specialised SKUs</div>
+            </div>
+          </div>
+
+          <div className="hero-cta">
+            <a href="#biocapsules" className="btn btn-primary">
+              Read the Science
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                <path d="M1 5h12m0 0L9 1m4 4L9 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </a>
+            <a href="#contact" className="btn btn-link">Request a sample</a>
+          </div>
+        </div>
+
+        {/* === RIGHT — CAPSULE STAGE === */}
+        <div className="hero-visual">
+          <div className="capsule-stage">
+            <div className="capsule-circle" aria-hidden="true"></div>
+            <div className="capsule-art" aria-hidden="true">
+              <div className="capsule-half capsule-half--top">
+                <div className="capsule-brand">SPANEX</div>
+              </div>
+              <div className="capsule-half capsule-half--bottom">
+                <div className="capsule-cfu">
+                  10<sup>12</sup>
+                </div>
+                <div className="capsule-cfu-label">CFU · POST-ACTIVATION</div>
               </div>
             </div>
-            
-            {/* Visual column */}
-            <div className="hero-visual-column">
-                <div className="mechanism-display">
-                    {/* Produce icon in center */}
-                    <div className="mechanism-center">
-                        <span className="mechanism-fruit">
-                        {protectedFruits[centerFruitIndex]}
-                        </span>
-                        <div className="mechanism-pulse" style={{
-                        borderColor: mechanisms[activeIndex].color
-                        }}></div>
-                    </div>
-                    
-                    {/* Four mechanism cards */}
-                    {mechanisms.map((mechanism, index) => {
-                        // Position styles based on index
-                        let positionClass = '';
-                        if (index === 0) positionClass = 'mechanism-position-top';
-                        if (index === 1) positionClass = 'mechanism-position-right';
-                        if (index === 2) positionClass = 'mechanism-position-bottom';
-                        if (index === 3) positionClass = 'mechanism-position-left';
-                        
-                        return (
-                        <div 
-                            key={mechanism.id}
-                            className={`mechanism-card ${positionClass} ${activeIndex === index ? 'mechanism-card-active' : ''}`}
-                            onClick={() => setActiveIndex(index)}
-                            style={{
-                            backgroundImage: activeIndex === index ? 
-                                `linear-gradient(135deg, ${mechanism.color}bb, ${mechanism.color}88)` : 
-                                'none'
-                            }}
-                        >
-                            <div className="mechanism-number">{index + 1}</div>
-                            <div className="mechanism-icon">
-                            {mechanism.icon}
-                            </div>
-                            <div className="mechanism-name">{mechanism.name}</div>
-                            <div className="mechanism-description">{mechanism.description}</div>
-                        </div>
-                        );
-                    })}
-                    
-                    {/* Connecting lines */}
-                    <div className="mechanism-lines">
-                        <div className="mechanism-line-horizontal"></div>
-                        <div className="mechanism-line-vertical"></div>
-                    </div>
-                </div>
+
+            <div className="annotation annotation--left ann-1">
+              <div><strong>Plant-based HPMC</strong><br />shell · 1 g · ICAR-IISR</div>
             </div>
-            
-            <div className="hero-cta">
-              <a href="#products" className="btn btn-primary">
-                Our Solutions
-              </a>
-              <a href="#contact" className="btn btn-outline">
-                Schedule a Consultation
-              </a>
+            <div className="annotation annotation--right ann-2">
+              <div><strong>Lyophilised cells</strong><br />NCIM / MTCC verified</div>
+            </div>
+            <div className="annotation annotation--left ann-3">
+              <div><strong>Activates in 6–8 hr</strong><br />cold-water soak</div>
+            </div>
+            <div className="annotation annotation--right ann-4">
+              <div><strong>Multiplies 10×</strong><br />before field application</div>
             </div>
           </div>
         </div>
       </div>
-
     </section>
   );
 };

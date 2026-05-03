@@ -4,62 +4,52 @@ import Container from './Container';
 import styles from './Footer.module.css';
 import logo from '../home/images/spanex.png';
 
-/**
- * Footer component with company information, links, and contact details
- */
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  
+
   return (
     <footer className={styles.footer}>
       <Container>
         <div className={styles.footerGrid}>
-          {/* Company Information */}
+          {/* Brand column */}
           <div className={styles.footerBrand}>
             <div className={styles.footerLogo}>
-              <img src={logo} alt="Spanex Logo" className={styles.logoImage} />
-              <span>Spanex</span>
+              <img src={logo} alt="SPANEX" className={styles.logoImage} />
+              <span>SPANEX</span>
             </div>
             <p className={styles.footerTagline}>
-              Pioneering shelf life extension solutions for packhouses, growers, and retailers
+              Pioneering shelf-life extension and sustainable bio-fertiliser
+              solutions for Australian agriculture.
             </p>
             <div className={styles.certifications}>
-              <div className={styles.certBadge}>
-                <span className={styles.certIcon}>✓</span>
-                <span className={styles.certText}>GRAS Certified</span>
-              </div>
-              <div className={styles.certBadge}>
+              <div className={styles.certBadge} title="Indian Patent IN 361021/CHE/2013">
                 <span className={styles.certIcon}>🛡️</span>
-                <span className={styles.certText}>Patented Technology</span>
+                <span className={styles.certText}>Patent IN 361021/CHE/2013</span>
+              </div>
+              <div className={styles.certBadge} title="DAFF Import Permit">
+                <span className={styles.certIcon}>📋</span>
+                <span className={styles.certText}>DAFF Permit #0011744619</span>
+              </div>
+              <div className={styles.certBadge} title="Manufactured under ISO 9001:2015 by SRT Agro Science">
+                <span className={styles.certIcon}>✓</span>
+                <span className={styles.certText}>ISO 9001:2015 (Manufacturer)</span>
               </div>
             </div>
           </div>
-          
+
           {/* Quick Links */}
           <div className={styles.footerLinks}>
             <h4>Quick Links</h4>
             <ul>
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#technology">Our Technology</a></li>
-              <li><a href="#products">Products</a></li>
-              <li><a href="#impact">Sustainability</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#products">Shelf-Life Products</a></li>
+              <li><a href="#biocapsules">Bio-Capsule Technology</a></li>
+              <li><a href="#biocapsules">Crop Schedules</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
           </div>
-          
-          {/* Resources */}
-          <div className={styles.footerLinks}>
-            <h4>Resources</h4>
-            <ul>
-              <li><a href="#technology">Technical Specifications</a></li>
-              <li><a href="#about">ROI Calculator</a></li>
-              <li><a href="#products">Product Catalog</a></li>
-              <li><a href="#about">Case Studies</a></li>
-              <li><a href="#about">FAQ</a></li>
-            </ul>
-          </div>
-          
-          {/* Contact Information */}
+
+          {/* Contact column */}
           <div className={styles.footerContact}>
             <h4>Contact Us</h4>
             <address>
@@ -73,11 +63,14 @@ const Footer = () => {
               </p>
               <p>
                 <span className={styles.contactIcon}>✉️</span>
-                <span>info@spanex.com.au</span>
+                <a href="mailto:info@spanex.com.au">info@spanex.com.au</a>
+              </p>
+              <p>
+                <span className={styles.contactIcon}>🏛️</span>
+                <span>ABN 56 602 689 001</span>
               </p>
             </address>
-            
-            {/* B2B Call to Action */}
+
             <div className={styles.b2bCta}>
               <h5>For Business Inquiries</h5>
               <a href="#contact" className={styles.ctaButton}>
@@ -86,17 +79,11 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        
-        {/* Footer Bottom */}
+
+        {/* Footer bottom strip */}
         <div className={styles.footerBottom}>
           <div className={styles.copyright}>
-            &copy; {currentYear} Spanex Sciences. All rights reserved.
-          </div>
-          
-          <div className={styles.footerLegal}>
-            <a href="#privacy">Privacy Policy</a>
-            <a href="#terms">Terms of Service</a>
-            <a href="#cookies">Cookie Policy</a>
+            &copy; {currentYear} SPANEX · A Division of Meem International Pty Ltd · ABN 56 602 689 001
           </div>
         </div>
       </Container>

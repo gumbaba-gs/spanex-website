@@ -1,49 +1,49 @@
 // src/pages/HomePage.jsx
+// Editorial Pharma-Bio composition for SPANEX
 import React from 'react';
 import Layout from '../components/layout/Layout';
 import SpanexShieldHero from '../components/heroes/SpanexShieldHero';
 import AboutSection from '../components/home/AboutSection';
-import FoodWasteCounter from '../components/home/FoodWasteCounter';
+import BioCapsuleSection from '../components/home/BioCapsuleSection';
+import CompareSection from '../components/home/CompareSection';
+import ShelfLifeSection from '../components/home/ShelfLifeSection';
+import CredentialsSection from '../components/home/CredentialsSection';
+import SalesPackSection from '../components/home/SalesPackSection';
+import EditorialQuote from '../components/home/EditorialQuote';
 import ProductSection from '../components/products/ProductSection';
-import TechnologySection from '../components/home/TechnologySection';
-import BeforeAfterComparison from '../components/products/BeforeAfterComparison';
-import ComparisonSection from '../components/products/ComparisonSection';
-import SustainabilitySection from '../components/home/SustainabilitySection';
 import ContactSection from '../components/products/ContactSection';
 
-/**
- * Home page component with all sections of the Spanex Sciences website
- */
 const HomePage = () => {
   return (
     <Layout>
-      {/* Hero Section */}
-      <section id="home">
-        <SpanexShieldHero />
-      </section>
+      {/* I — Hero */}
+      <SpanexShieldHero />
 
-      {/* About Section */}
+      {/* II — About / Story */}
       <AboutSection />
 
-      {/* Food Waste Counter Section */}
-      <FoodWasteCounter />
+      {/* III — Compare to Powder & Liquid */}
+      <CompareSection />
 
-      {/* Technology Section */}
-      <TechnologySection />
+      {/* IV — Bio-Capsule Technology + Crop Schedules */}
+      <BioCapsuleSection />
 
-      {/* Before/After Comparison Section */}
-      <BeforeAfterComparison />
+      {/* V — Sales Pack monograph (closes out the Bio-Capsule chapter) */}
+      <SalesPackSection />
 
-      {/* Comparison Section */}
-      <ComparisonSection />
+      {/* VI — Shelf-Life Extender (the next product) */}
+      <ShelfLifeSection />
 
-      {/* SustainabilitySection */}
-      <SustainabilitySection/>
-      
-      {/* Product Section */}
+      {/* VII — Credentials */}
+      <CredentialsSection />
+
+      {/* VIII — Editorial Quote */}
+      <EditorialQuote />
+
+      {/* IX — Products */}
       <ProductSection />
 
-      {/* Contact Section */}
+      {/* X — Contact */}
       <ContactSection />
     </Layout>
   );

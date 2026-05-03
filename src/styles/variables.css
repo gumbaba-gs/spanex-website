@@ -1,70 +1,102 @@
 /* src/styles/variables.css */
+/* Editorial Pharma-Bio Design System for SPANEX */
 
 :root {
-  /* Brand Colors */
-  --color-primary: #2d5500;         /* Dark Green */
-  --color-secondary: #87643e;       /* Brown */
-  --color-accent: #ff6e4e;          /* Coral/Orange */
-  --color-neutral: #f8f8f5;         /* Alabaster */
-  --color-text-primary: #222222;    /* Near Black */
-  --color-text-secondary: #666666;  /* Dark Gray */
-  
-  /* Functional Colors */
-  --color-success: #2d5500;         /* Dark Green */
-  --color-warning: #fea201;         /* Bright Orange */
-  --color-error: #ff6e4e;           /* Coral/Orange */
-  --color-background: #ffffff;      /* White */
-  --color-surface: #f8f8f5;         /* Alabaster */
-  
-  /* Typography */
-  --font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  
+  /* ==================== PALETTE ==================== */
+  /* Editorial Pharma-Bio palette — pharma packaging warmth, not generic agritech green */
+  --c-forest:        #0a1f0e;   /* Deep forest — primary dark */
+  --c-forest-deep:   #050f07;   /* Deeper forest — accent dark */
+  --c-cream:         #f5f1e6;   /* Warm cream — primary light */
+  --c-cream-warm:    #ede7d4;   /* Warm cream tint */
+  --c-gold:          #c9a86a;   /* Lab gold — primary accent */
+  --c-gold-deep:     #a8884d;   /* Lab gold deep */
+  --c-rust:          #b54e3c;   /* Cherry rust — emphasis accent */
+  --c-lab-green:     #2e7d32;   /* Lab green — for capsule highlight */
+  --c-lab-green-light: #5a9c5e;
+  --c-ink:           #1a1a17;   /* Body text */
+  --c-ink-soft:      #4a4a45;   /* Secondary text */
+  --c-hairline:      rgba(10, 31, 14, 0.08);
+  --c-hairline-strong: rgba(10, 31, 14, 0.18);
+
+  /* Legacy color tokens — re-mapped to new palette so old components still work */
+  --color-primary: var(--c-forest);
+  --color-secondary: var(--c-gold-deep);
+  --color-accent: var(--c-rust);
+  --color-neutral: var(--c-cream);
+  --color-text-primary: var(--c-ink);
+  --color-text-secondary: var(--c-ink-soft);
+  --color-success: var(--c-lab-green);
+  --color-warning: var(--c-gold);
+  --color-error: var(--c-rust);
+  --color-background: var(--c-cream);
+  --color-surface: var(--c-cream-warm);
+
+  /* ==================== TYPOGRAPHY ==================== */
+  /* Editorial-Pharma-Bio type system */
+  --font-display: 'Newsreader', 'EB Garamond', Georgia, serif;          /* Editorial gravitas */
+  --font-body:    'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; /* Refined geometric sans */
+  --font-mono:    'JetBrains Mono', 'SF Mono', Menlo, monospace;        /* Technical accent */
+
+  /* Legacy font token */
+  --font-family: var(--font-body);
+
   /* Font Weights */
+  --font-weight-light:   300;
   --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-weight-bold: 700;
-  
-  /* Font Sizes */
-  --font-size-h1: 2.75rem;     /* 44px */
-  --font-size-h2: 2.25rem;     /* 36px */
-  --font-size-h3: 1.75rem;     /* 28px */
-  --font-size-h4: 1.25rem;     /* 20px */
-  --font-size-h5: 1.125rem;    /* 18px */
-  --font-size-h6: 1rem;        /* 16px */
-  --font-size-body: 1rem;      /* 16px */
-  --font-size-small: 0.875rem; /* 14px */
-  
+  --font-weight-medium:  500;
+  --font-weight-semi:    600;
+  --font-weight-bold:    700;
+
+  /* Font Sizes — editorial scale */
+  --font-size-h1: 5.5rem;       /* Massive editorial display */
+  --font-size-h2: 3.5rem;
+  --font-size-h3: 2.25rem;
+  --font-size-h4: 1.5rem;
+  --font-size-h5: 1.25rem;
+  --font-size-h6: 1.05rem;
+  --font-size-body: 1rem;
+  --font-size-small: 0.875rem;
+  --font-size-mono-label: 0.7rem;  /* For mono-font micro-labels */
+
   /* Line Heights */
-  --line-height-headings: 1.3;
+  --line-height-display: 0.95;     /* Tight editorial display */
+  --line-height-headings: 1.15;
   --line-height-body: 1.6;
-  --line-height-relaxed: 1.9;
-  
-  /* Spacing - 8-point Grid System */
-  --spacing-xs: 0.25rem;   /* 4px */
-  --spacing-sm: 0.5rem;    /* 8px */
-  --spacing-md: 1rem;      /* 16px */
-  --spacing-lg: 2rem;      /* 32px */
-  --spacing-xl: 3rem;      /* 48px */
-  --spacing-xxl: 5rem;     /* 80px */
-  
-  /* Border Radius */
-  --border-radius-sm: 0.25rem;  /* 4px */
-  --border-radius-md: 0.5rem;   /* 8px */
-  --border-radius-lg: 1rem;     /* 16px */
-  --border-radius-pill: 50px;   /* Rounded pill shape */
-  
-  /* Shadows */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
-  
-  /* Transitions */
-  --transition-fast: 150ms ease-in-out;
-  --transition-normal: 300ms ease-in-out;
-  --transition-slow: 500ms ease-in-out;
-  
-  /* Z-index layers */
+  --line-height-relaxed: 1.8;
+
+  /* Letter spacing (used heavily in editorial design) */
+  --tracking-display: -0.02em;     /* Tight display tracking */
+  --tracking-mono:    0.18em;      /* Wide mono tracking */
+  --tracking-mono-tight: 0.12em;
+  --tracking-caps:    0.25em;      /* All-caps tracking */
+
+  /* ==================== SPACING ==================== */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-xxl: 5rem;
+  --spacing-section: 8rem;        /* Editorial section padding */
+
+  /* ==================== BORDERS / RADIUS / SHADOWS ==================== */
+  /* Editorial design uses fewer rounded corners — sharper aesthetic */
+  --border-radius-sm: 2px;
+  --border-radius-md: 4px;
+  --border-radius-lg: 8px;
+  --border-radius-pill: 999px;
+
+  --shadow-sm: 0 2px 4px rgba(10, 31, 14, 0.04);
+  --shadow-md: 0 8px 24px rgba(10, 31, 14, 0.08);
+  --shadow-lg: 0 30px 60px rgba(10, 31, 14, 0.18);
+
+  /* ==================== MOTION ==================== */
+  --transition-fast:    250ms cubic-bezier(0.7, 0, 0.3, 1);
+  --transition-normal:  400ms cubic-bezier(0.7, 0, 0.3, 1);
+  --transition-slow:    1.2s cubic-bezier(0.2, 0.8, 0.2, 1);     /* For scroll reveals */
+  --transition-reveal:  1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* ==================== Z-INDEX ==================== */
   --z-index-dropdown: 10;
   --z-index-sticky: 20;
   --z-index-fixed: 30;
@@ -72,31 +104,31 @@
   --z-index-modal: 50;
   --z-index-popover: 60;
   --z-index-tooltip: 70;
-  
-  /* Breakpoints */
-  --breakpoint-xs: 576px;   /* Extra Small - Mobile */
-  --breakpoint-sm: 768px;   /* Small - Mobile Landscape */
-  --breakpoint-md: 992px;   /* Medium - Tablet */
-  --breakpoint-lg: 1200px;  /* Large - Desktop */
-  
-  /* Container Widths */
-  --container-max-width: 1200px;
-  
-  /* Component-specific */
-  /* Cards */
-  --card-border-radius: 0.5rem;  /* 8px */
-  --card-padding: 1.5rem;        /* 24px */
+  --z-index-grain: 100;          /* Paper grain overlay sits above everything */
+
+  /* ==================== BREAKPOINTS ==================== */
+  --breakpoint-xs: 576px;
+  --breakpoint-sm: 768px;
+  --breakpoint-md: 992px;
+  --breakpoint-lg: 1200px;
+
+  /* ==================== CONTAINERS ==================== */
+  --container-max-width: 1400px;
+  --container-narrow: 920px;
+  --container-padding: 2.5rem;
+
+  /* ==================== COMPONENTS ==================== */
+  --card-border-radius: var(--border-radius-md);
+  --card-padding: 1.5rem;
   --card-shadow: var(--shadow-sm);
-  
-  /* Buttons */
-  --button-border-radius: var(--border-radius-pill);
-  --button-padding-y: 0.75rem;   /* 12px */
-  --button-padding-x: 1.5rem;    /* 24px */
-  --button-font-weight: 600;
-  
-  /* Inputs */
-  --input-border-radius: 0.25rem; /* 4px */
-  --input-border: 1px solid rgba(0, 0, 0, 0.1);
+
+  --button-border-radius: 0;          /* Sharp editorial buttons */
+  --button-padding-y: 1.1rem;
+  --button-padding-x: 1.75rem;
+  --button-font-weight: 700;
+
+  --input-border-radius: 0;
+  --input-border: 1px solid var(--c-hairline-strong);
   --input-padding: 0.75rem 1rem;
-  --input-focus-border-color: var(--color-accent);
+  --input-focus-border-color: var(--c-gold);
 }

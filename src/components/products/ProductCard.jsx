@@ -1,23 +1,24 @@
-// src/components/products/ProductCard.jsx
+// src/components/products/ProductCard.jsx — Editorial Pharma-Bio specimen card
 import React from 'react';
 import styles from './ProductCard.module.css';
 
-/**
- * Product card component for displaying product information
- * 
- * @param {Object} props - Component props
- * @param {Object} props.product - Product data object
- * @param {Function} props.onViewDetails - Function to call when view details is clicked
- */
-const ProductCard = ({ product, onViewDetails }) => {
-  const { id, name, image, badge, badgeType, description, specs, available } = product;
-  
+const ProductCard = ({ product, index = 0, onViewDetails, onRequestSample }) => {
+  const { name, image, badge, description, available } = product;
+  const idStr = String(index + 1).padStart(2, '0');
+
   return (
-    <div className={`${styles.card} ${!available ? styles.comingSoon : ''}`}>
-      {!available && (
-        <div className={styles.badge}>Coming Soon</div>
-      )}
-      <div className={styles.imageContainer}>
+    <article className={`${styles.card} ${!available ? styles.cardComingSoon : ''}`}>
+      {/* Spec strip — editorial card-id + status */}
+      <div className={styles.specStrip}>
+        <span className={styles.specId}>{idStr}</span>
+        <span className={styles.specBadge}>{badge}</span>
+        <span className={`${styles.specStatus} ${available ? styles.specStatusOn : styles.specStatusOff}`}>
+          {available ? 'In production' : 'In development'}
+        </span>
+      </div>
+
+      {/* Image plate */}
+      <div className={styles.imagePlate}>
         <img
           src={image}
           alt={name}
@@ -25,36 +26,35 @@ const ProductCard = ({ product, onViewDetails }) => {
           loading="lazy"
         />
       </div>
-      
+
+      {/* Content */}
       <div className={styles.content}>
-        <div className={styles.headerRow}>
-          <h3 className={styles.name}>{name}</h3>
-          <span className={`${styles.typeBadge} ${styles[`typeBadge${badgeType.charAt(0).toUpperCase() + badgeType.slice(1)}`]}`}>
-            {badge}
-          </span>
-        </div>
-        
+        <h3 className={styles.name}>{name}</h3>
         <p className={styles.description}>{description}</p>
-        
-        <div className={styles.specs}>
-          {specs.map((spec, specIndex) => (
-            <div key={specIndex} className={styles.specRow}>
-              <span className={styles.specLabel}>{spec.label}:</span>
-              <span className={styles.specValue}>{spec.value}</span>
-            </div>
-          ))}
+
+        <div className={styles.ctaRow}>
+          <button
+            type="button"
+            onClick={() => available && onViewDetails(product)}
+            className={`${styles.cta} ${!available ? styles.ctaDisabled : ''}`}
+            disabled={!available}
+          >
+            {available ? 'Learn more' : 'Coming soon'}
+            {available && <span className={styles.ctaArrow} aria-hidden="true">→</span>}
+          </button>
+          {available && (
+            <button
+              type="button"
+              onClick={() => onRequestSample(product)}
+              className={styles.ctaSample}
+            >
+              Sample
+              <span className={styles.ctaArrow} aria-hidden="true">→</span>
+            </button>
+          )}
         </div>
-        
-        <button 
-          onClick={() => available && onViewDetails(product)}
-          className={styles.cta}
-          aria-disabled={!available}
-          disabled={!available}
-        >
-          {available ? 'Learn More' : 'Coming Soon'}
-        </button>
       </div>
-    </div>
+    </article>
   );
 };
 

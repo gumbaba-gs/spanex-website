@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPANEX — Microbial encapsulation for Australian agriculture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest: #0a1f0e;
+  --forest-deep: #050f07;
+  --cream: #f5f1e6;
+  --cream-warm: #ede7d4;
+  --gold: #c9a86a;
+  --gold-deep: #a8884d;
+  --rust: #b54e3c;
+  --lab-green: #2e7d32;
+  --lab-green-light: #5a9c5e;
+  --ink: #1a1a17;
+  --ink-soft: #4a4a45;
+  --hairline: rgba(10, 31, 14, 0.08);
+  --hairline-strong: rgba(10, 31, 14, 0.18);
+
+  --font-display: "Newsreader", "EB Garamond", Georgia, serif;
+  --font-body: "DM Sans", -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ===== PAPER GRAIN OVERLAY ===== */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 100;
+  mix-blend-mode: multiply;
+}
+
+/* ===== TOP NAV ===== */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  padding: 1.25rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 50;
+  background: linear-gradient(to bottom, rgba(245, 241, 230, 0.95) 0%, rgba(245, 241, 230, 0.75) 70%, transparent 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.nav-mark {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  letter-spacing: 0.18em;
+  color: var(--forest);
+}
+.nav-mark-period { color: var(--rust); }
+.nav-meta {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-soft);
+}
+.nav-meta a {
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s;
+}
+.nav-meta a:hover { color: var(--rust); }
+.nav-meta a:hover::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0; right: 0;
+  height: 1px;
+  background: var(--rust);
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+  min-height: 100vh;
+  padding: 8rem 2.5rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 3rem;
+  align-items: center;
+  position: relative;
+}
+.hero::before {
+  content: 'IN 361021 / CHE / 2013';
+  position: absolute;
+  top: 50%;
+  left: -2rem;
+  transform: rotate(-90deg);
+  transform-origin: left top;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: var(--gold-deep);
+  opacity: 0.6;
+}
+
+.hero-text {
+  position: relative;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--rust);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 1s 0.2s ease forwards;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 32px; height: 1px;
+  background: var(--rust);
+}
+
+.hero-headline {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 0.95;
+  color: var(--forest);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 1.2s 0.4s ease forwards;
+}
+.hero-headline em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--rust);
+  position: relative;
+}
+.hero-headline em::after {
+  content: '';
+  position: absolute;
+  bottom: 0.05em; left: 0; right: 0;
+  height: 0.08em;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: underline 1.5s 1.8s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+.hero-headline-strong {
+  font-weight: 600;
+  font-style: italic;
+}
+
+.hero-lede {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 30em;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 1s 0.7s ease forwards;
+}
+
+.hero-data {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 0;
+  border-top: 1px solid var(--hairline-strong);
+  padding-top: 1.5rem;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 1s 0.9s ease forwards;
+}
+.data-cell {
+  padding-right: 2.5rem;
+  border-right: 1px solid var(--hairline);
+}
+.data-cell:last-child { border-right: none; padding-left: 2.5rem; padding-right: 0; }
+.data-cell:not(:first-child) { padding-left: 2.5rem; }
+.data-value {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--forest);
+  display: flex;
+  align-items: baseline;
+  gap: 0.2em;
+  line-height: 1;
+}
+.data-value sup {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--rust);
+  vertical-align: super;
+}
+.data-unit {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--ink-soft);
+  margin-top: 0.5rem;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  opacity: 0;
+  animation: fadeUp 1s 1.1s ease forwards;
+}
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  padding: 1.1rem 1.75rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.btn-primary {
+  background: var(--forest);
+  color: var(--cream);
+}
+.btn-primary:hover {
+  background: var(--rust);
+  letter-spacing: 0.32em;
+}
+.btn-primary svg { transition: transform 0.4s; }
+.btn-primary:hover svg { transform: translateX(4px); }
+.btn-link {
+  color: var(--forest);
+  background: transparent;
+  border-bottom: 1px solid var(--forest);
+  padding: 0.4rem 0;
+}
+.btn-link:hover { color: var(--rust); border-color: var(--rust); }
+
+/* ===== HERO VISUAL — pharma-style capsule render ===== */
+.hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 600px;
+  opacity: 0;
+  animation: fadeIn 1.5s 0.5s ease forwards;
+}
+.capsule-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.capsule-circle {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 50%;
+  animation: rotate 120s linear infinite;
+}
+.capsule-circle::before, .capsule-circle::after {
+  content: '';
+  position: absolute;
+  background: var(--gold);
+  border-radius: 50%;
+}
+.capsule-circle::before {
+  width: 6px; height: 6px;
+  top: -3px; left: 50%; transform: translateX(-50%);
+}
+.capsule-circle::after {
+  width: 4px; height: 4px;
+  bottom: -2px; left: 50%; transform: translateX(-50%);
+  background: var(--rust);
+}
+
+.capsule-art {
+  position: relative;
+  width: 240px;
+  height: 480px;
+  filter: drop-shadow(0 30px 60px rgba(10, 31, 14, 0.25));
+  animation: float 8s ease-in-out infinite;
+}
+.capsule-half {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  border-radius: 120px / 100%;
+  overflow: hidden;
+}
+.capsule-half--top {
+  top: 0;
+  background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #4a8c3f 100%);
+  border-radius: 120px 120px 4px 4px / 100% 100% 4px 4px;
+}
+.capsule-half--top::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  width: 30%;
+  height: 30%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3), transparent);
+  border-radius: 50%;
+  filter: blur(8px);
+}
+.capsule-brand {
+  position: absolute;
+  top: 38%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.3em;
+  color: var(--cream);
+  z-index: 5;
+}
+.capsule-half--bottom {
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(245, 241, 230, 0.6) 0%, rgba(245, 241, 230, 0.95) 100%);
+  border: 1px solid var(--hairline-strong);
+  border-top: none;
+  border-radius: 4px 4px 120px 120px / 4px 4px 100% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.capsule-cfu {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--forest);
+  display: flex;
+  align-items: baseline;
+  gap: 0.05em;
+}
+.capsule-cfu sup { font-size: 0.7em; color: var(--rust); }
+.capsule-cfu-label {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--ink-soft);
+}
+
+/* Annotation labels around the capsule */
+.annotation {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+.annotation::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold-deep);
+}
+.annotation--right::before {
+  order: 1;
+}
+.annotation--right { flex-direction: row-reverse; right: 5%; }
+.annotation--left { left: 5%; }
+.annotation strong {
+  color: var(--forest);
+  font-weight: 700;
+}
+.annotation:nth-of-type(1) { top: 15%; animation-delay: 1.5s; }
+.annotation:nth-of-type(2) { top: 38%; animation-delay: 1.7s; }
+.annotation:nth-of-type(3) { top: 55%; animation-delay: 1.9s; }
+.annotation:nth-of-type(4) { top: 75%; animation-delay: 2.1s; }
+
+/* ===== SECTION 2 — THE SCIENCE ===== */
+.science {
+  padding: 8rem 2.5rem;
+  background: var(--cream-warm);
+  position: relative;
+}
+.section-marker {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--gold-deep);
+  margin-bottom: 2rem;
+}
+.section-marker::before {
+  content: '';
+  width: 60px; height: 1px;
+  background: var(--gold);
+}
+.section-marker-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--rust);
+  font-size: 0.9rem;
+}
+
+.science-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 5rem;
+  align-items: start;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.science-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--forest);
+  letter-spacing: -0.015em;
+  position: sticky;
+  top: 5rem;
+}
+.science-headline em {
+  font-style: italic;
+  color: var(--rust);
+}
+
+.science-blocks {
+  display: grid;
+  gap: 3rem;
+}
+.science-block {
+  border-top: 1px solid var(--hairline-strong);
+  padding-top: 2rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+.science-block-num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--gold-deep);
+  letter-spacing: 0.2em;
+  padding-top: 0.4rem;
+}
+.science-block-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--forest);
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+.science-block-body {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+.science-block-body strong {
+  color: var(--forest);
+  font-weight: 600;
+}
+.science-block-data {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--rust);
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.science-block-data span::before {
+  content: '◆';
+  margin-right: 0.5rem;
+  color: var(--gold);
+}
+
+/* ===== SECTION 3 — COMPARISON ===== */
+.compare {
+  padding: 8rem 2.5rem;
+  background: var(--forest);
+  color: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+.compare::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  right: -200px;
+  width: 800px;
+  height: 800px;
+  border: 1px solid rgba(201, 168, 106, 0.15);
+  border-radius: 50%;
+}
+.compare::after {
+  content: '';
+  position: absolute;
+  top: 25%;
+  right: -100px;
+  width: 600px;
+  height: 600px;
+  border: 1px solid rgba(201, 168, 106, 0.1);
+  border-radius: 50%;
+}
+
+.compare-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+.compare-marker {
+  color: var(--gold);
+  margin-bottom: 3rem;
+}
+.compare-marker::before { background: var(--gold); }
+
+.compare-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 4rem;
+  max-width: 16em;
+}
+.compare-headline em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  border: 1px solid rgba(245, 241, 230, 0.15);
+}
+.compare-col {
+  padding: 2.5rem 2rem;
+  border-right: 1px solid rgba(245, 241, 230, 0.15);
+  position: relative;
+}
+.compare-col:last-child { border-right: none; }
+.compare-col--spanex {
+  background: rgba(201, 168, 106, 0.05);
+  border: 1px solid var(--gold);
+  margin: -1px;
+  position: relative;
+}
+.compare-col-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--cream);
+  opacity: 0.5;
+  margin-bottom: 1rem;
+}
+.compare-col--spanex .compare-col-tag {
+  color: var(--gold);
+  opacity: 1;
+}
+.compare-col-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  letter-spacing: -0.01em;
+}
+.compare-row {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(245, 241, 230, 0.1);
+  align-items: baseline;
+  font-size: 0.875rem;
+}
+.compare-row-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--cream);
+  opacity: 0.5;
+}
+.compare-row-value {
+  color: var(--cream);
+  line-height: 1.4;
+}
+.compare-col--spanex .compare-row-value strong {
+  color: var(--gold);
+  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 1rem;
+}
+
+/* ===== SECTION 4 — TRUST MARKERS / CREDENTIALS ===== */
+.credentials {
+  padding: 8rem 2.5rem;
+  background: var(--cream);
+}
+.credentials-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+}
+.credentials-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--rust);
+  margin-bottom: 1rem;
+}
+.credentials-headline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--forest);
+  margin-bottom: 4rem;
+  line-height: 1.1;
+  max-width: 22em;
+  margin-left: auto;
+  margin-right: auto;
+}
+.credentials-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--hairline-strong);
+  border-bottom: 1px solid var(--hairline-strong);
+  text-align: left;
+}
+.cred-cell {
+  padding: 2.5rem 2rem;
+  border-right: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.cred-cell:last-child { border-right: none; }
+.cred-num {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--forest);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.cred-num em { font-style: italic; color: var(--rust); }
+.cred-num sup {
+  font-family: var(--font-mono);
+  font-size: 0.55em;
+  vertical-align: super;
+  color: var(--rust);
+}
+.cred-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-soft);
+}
+.cred-detail {
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  margin-top: 0.5rem;
+}
+
+/* ===== SECTION 5 — EDITORIAL QUOTE ===== */
+.editorial {
+  padding: 10rem 2.5rem;
+  background: var(--cream-warm);
+  position: relative;
+}
+.editorial::before {
+  content: '"';
+  position: absolute;
+  top: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: 12rem;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.15;
+}
+.editorial-inner {
+  max-width: 920px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+.editorial-quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.25;
+  color: var(--forest);
+  letter-spacing: -0.01em;
+  margin-bottom: 2.5rem;
+}
+.editorial-quote strong {
+  font-weight: 600;
+  font-style: normal;
+  color: var(--rust);
+}
+.editorial-attr {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--ink-soft);
+}
+.editorial-attr-name { color: var(--forest); font-weight: 700; }
+
+/* ===== SECTION 6 — CTA / FOOTER ===== */
+.contact {
+  padding: 8rem 2.5rem 4rem;
+  background: var(--forest-deep);
+  color: var(--cream);
+}
+.contact-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 5rem;
+  align-items: end;
+}
+.contact-headline {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+.contact-headline em {
+  font-style: italic;
+  color: var(--gold);
+}
+.contact-sub {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(245, 241, 230, 0.7);
+  max-width: 28em;
+  margin-bottom: 2.5rem;
+}
+.contact-form {
+  display: flex;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 0.75rem;
+}
+.contact-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--cream);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  outline: none;
+  padding: 0.5rem 0;
+}
+.contact-input::placeholder {
+  color: rgba(245, 241, 230, 0.4);
+  font-style: italic;
+}
+.contact-submit {
+  background: var(--gold);
+  color: var(--forest);
+  border: none;
+  padding: 0.65rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.contact-submit:hover {
+  background: var(--rust);
+  color: var(--cream);
+}
+
+.contact-info {
+  display: grid;
+  gap: 1.25rem;
+}
+.contact-info-row {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(245, 241, 230, 0.1);
+  align-items: baseline;
+}
+.contact-info-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(245, 241, 230, 0.5);
+}
+.contact-info-value {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--cream);
+}
+.contact-info-value a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+.contact-info-value a:hover { border-bottom-color: var(--gold); }
+
+.footer-strip {
+  margin-top: 6rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(245, 241, 230, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(245, 241, 230, 0.5);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes underline {
+  to { transform: scaleX(1); }
+}
+@keyframes rotate {
+  from { transform: rotate(0); }
+  to { transform: rotate(360deg); }
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal[data-delay="1"] { transition-delay: 0.1s; }
+.reveal[data-delay="2"] { transition-delay: 0.2s; }
+.reveal[data-delay="3"] { transition-delay: 0.3s; }
+.reveal[data-delay="4"] { transition-delay: 0.4s; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 980px) {
+  .hero { grid-template-columns: 1fr; padding-top: 7rem; }
+  .hero-visual { height: 480px; }
+  .capsule-art { width: 200px; height: 400px; }
+  .science-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .science-headline { position: static; }
+  .compare-grid { grid-template-columns: 1fr; }
+  .compare-col { border-right: none; border-bottom: 1px solid rgba(245, 241, 230, 0.15); }
+  .credentials-row { grid-template-columns: repeat(2, 1fr); }
+  .cred-cell:nth-child(2) { border-right: none; }
+  .contact-inner { grid-template-columns: 1fr; }
+  .nav { padding: 1rem 1.25rem; }
+  .nav-meta { gap: 1.25rem; font-size: 0.6rem; }
+  .nav-meta a:nth-of-type(n+3) { display: none; }
+}
+@media (max-width: 640px) {
+  .hero { padding: 6rem 1.25rem 3rem; }
+  .hero-data { grid-template-columns: 1fr; gap: 1.5rem; }
+  .data-cell { border-right: none; border-bottom: 1px solid var(--hairline); padding: 0 0 1.25rem 0 !important; }
+  .data-cell:last-child { border-bottom: none; padding-bottom: 0 !important; }
+  .science, .compare, .credentials, .editorial, .contact { padding: 5rem 1.25rem; }
+  .credentials-row { grid-template-columns: 1fr; }
+  .cred-cell { border-right: none; border-bottom: 1px solid var(--hairline); }
+  .compare-row { grid-template-columns: 1fr; gap: 0.25rem; }
+  .footer-strip { flex-direction: column; gap: 1rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============== NAV ============== -->
+<nav class="nav">
+  <div class="nav-mark">SPANEX<span class="nav-mark-period">.</span></div>
+  <div class="nav-meta">
+    <a href="#science">The Science</a>
+    <a href="#comparison">Comparison</a>
+    <a href="#credentials">Credentials</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Patented Microbial Encapsulation · IN 361021/CHE/2013</div>
+    <h1 class="hero-headline">
+      Living biology<br>
+      delivered as a <em>capsule</em>—<br>
+      <span class="hero-headline-strong">not a bag.</span>
+    </h1>
+    <p class="hero-lede">
+      One gram. One trillion microbes. Two-year ambient shelf life. Engineered for the distance and discipline of Australian agriculture.
+    </p>
+
+    <div class="hero-data">
+      <div class="data-cell">
+        <div class="data-value">10<sup>12+</sup></div>
+        <div class="data-unit">CFU per capsule</div>
+      </div>
+      <div class="data-cell">
+        <div class="data-value">2<span style="font-family: var(--font-mono); font-size: 1rem; margin-left: 0.2em;">yr</span></div>
+        <div class="data-unit">Ambient shelf life</div>
+      </div>
+      <div class="data-cell">
+        <div class="data-value">8</div>
+        <div class="data-unit">Specialised SKUs</div>
+      </div>
+    </div>
+
+    <div class="hero-cta">
+      <a href="#science" class="btn btn-primary">
+        Read the Science
+        <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+          <path d="M1 5h12m0 0L9 1m4 4L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="#contact" class="btn btn-link">Request a sample</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="capsule-stage">
+      <div class="capsule-circle"></div>
+      <div class="capsule-art">
+        <div class="capsule-half capsule-half--top">
+          <div class="capsule-brand">SPANEX</div>
+        </div>
+        <div class="capsule-half capsule-half--bottom">
+          <div class="capsule-cfu">10<sup>12</sup></div>
+          <div class="capsule-cfu-label">CFU · POST-ACTIVATION</div>
+        </div>
+      </div>
+
+      <div class="annotation annotation--left">
+        <div><strong>Plant-based HPMC</strong><br>shell · 1 g · ICAR-IISR</div>
+      </div>
+      <div class="annotation annotation--right">
+        <div><strong>Lyophilised cells</strong><br>NCIM / MTCC verified</div>
+      </div>
+      <div class="annotation annotation--left">
+        <div><strong>Activates in 6–8 hr</strong><br>cold-water soak</div>
+      </div>
+      <div class="annotation annotation--right">
+        <div><strong>Multiplies 10×</strong><br>before field application</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== THE SCIENCE ============== -->
+<section class="science" id="science">
+  <div class="science-grid">
+    <div>
+      <div class="section-marker">
+        <span class="section-marker-num">01.</span>
+        The Science
+      </div>
+      <h2 class="science-headline">A bio-fertiliser engineered <em>like</em> a pharmaceutical.</h2>
+    </div>
+
+    <div class="science-blocks">
+
+      <div class="science-block reveal">
+        <div class="science-block-num">i.</div>
+        <div>
+          <h3 class="science-block-title">Encapsulated, not formulated</h3>
+          <p class="science-block-body">
+            Beneficial microbes—<strong>Azotobacter, Azospirillum, Rhizobium, Bacillus megaterium, Bacillus decolorationis</strong>—are lyophilised at peak viability and sealed inside pharmaceutical-grade plant-based HPMC capsules under ICAR-IISR's patented Microbial Encapsulation Technology.
+          </p>
+          <div class="science-block-data">
+            <span>≥10¹² CFU / capsule</span>
+            <span>0.9–1.0 g size-00</span>
+            <span>Moisture ≤1%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="science-block reveal" data-delay="1">
+        <div class="science-block-num">ii.</div>
+        <div>
+          <h3 class="science-block-title">Functions across the rhizosphere</h3>
+          <p class="science-block-body">
+            Eight specialised SKUs cover the full agronomic toolkit: free-living and symbiotic <strong>nitrogen fixation</strong>, mineral and organic <strong>phosphorus solubilisation</strong>, mineral <strong>potassium mobilisation</strong>, and <strong>zinc bioavailability</strong>—matched to Australian soil orders from Tenosols to Ferrosols.
+          </p>
+          <div class="science-block-data">
+            <span>N · P · K · Zn coverage</span>
+            <span>8 active SKUs</span>
+            <span>Soil-order matched</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="science-block reveal" data-delay="2">
+        <div class="science-block-num">iii.</div>
+        <div>
+          <h3 class="science-block-title">Activated before application</h3>
+          <p class="science-block-body">
+            A 6–8 hour cold-water soak hydrates the cells and lets them multiply <strong>up to ten-fold</strong> before the solution ever touches soil. Field-effective CFU at point of root delivery is dramatically higher than dry powder formats.
+          </p>
+          <div class="science-block-data">
+            <span>10× pre-field multiplication</span>
+            <span>30–70% field survival</span>
+            <span>Direct rhizosphere delivery</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="science-block reveal" data-delay="3">
+        <div class="science-block-num">iv.</div>
+        <div>
+          <h3 class="science-block-title">Built for distance</h3>
+          <p class="science-block-body">
+            Two-year ambient shelf life. No cold chain. No spreader. Mail-order shipping reaches Brunette Downs as easily as Coonawarra. <strong>Five grams covers two hectares</strong>—a logistic order of magnitude that rewrites how biology can be applied at Australian scale.
+          </p>
+          <div class="science-block-data">
+            <span>2-year ambient stability</span>
+            <span>5 g / 2 ha logistics</span>
+            <span>Zero refrigeration cost</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== COMPARISON ============== -->
+<section class="compare" id="comparison">
+  <div class="compare-inner">
+    <div class="section-marker compare-marker">
+      <span class="section-marker-num">02.</span>
+      Compared to conventional
+    </div>
+    <h2 class="compare-headline">
+      Three formats. <em>Different physics.</em><br>
+      Different economics.
+    </h2>
+
+    <div class="compare-grid">
+      <div class="compare-col reveal">
+        <div class="compare-col-tag">Format · 01</div>
+        <div class="compare-col-title">Conventional Powder</div>
+        <div class="compare-row">
+          <div class="compare-row-label">Density</div>
+          <div class="compare-row-value">~10⁹ CFU / gram</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">Coverage</div>
+          <div class="compare-row-value">~1 kg per hectare</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">Shelf life</div>
+          <div class="compare-row-value">6–12 months</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">Cold chain</div>
+          <div class="compare-row-value">Sometimes required</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">Logistics</div>
+          <div class="compare-row-value">Pallet freight, dust handling, PPE</div>
+        </div>
+      </div>
+
+      <div class="compare-col reveal" data-delay="1">
+        <div class="compare-col-tag">Format · 02</div>
+        <div class="compare-col-title">Conventional Liquid</div>
+        <div class="compare-row">
+          <div class="compare-row-label">Density</div>
+          <div class="compare-row-value">~10⁹–10¹⁰ CFU / mL</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">Coverage</div>
+          <div class="compare-row-value">~5–10 L per hectare</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">Shelf life</div>
+          <div class="compare-row-value">3–6 months refrigerated</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">Cold chain</div>
+          <div class="compare-row-value">Often required</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">Logistics</div>
+          <div class="compare-row-value">Drums, refrigerated transport</div>
+        </div>
+      </div>
+
+      <div class="compare-col compare-col--spanex reveal" data-delay="2">
+        <div class="compare-col-tag">Format · 03 · SPANEX</div>
+        <div class="compare-col-title">Bio-Capsule</div>
+        <div class="compare-row">
+          <div class="compare-row-label">Density</div>
+          <div class="compare-row-value"><strong>≥10¹² CFU / gram</strong></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">Coverage</div>
+          <div class="compare-row-value"><strong>5 g per 2 hectares</strong></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">Shelf life</div>
+          <div class="compare-row-value"><strong>2 years ambient</strong></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">Cold chain</div>
+          <div class="compare-row-value"><strong>None required</strong></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">Logistics</div>
+          <div class="compare-row-value"><strong>Mail-order, shelf-stable, no equipment</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CREDENTIALS ============== -->
+<section class="credentials" id="credentials">
+  <div class="credentials-inner">
+    <div class="credentials-eyebrow">Credentials</div>
+    <h2 class="credentials-headline reveal">Built on patented science.<br>Audited at every step.</h2>
+
+    <div class="credentials-row">
+      <div class="cred-cell reveal">
+        <div class="cred-num">IN 361021<sup>/2013</sup></div>
+        <div class="cred-label">ICAR-IISR Patent</div>
+        <div class="cred-detail">World's first microbial encapsulation technology, licensed by SRT Agro Science.</div>
+      </div>
+      <div class="cred-cell reveal" data-delay="1">
+        <div class="cred-num"><em>0011744619</em></div>
+        <div class="cred-label">DAFF Import Permit</div>
+        <div class="cred-detail">Granted March 2026. Valid through March 2028. HPMC capsules approved.</div>
+      </div>
+      <div class="cred-cell reveal" data-delay="2">
+        <div class="cred-num">ISO 9001<sup>:2015</sup></div>
+        <div class="cred-label">GMP Manufacture</div>
+        <div class="cred-detail">SRT Agro Science (Chhattisgarh, India). Per-batch CoA. NCIM / MTCC-verified strains.</div>
+      </div>
+      <div class="cred-cell reveal" data-delay="3">
+        <div class="cred-num">ACO</div>
+        <div class="cred-label">Organic Certification</div>
+        <div class="cred-detail">In progress 2026. Compatible with Australian Certified Organic input requirements.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== EDITORIAL QUOTE ============== -->
+<section class="editorial">
+  <div class="editorial-inner">
+    <p class="editorial-quote reveal">
+      The bottleneck for biological agriculture in Australia has never been biology. It has always been <strong>logistics.</strong> SPANEX is the first input we've seen that solves both at once.
+    </p>
+    <div class="editorial-attr reveal" data-delay="1">
+      <div class="editorial-attr-name">Field agronomist</div>
+      <div>Northern Australia · April 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CONTACT ============== -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="section-marker compare-marker">
+        <span class="section-marker-num">04.</span>
+        Begin a conversation
+      </div>
+      <h2 class="contact-headline">Built for stations, broadacre, <em>and orchards.</em></h2>
+      <p class="contact-sub">
+        We work with growers and agronomists from the Barkly Tableland to the Murray. Tell us about your operation—we'll send a tailored agronomic schedule and pricing within two business days.
+      </p>
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('Demo form — wire to your CRM/Mailchimp');">
+        <input type="email" class="contact-input" placeholder="your.email@property.com.au" required>
+        <button type="submit" class="contact-submit">Request brief</button>
+      </form>
+    </div>
+
+    <div class="contact-info">
+      <div class="contact-info-row">
+        <div class="contact-info-label">Direct</div>
+        <div class="contact-info-value"><a href="mailto:info@spanex.com.au">info@spanex.com.au</a></div>
+      </div>
+      <div class="contact-info-row">
+        <div class="contact-info-label">Phone</div>
+        <div class="contact-info-value"><a href="tel:+61452199786">0452 199 786</a></div>
+      </div>
+      <div class="contact-info-row">
+        <div class="contact-info-label">Address</div>
+        <div class="contact-info-value">4 Cabrini Street<br>Point Cook, Victoria 3030</div>
+      </div>
+      <div class="contact-info-row">
+        <div class="contact-info-label">Reg.</div>
+        <div class="contact-info-value">ABN 56 602 689 001</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-strip">
+    <div>© 2026 SPANEX · A Division of Meem International Pty Ltd</div>
+    <div>Patented Microbial Encapsulation IN 361021/CHE/2013</div>
+  </div>
+</section>
+
+<script>
+// Scroll reveal observer
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

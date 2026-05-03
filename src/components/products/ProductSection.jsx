@@ -1,8 +1,6 @@
-// src/components/products/ProductSection.jsx
-import React, { useState } from 'react';
-import Container from '../layout/Container';
+// src/components/products/ProductSection.jsx — Editorial Pharma-Bio refactor
+import React, { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
-import StandardizedTabs from '../common/StandardizedTabs';
 import styles from './ProductSection.module.css';
 
 // Shelf Life product images
@@ -13,15 +11,15 @@ import leafyFreshImg from '../home/images/leafyveg.jpeg';
 import floralLifeImg from '../home/images/flowers.jpeg';
 import appleKeepImg from '../home/images/apple.jpg';
 
-// Bio-Capsule product images
-import potashProImg from '../home/images/bio-capsules/potash-pro.webp';
-import azoProImg from '../home/images/bio-capsules/azo-pro.webp';
-import azotoProImg from '../home/images/bio-capsules/azoto-pro.webp';
-import psbProImg from '../home/images/bio-capsules/psb-pro.webp';
-import acetoProImg from '../home/images/bio-capsules/aceto-pro.webp';
-import rhizoCapsImg from '../home/images/bio-capsules/rhizo-caps.webp';
-import npkGrowImg from '../home/images/bio-capsules/npk-grow.webp';
-import zincProImg from '../home/images/bio-capsules/zinc-pro.webp';
+// Bio-Capsule product images (Spanex branded boxes)
+import potashProImg from '../home/images/bio-capsules/box-potash-grow.jpeg';
+import azoProImg from '../home/images/bio-capsules/box-azoss.jpeg';
+import azotoProImg from '../home/images/bio-capsules/box-azoto.jpeg';
+import psbProImg from '../home/images/bio-capsules/box-psb-plus.jpeg';
+import acetoProImg from '../home/images/bio-capsules/box-aceto.jpeg';
+import rhizoCapsImg from '../home/images/bio-capsules/box-rhizo.jpeg';
+import npkGrowImg from '../home/images/bio-capsules/box-npk-grow.jpeg';
+import zincProImg from '../home/images/bio-capsules/box-zinc-grow.jpeg';
 
 /**
  * Product section component displaying all Spanex products
@@ -37,12 +35,181 @@ const ProductSection = () => {
   
   // Product categories
   const categories = [
-    { id: 'bio-capsule', name: 'Bio-Capsule Solutions' },
-    { id: 'shelf-life', name: 'Shelf Life Solutions' },
+    { id: 'bio-capsule', name: 'Bio-Capsule', detail: 'In production' },
+    { id: 'shelf-life',  name: 'Shelf-Life',  detail: 'In development' },
   ];
   
   // Product data
   const products = [
+    // === BIO-CAPSULE SOLUTIONS ===
+    {
+      id: 'zinc-grow-caps',
+      name: 'Spanex Zinc Grow Caps',
+      image: zincProImg,
+      badge: 'Bio-Capsule',
+      badgeType: 'secondary',
+      category: 'bio-capsule',
+      description: 'Zinc solubilizing bio-fertilizer capsules using Bacillus subtilis for enhanced micronutrient availability.',
+      specs: [
+        { label: 'Active Organism', value: 'Bacillus subtilis MTCC 8141' },
+        { label: 'CFU Count', value: '1 Trillion+ per capsule' },
+        { label: 'Dosage', value: '5 capsules per 2 hectares' },
+        { label: 'Certifications', value: 'ISO 9001:2015, GMP' }
+      ],
+      available: true,
+      details: {
+        overview: 'Spanex Zinc Grow Caps contain Bacillus subtilis MTCC 8141 for zinc solubilization, making zinc more available to crops for improved growth and yield.',
+        benefits: ['Enhances zinc availability in soil', 'Improves crop quality and yield', 'Reduces dependency on chemical zinc fertilizers', 'Safe plant-based HPMC capsules'],
+        technicalSpecs: { activeIngredient: 'Bacillus subtilis MTCC 8141 (90% w/w)', carrier: 'Pharma-grade Talcum Powder (9% w/w)', capsule: 'HPMC plant-based (0.5% w/w)', shelfLife: '16+ months', storage: 'Below 40°C, dry conditions' }
+      }
+    },
+    {
+      id: 'rhizo-caps',
+      name: 'Spanex Rhizo Caps',
+      image: rhizoCapsImg,
+      badge: 'Bio-Capsule',
+      badgeType: 'secondary',
+      category: 'bio-capsule',
+      description: 'Nitrogen-fixing bio-fertilizer capsules with Rhizobium spp. for leguminous crops.',
+      specs: [
+        { label: 'Active Organism', value: 'Rhizobium spp.' },
+        { label: 'CFU Count', value: '1 Trillion+ per capsule' },
+        { label: 'Dosage', value: '5 capsules per 2 hectares' },
+        { label: 'Certifications', value: 'ISO 9001:2015, GMP' }
+      ],
+      available: true,
+      details: {
+        overview: 'Spanex Rhizo Caps harness Rhizobium bacteria to fix atmospheric nitrogen for leguminous crops, reducing the need for synthetic nitrogen fertilizers.',
+        benefits: ['Natural nitrogen fixation for legumes', 'Improves root nodulation', 'Enhances soil fertility naturally', 'Reduces synthetic fertiliser dependency through biological N-fixation'],
+        technicalSpecs: { activeIngredient: 'Rhizobium spp. (90% w/w)', carrier: 'Pharma-grade Talcum Powder (9% w/w)', capsule: 'HPMC plant-based (0.5% w/w)', shelfLife: '16+ months', storage: 'Below 40°C, dry conditions' }
+      }
+    },
+    {
+      id: 'psb-plus-caps',
+      name: 'Spanex PSB Plus Caps',
+      image: psbProImg,
+      badge: 'Bio-Capsule',
+      badgeType: 'secondary',
+      category: 'bio-capsule',
+      description: 'Phosphate solubilizing bio-fertilizer capsules with Bacillus megaterium for improved phosphorus uptake.',
+      specs: [
+        { label: 'Active Organism', value: 'Bacillus megaterium' },
+        { label: 'CFU Count', value: '1 Trillion+ per capsule' },
+        { label: 'Dosage', value: '5 capsules per 2 hectares' },
+        { label: 'Certifications', value: 'ISO 9001:2015, GMP' }
+      ],
+      available: true,
+      details: {
+        overview: 'Spanex PSB Plus Caps use Bacillus megaterium to solubilize bound phosphorus in soil, making it available for plant uptake.',
+        benefits: ['Unlocks bound phosphorus in soil', 'Improves root development', 'Enhances flowering and fruiting', 'Reduces phosphate fertilizer dependency'],
+        technicalSpecs: { activeIngredient: 'Bacillus megaterium (90% w/w)', carrier: 'Pharma-grade Talcum Powder (9% w/w)', capsule: 'HPMC plant-based (0.5% w/w)', shelfLife: '16+ months', storage: 'Below 40°C, dry conditions' }
+      }
+    },
+    {
+      id: 'potash-grow-caps',
+      name: 'Spanex Potash Grow Caps',
+      image: potashProImg,
+      badge: 'Bio-Capsule',
+      badgeType: 'secondary',
+      category: 'bio-capsule',
+      description: 'Potassium solubilizing bio-fertilizer capsules with Bacillus decolorationis.',
+      specs: [
+        { label: 'Active Organism', value: 'Bacillus decolorationis' },
+        { label: 'CFU Count', value: '1 Trillion+ per capsule' },
+        { label: 'Dosage', value: '5 capsules per 2 hectares' },
+        { label: 'Certifications', value: 'ISO 9001:2015, GMP' }
+      ],
+      available: true,
+      details: {
+        overview: 'Spanex Potash Grow Caps contain Bacillus decolorationis to mobilize potassium in soil, essential for crop health and disease resistance.',
+        benefits: ['Mobilizes soil potassium', 'Strengthens plant disease resistance', 'Improves water retention in crops', 'Reduces potash fertilizer costs'],
+        technicalSpecs: { activeIngredient: 'Bacillus decolorationis (90% w/w)', carrier: 'Pharma-grade Talcum Powder (9% w/w)', capsule: 'HPMC plant-based (0.5% w/w)', shelfLife: '16+ months', storage: 'Below 40°C, dry conditions' }
+      }
+    },
+    {
+      id: 'azo-pro-caps',
+      name: 'Spanex Azo Pro Caps',
+      image: azoProImg,
+      badge: 'Bio-Capsule',
+      badgeType: 'secondary',
+      category: 'bio-capsule',
+      description: 'Nitrogen-fixing bio-fertilizer capsules with Azospirillum brasilense for cereals and grasses.',
+      specs: [
+        { label: 'Active Organism', value: 'Azospirillum brasilense' },
+        { label: 'CFU Count', value: '1 Trillion+ per capsule' },
+        { label: 'Dosage', value: '5 capsules per 2 hectares' },
+        { label: 'Certifications', value: 'ISO 9001:2015, GMP' }
+      ],
+      available: true,
+      details: {
+        overview: 'Spanex Azo Pro Caps use Azospirillum brasilense for nitrogen fixation in cereals, grasses, and non-leguminous crops.',
+        benefits: ['Fixes atmospheric nitrogen for non-legumes', 'Promotes root growth and development', 'Increases crop yield by 15-20%', 'Supports sustainable farming practices'],
+        technicalSpecs: { activeIngredient: 'Azospirillum brasilense (90% w/w)', carrier: 'Pharma-grade Talcum Powder (9% w/w)', capsule: 'HPMC plant-based (0.5% w/w)', shelfLife: '16+ months', storage: 'Below 40°C, dry conditions' }
+      }
+    },
+    {
+      id: 'azoto-caps',
+      name: 'Spanex Azoto Bio Pro Caps',
+      image: azotoProImg,
+      badge: 'Bio-Capsule',
+      badgeType: 'secondary',
+      category: 'bio-capsule',
+      description: 'Free-living nitrogen-fixing capsules with Azotobacter chroococcum for all crop types.',
+      specs: [
+        { label: 'Active Organism', value: 'Azotobacter chroococcum' },
+        { label: 'CFU Count', value: '1 Trillion+ per capsule' },
+        { label: 'Dosage', value: '5 capsules per 2 hectares' },
+        { label: 'Certifications', value: 'ISO 9001:2015, GMP' }
+      ],
+      available: true,
+      details: {
+        overview: 'Spanex Azoto Bio Pro Caps contain Azotobacter chroococcum, a free-living nitrogen fixer suitable for all crop types.',
+        benefits: ['Free-living nitrogen fixation — works with all crops', 'Produces plant growth hormones', 'Improves soil structure', 'No crop-specific limitations'],
+        technicalSpecs: { activeIngredient: 'Azotobacter chroococcum NCIM 2632 (90% w/w)', carrier: 'Pharma-grade Talcum Powder (9% w/w)', capsule: 'HPMC plant-based (0.5% w/w)', shelfLife: '16+ months', storage: 'Below 40°C, dry conditions' }
+      }
+    },
+    {
+      id: 'aceto-caps',
+      name: 'Spanex Aceto Bio Pro Caps',
+      image: acetoProImg,
+      badge: 'Bio-Capsule',
+      badgeType: 'secondary',
+      category: 'bio-capsule',
+      description: 'Specialized nitrogen-fixing capsules with Gluconacetobacter for sugarcane and tropical crops.',
+      specs: [
+        { label: 'Active Organism', value: 'Gluconacetobacter diazotrophicus' },
+        { label: 'CFU Count', value: '1 Trillion+ per capsule' },
+        { label: 'Dosage', value: '5 capsules per 2 hectares' },
+        { label: 'Certifications', value: 'ISO 9001:2015, GMP' }
+      ],
+      available: true,
+      details: {
+        overview: 'Spanex Aceto Bio Pro Caps use Gluconacetobacter diazotrophicus, specifically suited for sugarcane and tropical crop nitrogen fixation.',
+        benefits: ['Targeted nitrogen fixation for sugarcane', 'Enhances sugar content and yield', 'Thrives in acidic environments', 'Ideal for tropical and subtropical crops'],
+        technicalSpecs: { activeIngredient: 'Gluconacetobacter diazotrophicus (90% w/w)', carrier: 'Pharma-grade Talcum Powder (9% w/w)', capsule: 'HPMC plant-based (0.5% w/w)', shelfLife: '16+ months', storage: 'Below 40°C, dry conditions' }
+      }
+    },
+    {
+      id: 'npk-grow-caps',
+      name: 'Spanex NPK Grow Caps',
+      image: npkGrowImg,
+      badge: 'Bio-Capsule',
+      badgeType: 'secondary',
+      category: 'bio-capsule',
+      description: 'Complete NPK bio-fertilizer capsules combining nitrogen, phosphorus, and potassium solubilizers.',
+      specs: [
+        { label: 'Active Organisms', value: 'Combined N-P-K solubilizers' },
+        { label: 'CFU Count', value: '1 Trillion+ per capsule' },
+        { label: 'Dosage', value: '5 capsules per 2 hectares' },
+        { label: 'Certifications', value: 'ISO 9001:2015, GMP' }
+      ],
+      available: true,
+      details: {
+        overview: 'Spanex NPK Grow Caps are the all-in-one solution combining nitrogen fixation, phosphate solubilization, and potassium mobilization in a single capsule.',
+        benefits: ['Complete NPK nutrition in one capsule', 'Simplifies application for growers', 'Reduces synthetic NPK fertiliser dependency', '60-70% reduction in input costs'],
+        technicalSpecs: { activeIngredient: 'Combined N-P-K microbial consortium (90% w/w)', carrier: 'Pharma-grade Talcum Powder (9% w/w)', capsule: 'HPMC plant-based (0.5% w/w)', shelfLife: '16+ months', storage: 'Below 40°C, dry conditions' }
+      }
+    },
     // === SHELF LIFE SOLUTIONS ===
     {
       id: 'berry-fresh',
@@ -170,175 +337,6 @@ const ProductSection = () => {
         technicalSpecs: { composition: 'Proprietary blend of food-grade ingredients', application: 'Apply as spray or dip during post-harvest processing', dosage: '1-2% solution', compatibility: 'Compatible with existing packing lines', storage: 'Store in cool, dry place' }
       }
     },
-    // === BIO-CAPSULE SOLUTIONS ===
-    {
-      id: 'zinc-grow-caps',
-      name: 'Spanex Zinc Grow Caps',
-      image: zincProImg,
-      badge: 'Bio-Capsule',
-      badgeType: 'secondary',
-      category: 'bio-capsule',
-      description: 'Zinc solubilizing bio-fertilizer capsules using Bacillus subtilis for enhanced micronutrient availability.',
-      specs: [
-        { label: 'Active Organism', value: 'Bacillus subtilis MTCC 8141' },
-        { label: 'CFU Count', value: '1 Trillion+ per capsule' },
-        { label: 'Dosage', value: '1-3 capsules per acre' },
-        { label: 'Certifications', value: 'ISO 9001:2015, GMP' }
-      ],
-      available: true,
-      details: {
-        overview: 'Spanex Zinc Grow Caps contain Bacillus subtilis MTCC 8141 for zinc solubilization, making zinc more available to crops for improved growth and yield.',
-        benefits: ['Enhances zinc availability in soil', 'Improves crop quality and yield', 'Reduces dependency on chemical zinc fertilizers', 'Safe plant-based HPMC capsules'],
-        technicalSpecs: { activeIngredient: 'Bacillus subtilis MTCC 8141 (90% w/w)', carrier: 'Pharma-grade Talcum Powder (9% w/w)', capsule: 'HPMC plant-based (0.5% w/w)', shelfLife: '16+ months', storage: 'Below 40°C, dry conditions' }
-      }
-    },
-    {
-      id: 'rhizo-caps',
-      name: 'Spanex Rhizo Caps',
-      image: rhizoCapsImg,
-      badge: 'Bio-Capsule',
-      badgeType: 'secondary',
-      category: 'bio-capsule',
-      description: 'Nitrogen-fixing bio-fertilizer capsules with Rhizobium spp. for leguminous crops.',
-      specs: [
-        { label: 'Active Organism', value: 'Rhizobium spp.' },
-        { label: 'CFU Count', value: '1 Trillion+ per capsule' },
-        { label: 'Dosage', value: '1-3 capsules per acre' },
-        { label: 'Certifications', value: 'ISO 9001:2015, GMP' }
-      ],
-      available: true,
-      details: {
-        overview: 'Spanex Rhizo Caps harness Rhizobium bacteria to fix atmospheric nitrogen for leguminous crops, reducing the need for synthetic nitrogen fertilizers.',
-        benefits: ['Natural nitrogen fixation for legumes', 'Improves root nodulation', 'Enhances soil fertility naturally', 'Reduces chemical fertilizer costs by up to 90%'],
-        technicalSpecs: { activeIngredient: 'Rhizobium spp. (90% w/w)', carrier: 'Pharma-grade Talcum Powder (9% w/w)', capsule: 'HPMC plant-based (0.5% w/w)', shelfLife: '16+ months', storage: 'Below 40°C, dry conditions' }
-      }
-    },
-    {
-      id: 'psb-plus-caps',
-      name: 'Spanex PSB Plus Caps',
-      image: psbProImg,
-      badge: 'Bio-Capsule',
-      badgeType: 'secondary',
-      category: 'bio-capsule',
-      description: 'Phosphate solubilizing bio-fertilizer capsules with Bacillus megaterium for improved phosphorus uptake.',
-      specs: [
-        { label: 'Active Organism', value: 'Bacillus megaterium' },
-        { label: 'CFU Count', value: '1 Trillion+ per capsule' },
-        { label: 'Dosage', value: '1-3 capsules per acre' },
-        { label: 'Certifications', value: 'ISO 9001:2015, GMP' }
-      ],
-      available: true,
-      details: {
-        overview: 'Spanex PSB Plus Caps use Bacillus megaterium to solubilize bound phosphorus in soil, making it available for plant uptake.',
-        benefits: ['Unlocks bound phosphorus in soil', 'Improves root development', 'Enhances flowering and fruiting', 'Reduces phosphate fertilizer dependency'],
-        technicalSpecs: { activeIngredient: 'Bacillus megaterium (90% w/w)', carrier: 'Pharma-grade Talcum Powder (9% w/w)', capsule: 'HPMC plant-based (0.5% w/w)', shelfLife: '16+ months', storage: 'Below 40°C, dry conditions' }
-      }
-    },
-    {
-      id: 'potash-grow-caps',
-      name: 'Spanex Potash Grow Caps',
-      image: potashProImg,
-      badge: 'Bio-Capsule',
-      badgeType: 'secondary',
-      category: 'bio-capsule',
-      description: 'Potassium solubilizing bio-fertilizer capsules with Bacillus decolorationis.',
-      specs: [
-        { label: 'Active Organism', value: 'Bacillus decolorationis' },
-        { label: 'CFU Count', value: '1 Trillion+ per capsule' },
-        { label: 'Dosage', value: '1-3 capsules per acre' },
-        { label: 'Certifications', value: 'ISO 9001:2015, GMP' }
-      ],
-      available: true,
-      details: {
-        overview: 'Spanex Potash Grow Caps contain Bacillus decolorationis to mobilize potassium in soil, essential for crop health and disease resistance.',
-        benefits: ['Mobilizes soil potassium', 'Strengthens plant disease resistance', 'Improves water retention in crops', 'Reduces potash fertilizer costs'],
-        technicalSpecs: { activeIngredient: 'Bacillus decolorationis (90% w/w)', carrier: 'Pharma-grade Talcum Powder (9% w/w)', capsule: 'HPMC plant-based (0.5% w/w)', shelfLife: '16+ months', storage: 'Below 40°C, dry conditions' }
-      }
-    },
-    {
-      id: 'azo-pro-caps',
-      name: 'Spanex Azo Pro Caps',
-      image: azoProImg,
-      badge: 'Bio-Capsule',
-      badgeType: 'secondary',
-      category: 'bio-capsule',
-      description: 'Nitrogen-fixing bio-fertilizer capsules with Azospirillum brasilense for cereals and grasses.',
-      specs: [
-        { label: 'Active Organism', value: 'Azospirillum brasilense' },
-        { label: 'CFU Count', value: '1 Trillion+ per capsule' },
-        { label: 'Dosage', value: '1-3 capsules per acre' },
-        { label: 'Certifications', value: 'ISO 9001:2015, GMP' }
-      ],
-      available: true,
-      details: {
-        overview: 'Spanex Azo Pro Caps use Azospirillum brasilense for nitrogen fixation in cereals, grasses, and non-leguminous crops.',
-        benefits: ['Fixes atmospheric nitrogen for non-legumes', 'Promotes root growth and development', 'Increases crop yield by 15-20%', 'Supports sustainable farming practices'],
-        technicalSpecs: { activeIngredient: 'Azospirillum brasilense (90% w/w)', carrier: 'Pharma-grade Talcum Powder (9% w/w)', capsule: 'HPMC plant-based (0.5% w/w)', shelfLife: '16+ months', storage: 'Below 40°C, dry conditions' }
-      }
-    },
-    {
-      id: 'azoto-caps',
-      name: 'Spanex Azoto Bio Pro Caps',
-      image: azotoProImg,
-      badge: 'Bio-Capsule',
-      badgeType: 'secondary',
-      category: 'bio-capsule',
-      description: 'Free-living nitrogen-fixing capsules with Azotobacter chroococcum for all crop types.',
-      specs: [
-        { label: 'Active Organism', value: 'Azotobacter chroococcum' },
-        { label: 'CFU Count', value: '1 Trillion+ per capsule' },
-        { label: 'Dosage', value: '1-3 capsules per acre' },
-        { label: 'Certifications', value: 'ISO 9001:2015, GMP' }
-      ],
-      available: true,
-      details: {
-        overview: 'Spanex Azoto Bio Pro Caps contain Azotobacter chroococcum, a free-living nitrogen fixer suitable for all crop types.',
-        benefits: ['Free-living nitrogen fixation — works with all crops', 'Produces plant growth hormones', 'Improves soil structure', 'No crop-specific limitations'],
-        technicalSpecs: { activeIngredient: 'Azotobacter chroococcum NCIM 2632 (90% w/w)', carrier: 'Pharma-grade Talcum Powder (9% w/w)', capsule: 'HPMC plant-based (0.5% w/w)', shelfLife: '16+ months', storage: 'Below 40°C, dry conditions' }
-      }
-    },
-    {
-      id: 'aceto-caps',
-      name: 'Spanex Aceto Bio Pro Caps',
-      image: acetoProImg,
-      badge: 'Bio-Capsule',
-      badgeType: 'secondary',
-      category: 'bio-capsule',
-      description: 'Specialized nitrogen-fixing capsules with Gluconacetobacter for sugarcane and tropical crops.',
-      specs: [
-        { label: 'Active Organism', value: 'Gluconacetobacter diazotrophicus' },
-        { label: 'CFU Count', value: '1 Trillion+ per capsule' },
-        { label: 'Dosage', value: '1-3 capsules per acre' },
-        { label: 'Certifications', value: 'ISO 9001:2015, GMP' }
-      ],
-      available: true,
-      details: {
-        overview: 'Spanex Aceto Bio Pro Caps use Gluconacetobacter diazotrophicus, specifically suited for sugarcane and tropical crop nitrogen fixation.',
-        benefits: ['Targeted nitrogen fixation for sugarcane', 'Enhances sugar content and yield', 'Thrives in acidic environments', 'Ideal for tropical and subtropical crops'],
-        technicalSpecs: { activeIngredient: 'Gluconacetobacter diazotrophicus (90% w/w)', carrier: 'Pharma-grade Talcum Powder (9% w/w)', capsule: 'HPMC plant-based (0.5% w/w)', shelfLife: '16+ months', storage: 'Below 40°C, dry conditions' }
-      }
-    },
-    {
-      id: 'npk-grow-caps',
-      name: 'Spanex NPK Grow Caps',
-      image: npkGrowImg,
-      badge: 'Bio-Capsule',
-      badgeType: 'secondary',
-      category: 'bio-capsule',
-      description: 'Complete NPK bio-fertilizer capsules combining nitrogen, phosphorus, and potassium solubilizers.',
-      specs: [
-        { label: 'Active Organisms', value: 'Combined N-P-K solubilizers' },
-        { label: 'CFU Count', value: '1 Trillion+ per capsule' },
-        { label: 'Dosage', value: '1-3 capsules per acre' },
-        { label: 'Certifications', value: 'ISO 9001:2015, GMP' }
-      ],
-      available: true,
-      details: {
-        overview: 'Spanex NPK Grow Caps are the all-in-one solution combining nitrogen fixation, phosphate solubilization, and potassium mobilization in a single capsule.',
-        benefits: ['Complete NPK nutrition in one capsule', 'Simplifies application for growers', 'Replaces up to 90% of chemical NPK fertilizers', '60-70% reduction in input costs'],
-        technicalSpecs: { activeIngredient: 'Combined N-P-K microbial consortium (90% w/w)', carrier: 'Pharma-grade Talcum Powder (9% w/w)', capsule: 'HPMC plant-based (0.5% w/w)', shelfLife: '16+ months', storage: 'Below 40°C, dry conditions' }
-      }
-    },
   ];
   
   // Filter products based on active category
@@ -347,13 +345,11 @@ const ProductSection = () => {
   // Handle view details click
   const handleViewDetails = (product) => {
     setSelectedProduct(product);
-    document.body.style.overflow = 'hidden';
   };
 
   // Close modal
   const closeModal = () => {
     setSelectedProduct(null);
-    document.body.style.overflow = '';
   };
 
   // Handle request sample
@@ -361,13 +357,30 @@ const ProductSection = () => {
     setSampleProduct(product);
     setSampleSubmitted(false);
     setSampleForm({ name: '', email: '', company: '', abn: '', phone: '', message: '' });
-    document.body.style.overflow = 'hidden';
   };
 
   const closeSampleModal = () => {
     setSampleProduct(null);
-    document.body.style.overflow = '';
   };
+
+  // Lock body scroll while any modal is open + ESC closes
+  const anyModalOpen = !!selectedProduct || !!sampleProduct;
+  useEffect(() => {
+    if (!anyModalOpen) return undefined;
+    const original = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        if (selectedProduct) setSelectedProduct(null);
+        else if (sampleProduct) setSampleProduct(null);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = original;
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [anyModalOpen, selectedProduct, sampleProduct]);
 
   const handleSampleFormChange = (e) => {
     setSampleForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -386,246 +399,274 @@ const ProductSection = () => {
   
   return (
     <section className={styles.section} id="products">
-      <Container>
-        <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Our Solutions</h2>
-          <p className={styles.sectionSubtitle}>
-            From shelf life extension to sustainable bio-fertilizers — specialized solutions for the entire agricultural supply chain
+      {/* Vertical right-edge stamp — matches the editorial chapters */}
+      <div className={styles.marginStamp} aria-hidden="true">
+        SPANEX CATALOGUE · BIO-CAPSULE · SHELF-LIFE · MEEM INTERNATIONAL
+      </div>
+
+      <div className={styles.inner}>
+        <header className={styles.head}>
+          <div className={styles.sectionMarker}>
+            <span className={styles.sectionMarkerNum}>06.</span>
+            Products
+          </div>
+          <h2 className={styles.headline}>
+            Eight bio-capsule SKUs <em>in production</em>.<br />
+            Six shelf-life formats <em>in development</em>.
+          </h2>
+          <p className={styles.lede}>
+            The full SPANEX catalogue — from microbial soil inoculants
+            to edible biocoatings. Browse by category. Learn the spec.
+            Request a sample.
           </p>
+        </header>
+
+        {/* Category filter — editorial mono filter row */}
+        <div className={styles.filterRow} role="tablist" aria-label="Filter products by category">
+          {categories.map((cat) => {
+            const active = activeCategory === cat.id;
+            const count = products.filter((p) => p.category === cat.id).length;
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                role="tab"
+                aria-selected={active}
+                className={`${styles.filter} ${active ? styles.filterActive : ''}`}
+                onClick={() => setActiveCategory(cat.id)}
+              >
+                <div className={styles.filterMain}>
+                  <span className={styles.filterName}>{cat.name}</span>
+                  <span className={styles.filterDetail}>{cat.detail}</span>
+                </div>
+                <span className={styles.filterCount}>{String(count).padStart(2, '0')}</span>
+              </button>
+            );
+          })}
         </div>
-        
-        {/* Category tabs */}
-        <StandardizedTabs
-          tabs={categories.map(cat => ({ id: cat.id, title: cat.name }))}
-          activeTab={activeCategory}
-          setActiveTab={setActiveCategory}
-          className={styles.categoryTabs}
-        />
-        
+
         {/* Products grid */}
         <div className={styles.productsGrid}>
-          {filteredProducts.map(product => (
+          {filteredProducts.map((product, idx) => (
             <div key={product.id} className={styles.productItem}>
               <ProductCard
                 product={product}
+                index={idx}
                 onViewDetails={handleViewDetails}
                 onRequestSample={handleRequestSample}
               />
             </div>
           ))}
         </div>
-        
-        {/* Product details modal */}
-        {selectedProduct && (
-          <div className={styles.modalBackdrop} onClick={closeModal}>
-            <div 
-              className={styles.modalContent}
-              onClick={e => e.stopPropagation()}
+      </div>
+
+      {/* === Product Details Modal — editorial monograph === */}
+      {selectedProduct && (
+        <div className={styles.modalBackdrop} onClick={closeModal} role="presentation">
+          <div
+            className={styles.modal}
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={`product-modal-${selectedProduct.id}`}
+          >
+            <button
+              type="button"
+              className={styles.modalClose}
+              onClick={closeModal}
+              aria-label="Close product details"
             >
-              <button 
-                className={styles.closeButton}
-                onClick={closeModal}
-                aria-label="Close product details"
+              Close ×
+            </button>
+
+            <header className={styles.modalHead}>
+              <div className={styles.modalDocId}>
+                SPANEX · {selectedProduct.badge}
+                {!selectedProduct.available && ' · In development'}
+              </div>
+              <h3
+                id={`product-modal-${selectedProduct.id}`}
+                className={styles.modalTitle}
               >
-                ✕
-              </button>
-              
-              <div className={styles.modalHeader}>
-                <div className={styles.modalImage}>
-                  <img src={selectedProduct.image} alt={selectedProduct.name} />
-                </div>
-                <div className={styles.modalHeaderContent}>
-                  <h3 className={styles.modalTitle}>{selectedProduct.name}</h3>
-                  <span className={`${styles.modalBadge} ${styles[`modalBadge${selectedProduct.badgeType.charAt(0).toUpperCase() + selectedProduct.badgeType.slice(1)}`]}`}>
-                    {selectedProduct.badge}
-                  </span>
-                  <p className={styles.modalDescription}>{selectedProduct.description}</p>
-                </div>
+                {selectedProduct.name}
+              </h3>
+              <p className={styles.modalDesc}>{selectedProduct.description}</p>
+            </header>
+
+            <div className={styles.modalBody}>
+              <div className={styles.modalImageStrip}>
+                <img src={selectedProduct.image} alt={selectedProduct.name} />
               </div>
-              
-              <div className={styles.modalBody}>
-                <div className={styles.modalSection}>
-                  <h4 className={styles.modalSectionTitle}>Overview</h4>
-                  <p>{selectedProduct.details.overview}</p>
-                </div>
-                
-                <div className={styles.modalSection}>
-                  <h4 className={styles.modalSectionTitle}>Key Benefits</h4>
-                  <ul className={styles.benefitsList}>
-                    {selectedProduct.details.benefits.map((benefit, index) => (
-                      <li key={index} className={styles.benefitItem}>{benefit}</li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div className={styles.modalSection}>
-                  <h4 className={styles.modalSectionTitle}>Technical Specifications</h4>
-                  <div className={styles.techSpecs}>
-                    {Object.entries(selectedProduct.details.technicalSpecs).map(([key, value]) => (
-                      <div key={key} className={styles.techSpecRow}>
-                        <span className={styles.techSpecLabel}>{key.charAt(0).toUpperCase() + key.slice(1)}</span>
-                        <span className={styles.techSpecValue}>{value}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                
-                <div className={styles.modalFooter}>
-                  <div className={styles.b2bCta}>
-                    <h5 className={styles.ctaTitle}>Interested in {selectedProduct.name}?</h5>
-                    <div className={styles.ctaButtons}>
-                      <a href="#contact" className={styles.ctaButton} onClick={closeModal}>
-                        Request Technical Specifications
-                      </a>
-                      <a href="#contact" className={styles.ctaButtonOutline} onClick={closeModal}>
-                        Schedule Product Demonstration
-                      </a>
+
+              <section className={styles.modalChapter}>
+                <div className={styles.modalChapterLabel}>§ I — Overview</div>
+                <p className={styles.modalChapterBody}>
+                  {selectedProduct.details.overview}
+                </p>
+              </section>
+
+              <section className={styles.modalChapter}>
+                <div className={styles.modalChapterLabel}>§ II — Key Benefits</div>
+                <ul className={styles.benefitsList}>
+                  {selectedProduct.details.benefits.map((benefit, i) => (
+                    <li key={i} className={styles.benefitItem}>
+                      <span className={styles.benefitNum}>
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <span>{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
+              <section className={styles.modalChapter}>
+                <div className={styles.modalChapterLabel}>§ III — Technical Specifications</div>
+                <dl className={styles.techSpecs}>
+                  {Object.entries(selectedProduct.details.technicalSpecs).map(([key, value]) => (
+                    <div key={key} className={styles.techSpecRow}>
+                      <dt className={styles.techSpecLabel}>
+                        {key.replace(/([A-Z])/g, ' $1').replace(/^./, (s) => s.toUpperCase())}
+                      </dt>
+                      <dd className={styles.techSpecValue}>{value}</dd>
                     </div>
-                  </div>
+                  ))}
+                </dl>
+              </section>
+
+              <footer className={styles.modalFoot}>
+                <div className={styles.modalFootLabel}>
+                  Interested in {selectedProduct.name}?
                 </div>
-              </div>
+                <div className={styles.modalFootCtas}>
+                  <a href="#contact" className={styles.modalCta} onClick={closeModal}>
+                    Request technical specs
+                    <span aria-hidden="true">→</span>
+                  </a>
+                  <a href="#contact" className={styles.modalCtaGhost} onClick={closeModal}>
+                    Schedule demo
+                    <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </footer>
             </div>
           </div>
-        )}
-        {/* Sample Request Modal */}
-        {sampleProduct && (
-          <div className={styles.modalBackdrop} onClick={closeSampleModal}>
-            <div
-              className={styles.modalContent}
-              onClick={e => e.stopPropagation()}
-            >
-              <button
-                className={styles.closeButton}
-                onClick={closeSampleModal}
-                aria-label="Close sample request"
-              >
-                ✕
-              </button>
+        </div>
+      )}
 
-              <div className={styles.modalHeader}>
-                <div className={styles.modalImage}>
-                  <img src={sampleProduct.image} alt={sampleProduct.name} />
-                </div>
-                <div className={styles.modalHeaderContent}>
-                  <h3 className={styles.modalTitle}>Request Test Sample</h3>
-                  <p className={styles.modalDescription}>
-                    {sampleProduct.name}
+      {/* === Sample Request Modal — editorial form === */}
+      {sampleProduct && (
+        <div className={styles.modalBackdrop} onClick={closeSampleModal} role="presentation">
+          <div
+            className={styles.modal}
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="sample-modal-title"
+          >
+            <button
+              type="button"
+              className={styles.modalClose}
+              onClick={closeSampleModal}
+              aria-label="Close sample request"
+            >
+              Close ×
+            </button>
+
+            <header className={styles.modalHead}>
+              <div className={styles.modalDocId}>SPANEX · Sample Request</div>
+              <h3 id="sample-modal-title" className={styles.modalTitle}>
+                Request a test sample
+              </h3>
+              <p className={styles.modalDesc}>
+                <strong>{sampleProduct.name}</strong> — fill the form below;
+                our team responds within one to two business days.
+              </p>
+            </header>
+
+            <div className={styles.modalBody}>
+              {sampleSubmitted ? (
+                <div className={styles.successPanel}>
+                  <div className={styles.successMark}>✓</div>
+                  <div className={styles.successTitle}>Request sent</div>
+                  <p className={styles.successBody}>
+                    Thank you for your interest in <strong>{sampleProduct.name}</strong>.
+                    Our team will be in touch within one to two business days.
                   </p>
+                  <button
+                    type="button"
+                    onClick={closeSampleModal}
+                    className={styles.modalCta}
+                  >
+                    Close
+                  </button>
                 </div>
-              </div>
-
-              <div className={styles.modalBody}>
-                {sampleSubmitted ? (
-                  <div style={{ textAlign: 'center', padding: '2rem' }}>
-                    <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>✓</div>
-                    <h4 style={{ color: '#2d5500', marginBottom: '0.5rem' }}>Request Sent!</h4>
-                    <p style={{ color: '#666' }}>
-                      Thank you for your interest in {sampleProduct.name}. Our team will contact you within 1-2 business days.
-                    </p>
-                    <button
-                      onClick={closeSampleModal}
-                      className={styles.ctaButton}
-                      style={{ marginTop: '1rem' }}
-                    >
-                      Close
-                    </button>
+              ) : (
+                <form onSubmit={handleSampleSubmit} className={styles.sampleForm}>
+                  <div className={styles.sampleFormRow}>
+                    <label className={styles.formField}>
+                      <span className={styles.formLabel}>Full name *</span>
+                      <input
+                        type="text" name="name" required value={sampleForm.name}
+                        onChange={handleSampleFormChange}
+                        className={styles.formInput}
+                      />
+                    </label>
+                    <label className={styles.formField}>
+                      <span className={styles.formLabel}>Email *</span>
+                      <input
+                        type="email" name="email" required value={sampleForm.email}
+                        onChange={handleSampleFormChange}
+                        className={styles.formInput}
+                      />
+                    </label>
                   </div>
-                ) : (
-                  <form onSubmit={handleSampleSubmit}>
-                    <div style={{ display: 'grid', gap: '1rem' }}>
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                        <div>
-                          <label style={{ display: 'block', marginBottom: '0.25rem', fontWeight: 600, fontSize: '0.9rem', color: '#333' }}>
-                            Full Name *
-                          </label>
-                          <input
-                            type="text" name="name" required value={sampleForm.name}
-                            onChange={handleSampleFormChange}
-                            style={{ width: '100%', padding: '0.6rem', border: '1px solid #ddd', borderRadius: '6px', fontSize: '0.95rem', boxSizing: 'border-box' }}
-                          />
-                        </div>
-                        <div>
-                          <label style={{ display: 'block', marginBottom: '0.25rem', fontWeight: 600, fontSize: '0.9rem', color: '#333' }}>
-                            Email *
-                          </label>
-                          <input
-                            type="email" name="email" required value={sampleForm.email}
-                            onChange={handleSampleFormChange}
-                            style={{ width: '100%', padding: '0.6rem', border: '1px solid #ddd', borderRadius: '6px', fontSize: '0.95rem', boxSizing: 'border-box' }}
-                          />
-                        </div>
-                      </div>
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                        <div>
-                          <label style={{ display: 'block', marginBottom: '0.25rem', fontWeight: 600, fontSize: '0.9rem', color: '#333' }}>
-                            Company Name *
-                          </label>
-                          <input
-                            type="text" name="company" required value={sampleForm.company}
-                            onChange={handleSampleFormChange}
-                            style={{ width: '100%', padding: '0.6rem', border: '1px solid #ddd', borderRadius: '6px', fontSize: '0.95rem', boxSizing: 'border-box' }}
-                          />
-                        </div>
-                        <div>
-                          <label style={{ display: 'block', marginBottom: '0.25rem', fontWeight: 600, fontSize: '0.9rem', color: '#333' }}>
-                            ABN
-                          </label>
-                          <input
-                            type="text" name="abn" value={sampleForm.abn}
-                            onChange={handleSampleFormChange}
-                            placeholder="Optional"
-                            style={{ width: '100%', padding: '0.6rem', border: '1px solid #ddd', borderRadius: '6px', fontSize: '0.95rem', boxSizing: 'border-box' }}
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <label style={{ display: 'block', marginBottom: '0.25rem', fontWeight: 600, fontSize: '0.9rem', color: '#333' }}>
-                          Phone
-                        </label>
-                        <input
-                          type="tel" name="phone" value={sampleForm.phone}
-                          onChange={handleSampleFormChange}
-                          placeholder="Optional"
-                          style={{ width: '100%', padding: '0.6rem', border: '1px solid #ddd', borderRadius: '6px', fontSize: '0.95rem', boxSizing: 'border-box' }}
-                        />
-                      </div>
-                      <div>
-                        <label style={{ display: 'block', marginBottom: '0.25rem', fontWeight: 600, fontSize: '0.9rem', color: '#333' }}>
-                          Message
-                        </label>
-                        <textarea
-                          name="message" rows="3" value={sampleForm.message}
-                          onChange={handleSampleFormChange}
-                          placeholder="Tell us about your use case, crop types, or any specific requirements..."
-                          style={{ width: '100%', padding: '0.6rem', border: '1px solid #ddd', borderRadius: '6px', fontSize: '0.95rem', resize: 'vertical', boxSizing: 'border-box' }}
-                        />
-                      </div>
-                      <button
-                        type="submit"
-                        style={{
-                          padding: '0.75rem 2rem',
-                          backgroundColor: '#2d5500',
-                          color: '#fff',
-                          border: 'none',
-                          borderRadius: '6px',
-                          fontSize: '1rem',
-                          fontWeight: 600,
-                          cursor: 'pointer',
-                          transition: 'background-color 0.3s',
-                          textTransform: 'uppercase',
-                          letterSpacing: '0.05em',
-                        }}
-                      >
-                        Submit Sample Request
-                      </button>
-                    </div>
-                  </form>
-                )}
-              </div>
+                  <div className={styles.sampleFormRow}>
+                    <label className={styles.formField}>
+                      <span className={styles.formLabel}>Company *</span>
+                      <input
+                        type="text" name="company" required value={sampleForm.company}
+                        onChange={handleSampleFormChange}
+                        className={styles.formInput}
+                      />
+                    </label>
+                    <label className={styles.formField}>
+                      <span className={styles.formLabel}>ABN</span>
+                      <input
+                        type="text" name="abn" value={sampleForm.abn}
+                        onChange={handleSampleFormChange}
+                        placeholder="Optional"
+                        className={styles.formInput}
+                      />
+                    </label>
+                  </div>
+                  <label className={styles.formField}>
+                    <span className={styles.formLabel}>Phone</span>
+                    <input
+                      type="tel" name="phone" value={sampleForm.phone}
+                      onChange={handleSampleFormChange}
+                      placeholder="Optional"
+                      className={styles.formInput}
+                    />
+                  </label>
+                  <label className={styles.formField}>
+                    <span className={styles.formLabel}>Message</span>
+                    <textarea
+                      name="message" rows="3" value={sampleForm.message}
+                      onChange={handleSampleFormChange}
+                      placeholder="Tell us about your use case, crop types, or any specific requirements…"
+                      className={styles.formInput}
+                    />
+                  </label>
+                  <button type="submit" className={styles.modalCta}>
+                    Submit sample request
+                    <span aria-hidden="true">→</span>
+                  </button>
+                </form>
+              )}
             </div>
           </div>
-        )}
-      </Container>
+        </div>
+      )}
     </section>
   );
 };

@@ -1,124 +1,74 @@
 // src/components/layout/Navbar.jsx
+// Editorial Pharma-Bio nav for SPANEX
 import React, { useState, useEffect } from 'react';
-import Container from './Container';
 import styles from './Navbar.module.css';
 import logo from '../home/images/spanex.png';
 
-/**
- * Navbar component that transforms from full to hamburger-only when scrolling
- * This preserves the existing functionality as specified in the refactoring plan
- */
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  
-  // Handle scroll event to transform navbar
+
   useEffect(() => {
     const handleScroll = () => {
-      // Check if page is scrolled more than threshold (80px)
-      const isScrolled = window.scrollY > 80;
-      
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
-      }
+      setScrolled(window.scrollY > 40);
     };
-    
-    window.addEventListener('scroll', handleScroll);
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [scrolled]);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  // Close menu when clicking outside
   useEffect(() => {
-    if (!open) return;
-    
-    const handleClickOutside = (e) => {
-      if (open && !e.target.closest(`.${styles.menuOverlay}`) && !e.target.closest(`.${styles.hamburgerBtn}`)) {
-        setOpen(false);
-      }
-    };
-    
-    document.addEventListener('mousedown', handleClickOutside);
-    
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
   }, [open]);
 
-  // Prevent body scroll when menu is open
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [open]);
-  
   return (
     <>
-      {/* Boxed navbar container */}
-      <div className={styles.navbarContainer}>
-        <Container>
-          {/* Full navbar shown initially, hidden when scrolled */}
-          <nav 
-            className={`${styles.boxedNavbar} ${scrolled ? styles.hidden : ''}`} 
-            role="navigation" 
-            aria-label="Main Navigation"
-          >
-            <div className={styles.navbarContent}>
-              <div className={styles.navbarLogoContainer}>
-                <a href="#home" className={styles.navbarLogo}>
-                  <img src={logo} alt="Spanex Logo" className={styles.navbarLogoImage} />
-                  Spanex
-                </a>
-              </div>
-              <div className={styles.navbarLinks}>
-                <a href="#home" className={styles.navbarLink}>Home</a>
-                <a href="#about" className={styles.navbarLink}>About Us</a>
-                <a href="#technology" className={styles.navbarLink}>Technology</a>
-                <a href="#impact" className={styles.navbarLink}>Sustainability</a>
-                <a href="#products" className={styles.navbarLink}>Our Solutions</a>
-                <a href="#contact" className={styles.navbarLink}>Contact</a>
-              </div>
-            </div>
-          </nav>
-        </Container>
-      </div>
-  
-      {/* Hamburger button shown when scrolled */}
-      <button 
-        className={`${styles.hamburgerBtn} ${scrolled ? styles.visible : ''}`} 
-        onClick={() => setOpen(true)}
-        aria-label="Open navigation menu"
-      >
-        <span className={styles.hamburgerIcon}>☰</span>
-        <span className={styles.menuText}>Menu</span>
-      </button>
-  
-      {/* Menu Overlay */}
-      <div className={`${styles.menuOverlay} ${open ? styles.open : ''}`}>
-        <button 
-          className={styles.closeMenuBtn} 
-          onClick={() => setOpen(false)}
-          aria-label="Close navigation menu"
+      <nav className={`${styles.nav} ${scrolled ? styles.navScrolled : ''}`} role="navigation" aria-label="Main">
+        <a href="#home" className={styles.navMark} aria-label="SPANEX home">
+          <img src={logo} alt="" className={styles.navLogo} aria-hidden="true" />
+          <span className={styles.navWordmark}>
+            SPANEX<span className={styles.navMarkPeriod}>.</span>
+          </span>
+        </a>
+        <div className={styles.navMeta}>
+          <a href="#about">About</a>
+          <a href="#biocapsules">Bio-Capsule</a>
+          <a href="#shelflife">Shelf-Life</a>
+          <a href="#pack">Pack</a>
+          <a href="#products">Products</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <button
+          className={styles.menuToggle}
+          onClick={() => setOpen(true)}
+          aria-label="Open menu"
         >
-          ✕
+          Menu
         </button>
-        
+      </nav>
+
+      {/* Mobile overlay menu */}
+      <div className={`${styles.menuOverlay} ${open ? styles.menuOpen : ''}`} aria-hidden={!open}>
+        <button
+          className={styles.menuClose}
+          onClick={() => setOpen(false)}
+          aria-label="Close menu"
+        >
+          Close
+        </button>
         <nav className={styles.menuLinks}>
           <a href="#home" onClick={() => setOpen(false)}>Home</a>
-          <a href="#about" onClick={() => setOpen(false)}>About Us</a>
-          <a href="#technology" onClick={() => setOpen(false)}>Technology</a>
-          <a href="#impact" onClick={() => setOpen(false)}>Sustainability</a>
-          <a href="#products" onClick={() => setOpen(false)}>Our Solutions</a>
+          <a href="#about" onClick={() => setOpen(false)}>About</a>
+          <a href="#biocapsules" onClick={() => setOpen(false)}>Bio-Capsule</a>
+          <a href="#shelflife" onClick={() => setOpen(false)}>Shelf-Life</a>
+          <a href="#pack" onClick={() => setOpen(false)}>Pack</a>
+          <a href="#products" onClick={() => setOpen(false)}>Products</a>
           <a href="#contact" onClick={() => setOpen(false)}>Contact</a>
         </nav>
+        <div className={styles.menuFooter}>
+          <span>SPANEX</span>
+          <span>ABN&nbsp;56&nbsp;602&nbsp;689&nbsp;001</span>
+        </div>
       </div>
     </>
   );

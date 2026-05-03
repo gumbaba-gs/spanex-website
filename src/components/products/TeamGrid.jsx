@@ -9,7 +9,7 @@ import bbImage from '../home/images/bb.png';
  * TeamGrid component displaying team members
  */
 const TeamGrid = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [, setIsVisible] = useState(false);
 
   // Team data - removed Asmita as requested but kept other team members
   const teamMembers = [

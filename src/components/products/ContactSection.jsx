@@ -49,13 +49,14 @@ const ContactSection = () => {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const currentRef = sectionRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -226,16 +227,10 @@ const ContactSection = () => {
                 <div className={styles.socialWrapper}>
                   <h3 className={styles.socialTitle}>Connect With Us</h3>
                   <div className={styles.socialIcons}>
-                    <a href="#" className={`${styles.socialIcon} ${styles.linkedin}`} aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/company/spanex-sciences" className={`${styles.socialIcon} ${styles.linkedin}`} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                       <i className="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="#" className={`${styles.socialIcon} ${styles.twitter}`} aria-label="Twitter">
-                      <i className="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" className={`${styles.socialIcon} ${styles.youtube}`} aria-label="YouTube">
-                      <i className="fab fa-youtube"></i>
-                    </a>
-                    <a href="#" className={`${styles.socialIcon} ${styles.email}`} aria-label="Email">
+                    <a href="mailto:info@spanex.com.au" className={`${styles.socialIcon} ${styles.email}`} aria-label="Email">
                       <i className="fas fa-envelope"></i>
                     </a>
                   </div>
@@ -556,7 +551,7 @@ const ContactSection = () => {
             <div className={styles.partnershipCard}>
               <h3 className={styles.cardTitle}>Partnerships</h3>
               <p>
-                Interested in partnering with Spanex Sciences? We welcome collaboration with growers, distributors, retailers, and research institutions.
+                Interested in partnering with SPANEX? We welcome collaboration with growers, distributors, retailers, and research institutions.
               </p>
               <p>
                 Please email <a href="mailto:partnerships@spanex.com.au">partnerships@spanex.com.au</a> with your inquiry, and our business development team will respond promptly.

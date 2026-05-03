@@ -281,7 +281,7 @@ const ContactSection = () => {
             <div className="contact-partnership-card">
               <h3 className="card-title">Partnerships</h3>
               <p>
-                Interested in partnering with Spanex Sciences? We welcome collaboration with growers, distributors, retailers, and research institutions.
+                Interested in partnering with SPANEX? We welcome collaboration with growers, distributors, retailers, and research institutions.
               </p>
               <p>
                 Please email <a href="mailto:partnerships@spanex.com.au">partnerships@spanex.com.au</a> with your inquiry, and our business development team will respond promptly.

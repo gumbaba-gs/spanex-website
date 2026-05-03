@@ -1,0 +1,466 @@
+/* BioCapsuleSection — Editorial Pharma-Bio for the bio-capsule technology
+   Mirrors the Shelf-Life Section's editorial language so sections 03 & 04 read
+   as the same monograph chapter. */
+
+.biocap {
+  padding: 8rem 2.5rem 6rem;
+  background: var(--c-cream-warm);
+  position: relative;
+  overflow: hidden;
+}
+
+.biocap-margin-stamp {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -2rem;
+  transform: rotate(90deg);
+  transform-origin: right top;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: var(--c-gold-deep);
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Sub-blocks share the container width and vertical rhythm */
+.biocap-block {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+.biocap-block + .biocap-block {
+  margin-top: 8rem;
+  padding-top: 6rem;
+  border-top: 1px solid var(--c-hairline-strong);
+}
+
+/* === A. Specimen — image right, text left === */
+.biocap-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 5rem;
+  align-items: center;
+}
+.biocap-text { position: relative; }
+
+/* Status pill — green dot for "in production" */
+.biocap-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--c-forest);
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 0.85rem;
+  background: rgba(45, 95, 50, 0.05);
+  border: 1px solid rgba(45, 95, 50, 0.18);
+}
+.biocap-status-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--c-forest);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Headline */
+.biocap-headline {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+  line-height: 1.05;
+  color: var(--c-forest);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+.biocap-headline em {
+  font-style: italic;
+  color: var(--c-rust);
+}
+
+/* Lede */
+.biocap-lede {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--c-ink-soft);
+  margin-bottom: 2rem;
+  max-width: 32em;
+}
+.biocap-lede strong {
+  color: var(--c-forest);
+  font-weight: 600;
+}
+
+/* Patent strip — editorial credential bar */
+.biocap-patent {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--c-hairline);
+  border-bottom: 1px solid var(--c-hairline);
+  margin-bottom: 2rem;
+}
+.biocap-patent-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--c-rust);
+}
+.biocap-patent-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--c-forest);
+  letter-spacing: 0.01em;
+  font-weight: 500;
+}
+.biocap-patent-holder {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  color: var(--c-ink-soft);
+  flex-basis: 100%;
+  margin-top: 0.25rem;
+}
+
+/* Stat strip — 4 cells like ShelfLife data */
+.biocap-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--c-hairline-strong);
+  border-bottom: 1px solid var(--c-hairline-strong);
+  padding: 1.25rem 0;
+}
+.biocap-stat-cell {
+  padding: 0 1.25rem;
+  border-right: 1px solid var(--c-hairline);
+}
+.biocap-stat-cell:first-child { padding-left: 0; }
+.biocap-stat-cell:last-child  { padding-right: 0; border-right: none; }
+.biocap-stat-value {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 500;
+  color: var(--c-forest);
+  display: flex;
+  align-items: baseline;
+  gap: 0.15em;
+  line-height: 1;
+}
+.biocap-stat-sup {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--c-gold-deep);
+}
+.biocap-stat-unit {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--c-ink-soft);
+  margin-top: 0.55rem;
+}
+
+/* Visual stage — capsule image with orbit (mirrors Shelf-Life) */
+.biocap-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 640px;
+}
+.bc-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bc-orbit {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--c-hairline-strong);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: slowRotate 140s linear infinite;
+}
+.bc-orbit::before, .bc-orbit::after {
+  content: '';
+  position: absolute;
+  background: var(--c-gold);
+  border-radius: 50%;
+}
+.bc-orbit::before {
+  width: 6px; height: 6px;
+  top: -3px; left: 50%; transform: translateX(-50%);
+}
+.bc-orbit::after {
+  width: 4px; height: 4px;
+  bottom: -2px; left: 50%; transform: translateX(-50%);
+  background: var(--c-rust);
+}
+
+.bc-image {
+  position: relative;
+  z-index: 2;
+  height: 540px;
+  width: auto;
+  max-width: 95%;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 30px 60px rgba(10, 31, 14, 0.25));
+  animation: float 9s ease-in-out infinite;
+  background: transparent;
+}
+
+.bc-image-caption {
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--c-ink-soft);
+  text-align: center;
+  white-space: nowrap;
+}
+.bc-image-caption-label {
+  color: var(--c-rust);
+  font-weight: 700;
+  margin-right: 0.4rem;
+}
+
+/* === Sub-block heading (editorial sub-marker) === */
+.biocap-sub-marker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--c-gold-deep);
+  margin-bottom: 1.5rem;
+}
+.biocap-sub-marker-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  color: var(--c-rust);
+  position: relative;
+  padding-right: 0.85rem;
+}
+.biocap-sub-marker-num::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 1px;
+  height: 1.4em;
+  background: var(--c-hairline-strong);
+  transform: translateY(-50%);
+}
+
+.biocap-sub-headline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1.15;
+  color: var(--c-forest);
+  letter-spacing: -0.01em;
+  max-width: 22em;
+  margin-bottom: 1.25rem;
+}
+
+.biocap-sub-lede {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--c-ink-soft);
+  max-width: 38em;
+  margin-bottom: 3rem;
+}
+.biocap-sub-lede em {
+  font-style: italic;
+  color: var(--c-rust);
+}
+
+/* === B. Activation Protocol — five-step editorial process === */
+.biocap-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--c-hairline-strong);
+  border-bottom: 1px solid var(--c-hairline-strong);
+}
+.biocap-step {
+  position: relative;
+  padding: 2rem 1.25rem;
+  border-right: 1px solid var(--c-hairline);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.biocap-step:last-child { border-right: none; }
+
+/* Phase indicator stripe along the top */
+.biocap-step::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 0; right: 0;
+  height: 2px;
+}
+.biocap-step--prep::before { background: var(--c-gold); }
+.biocap-step--app::before  { background: var(--c-forest); }
+
+.biocap-step-num {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--c-forest);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.biocap-step--app .biocap-step-num { color: var(--c-rust); font-style: italic; }
+
+.biocap-step-body { display: flex; flex-direction: column; gap: 0.4rem; }
+.biocap-step-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--c-forest);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.biocap-step-detail {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--c-ink-soft);
+  line-height: 1.5;
+}
+
+/* Phase legend */
+.biocap-phase-key {
+  display: flex;
+  gap: 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--c-ink-soft);
+}
+.biocap-phase {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.biocap-phase-dot {
+  width: 8px;
+  height: 2px;
+  display: inline-block;
+}
+.biocap-phase-dot--prep { background: var(--c-gold); }
+.biocap-phase-dot--app  { background: var(--c-forest); }
+
+/* === C. Crop Schedules frame === */
+.biocap-schedules-frame {
+  background: var(--c-cream);
+  border: 1px solid var(--c-hairline-strong);
+  padding: 2.5rem;
+  position: relative;
+}
+
+/* Reveal animation (matches other editorial sections) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal[data-delay="1"] { transition-delay: 0.08s; }
+.reveal[data-delay="2"] { transition-delay: 0.16s; }
+.reveal[data-delay="3"] { transition-delay: 0.24s; }
+.reveal[data-delay="4"] { transition-delay: 0.32s; }
+.reveal[data-delay="5"] { transition-delay: 0.4s; }
+
+/* === Responsive === */
+@media (max-width: 980px) {
+  .biocap { padding: 5rem 1.25rem; }
+  .biocap-margin-stamp { display: none; }
+  .biocap-block + .biocap-block { margin-top: 5rem; padding-top: 4rem; }
+  .biocap-grid { grid-template-columns: 1fr; gap: 4rem; }
+  .biocap-visual { height: 520px; order: -1; }
+  .bc-image { height: 460px; }
+
+  .biocap-stats { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 0; }
+  .biocap-stat-cell:nth-child(2) { border-right: none; padding-right: 0; }
+  .biocap-stat-cell:nth-child(3) { padding-left: 0; }
+
+  .biocap-steps {
+    grid-template-columns: 1fr;
+    border: none;
+  }
+  .biocap-step {
+    border-right: none;
+    border-bottom: 1px solid var(--c-hairline);
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+  }
+  .biocap-step:last-child { border-bottom: none; }
+  .biocap-step::before {
+    top: 0; bottom: 0; left: 0; right: auto;
+    width: 2px; height: auto;
+  }
+  .biocap-step-num { font-size: 2rem; min-width: 2.5rem; }
+
+  .biocap-schedules-frame { padding: 1.25rem; }
+}
+
+@media (max-width: 640px) {
+  .biocap-stats {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .biocap-stat-cell {
+    border-right: none;
+    border-bottom: 1px solid var(--c-hairline);
+    padding: 1rem 0;
+  }
+  .biocap-stat-cell:last-child { border-bottom: none; }
+  .biocap-patent { gap: 0.4rem 0.75rem; }
+}

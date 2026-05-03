@@ -1,0 +1,250 @@
+/* ShelfLifeSection — Editorial Pharma-Bio for the Shelf-Life Extender (in development) */
+
+.shelflife {
+  padding: 8rem 2.5rem;
+  background: var(--c-cream-warm);
+  position: relative;
+  overflow: hidden;
+}
+.shelflife::before {
+  content: 'EDIBLE BIOCOATING · GRAS-COMPLIANT · IN DEVELOPMENT';
+  position: absolute;
+  top: 50%;
+  right: -2rem;
+  transform: rotate(90deg);
+  transform-origin: right top;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: var(--c-gold-deep);
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.shelflife-grid {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 5rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* === LEFT: Image with editorial framing — matches hero capsule treatment === */
+.shelflife-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 640px;
+}
+
+.sl-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Slow rotating decorative reference circle — matches hero capsule-circle */
+.sl-orbit {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--c-hairline-strong);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: slowRotate 140s linear infinite reverse;
+}
+.sl-orbit::before, .sl-orbit::after {
+  content: '';
+  position: absolute;
+  background: var(--c-gold);
+  border-radius: 50%;
+}
+.sl-orbit::before {
+  width: 6px; height: 6px;
+  top: -3px; left: 50%; transform: translateX(-50%);
+}
+.sl-orbit::after {
+  width: 4px; height: 4px;
+  bottom: -2px; left: 50%; transform: translateX(-50%);
+  background: var(--c-rust);
+}
+
+/* The image — large editorial specimen, white BG blended with cream */
+.sl-image {
+  position: relative;
+  z-index: 2;
+  height: 540px;        /* match the visual height of the hero capsule */
+  width: auto;
+  max-width: 95%;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 30px 60px rgba(10, 31, 14, 0.25));
+  animation: float 9s ease-in-out infinite;
+  background: transparent;
+}
+
+.sl-image-caption {
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--c-ink-soft);
+  text-align: center;
+  white-space: nowrap;
+}
+.sl-image-caption-label {
+  color: var(--c-rust);
+  font-weight: 700;
+  margin-right: 0.4rem;
+}
+
+/* === RIGHT: Editorial text === */
+.shelflife-text {
+  position: relative;
+}
+
+.shelflife-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--c-rust);
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 0.85rem;
+  background: rgba(181, 78, 60, 0.06);
+  border: 1px solid rgba(181, 78, 60, 0.2);
+}
+.shelflife-status-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--c-rust);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.shelflife-headline {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+  line-height: 1.05;
+  color: var(--c-forest);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+.shelflife-headline em {
+  font-style: italic;
+  color: var(--c-rust);
+  position: relative;
+}
+
+.shelflife-lede {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--c-ink-soft);
+  margin-bottom: 2.5rem;
+  max-width: 32em;
+}
+.shelflife-lede strong {
+  color: var(--c-forest);
+  font-weight: 600;
+}
+
+.shelflife-data {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 0;
+  border-top: 1px solid var(--c-hairline-strong);
+  padding-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+.shelflife-data-cell {
+  padding-right: 2rem;
+  border-right: 1px solid var(--c-hairline);
+}
+.shelflife-data-cell:last-child { border-right: none; padding-left: 2rem; padding-right: 0; }
+.shelflife-data-cell:not(:first-child) { padding-left: 2rem; }
+.shelflife-data-value {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 500;
+  color: var(--c-forest);
+  display: flex;
+  align-items: baseline;
+  gap: 0.05em;
+  line-height: 1;
+}
+.shelflife-data-unit {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--c-ink-soft);
+  margin-top: 0.5rem;
+}
+
+.shelflife-applications {
+  margin-bottom: 2rem;
+}
+.shelflife-applications-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--c-gold-deep);
+  margin-bottom: 0.5rem;
+}
+.shelflife-applications-list {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--c-forest);
+  line-height: 1.5;
+}
+
+.shelflife-cta {
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 980px) {
+  .shelflife { padding: 5rem 1.25rem; }
+  .shelflife-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  .shelflife-visual { height: 520px; }
+  .sl-image { width: 360px; }
+  .shelflife::before { display: none; }
+}
+@media (max-width: 640px) {
+  .shelflife-data { grid-template-columns: 1fr; gap: 1.5rem; }
+  .shelflife-data-cell {
+    border-right: none;
+    border-bottom: 1px solid var(--c-hairline);
+    padding: 0 0 1.25rem 0 !important;
+  }
+  .shelflife-data-cell:last-child {
+    border-bottom: none;
+    padding-bottom: 0 !important;
+  }
+}

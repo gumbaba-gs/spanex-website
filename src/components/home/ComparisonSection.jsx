@@ -153,7 +153,7 @@ const ComparisonSection = () => {
           <div className="comparison-section__content-card">
             <div className="comparison-section__text-container">
               <p className="comparison-section__text">
-                Spanex Sciences has developed <span className="comparison-section__highlight">superior preservation technology</span> that outperforms traditional methods across key metrics. Our solution offers <span className="comparison-section__highlight--secondary">longer shelf life</span>, <span className="comparison-section__highlight">complete organic compatibility</span>, and <span className="comparison-section__highlight--secondary">no impact on taste or texture</span> compared to conventional alternatives.
+                SPANEX has developed <span className="comparison-section__highlight">superior preservation technology</span> that outperforms traditional methods across key metrics. Our solution offers <span className="comparison-section__highlight--secondary">longer shelf life</span>, <span className="comparison-section__highlight">complete organic compatibility</span>, and <span className="comparison-section__highlight--secondary">no impact on taste or texture</span> compared to conventional alternatives.
               </p>
               <p className="comparison-section__text">
                 Select a produce type and explore how <span className="comparison-section__highlight">Spanex</span> compares to <span className="comparison-section__highlight--secondary">conventional waxes</span>, <span className="comparison-section__highlight--secondary">chemical preservatives</span>, and <span className="comparison-section__highlight--secondary">modified atmosphere packaging</span> across various performance metrics.

@@ -1,0 +1,3419 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPANEX — Agronomist Sales Pack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,200..900,0..100,0..1;1,9..144,200..900,0..100,0..1&family=Manrope:wght@200..800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================
+   SPANEX SALES PACK — DESIGN SYSTEM
+   Editorial scientific monograph aesthetic
+   ============================================ */
+
+:root {
+  /* Colour palette — Forest specimen */
+  --ink: #1a1d1a;
+  --ink-soft: #3a3f3a;
+  --ink-mute: #6a6f6a;
+  --ink-faint: #b5b8b3;
+  --paper: #faf7ee;
+  --paper-deep: #f3eedd;
+  --paper-edge: #e8e1c8;
+  --forest: #0f4d3a;
+  --forest-deep: #073525;
+  --sage: #5c7c3e;
+  --moss: #8a9d6b;
+  --rust: #b85c2f;
+  --rust-deep: #8c4321;
+  --gold: #b08947;
+  --rule: #2a2d29;
+
+  /* Typography */
+  --font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --font-body: 'Manrope', 'Helvetica Neue', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Menlo', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 10.5pt; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--paper-deep);
+  line-height: 1.45;
+  font-weight: 350;
+  font-feature-settings: "ss01", "ss02", "kern", "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle paper grain background for screen view */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle at 25% 25%, rgba(15,77,58,0.02) 0%, transparent 50%),
+                    radial-gradient(circle at 75% 75%, rgba(176,137,71,0.025) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* ============================================
+   PAGE — A4 Portrait container
+   1mm vertical buffer to avoid sub-pixel rounding
+   pushing content onto a phantom second sheet.
+   ============================================ */
+.page {
+  width: 210mm;
+  height: 295mm;
+  max-height: 295mm;
+  margin: 12mm auto;
+  background: var(--paper);
+  padding: 13mm 16mm 11mm;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 12px 32px rgba(15,77,58,0.06);
+  page-break-after: always;
+  break-after: page;
+  page-break-inside: avoid;
+  break-inside: avoid;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+body > section.page:last-of-type,
+body > section.page:last-child {
+  page-break-after: avoid !important;
+  break-after: avoid !important;
+}
+
+/* Subtle paper texture on each page */
+.page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0, transparent 4px, rgba(0,0,0,0.005) 4px, rgba(0,0,0,0.005) 5px);
+  pointer-events: none;
+}
+
+/* Page header (universal) */
+.page-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 8mm;
+  border-bottom: 0.5pt solid var(--ink);
+  position: relative;
+}
+
+.page-head::after {
+  content: '';
+  position: absolute;
+  bottom: -3pt;
+  left: 0; right: 0;
+  height: 0.25pt;
+  background: var(--ink);
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22pt;
+  letter-spacing: -0.01em;
+  font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 0;
+  color: var(--forest-deep);
+  line-height: 1;
+}
+
+.wordmark sup {
+  font-size: 7pt;
+  font-weight: 400;
+  vertical-align: super;
+  margin-left: 1pt;
+  letter-spacing: 0.05em;
+  color: var(--sage);
+}
+
+.wordmark-tag {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 7pt;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-top: 3pt;
+}
+
+.head-meta {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 7.5pt;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.head-meta .doc-id {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 9pt;
+  color: var(--forest);
+  letter-spacing: 0.02em;
+  margin-bottom: 2pt;
+}
+
+.head-meta .pg {
+  display: inline-block;
+  margin-top: 2pt;
+  border: 0.5pt solid var(--ink-faint);
+  padding: 1pt 5pt;
+  font-size: 6.5pt;
+  letter-spacing: 0.08em;
+}
+
+/* Page footer */
+.page-foot {
+  margin-top: auto;
+  padding-top: 6mm;
+  border-top: 0.25pt solid var(--ink-faint);
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 6.5pt;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.page-foot .foot-mark {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 8pt;
+  color: var(--forest);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* Content body of a page */
+.page-body {
+  flex: 1;
+  padding: 8mm 0 6mm;
+  position: relative;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 4mm;
+  display: flex;
+  align-items: center;
+  gap: 6pt;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 12pt;
+  height: 0.75pt;
+  background: var(--rust);
+}
+
+.h1 {
+  font-family: var(--font-display);
+  font-weight: 350;
+  font-size: 38pt;
+  line-height: 0.94;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 1;
+  color: var(--forest-deep);
+}
+
+.h1 em {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--sage);
+}
+
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 22pt;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  font-variation-settings: "opsz" 72, "SOFT" 30;
+  color: var(--forest-deep);
+  margin-bottom: 4mm;
+}
+
+.h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 13pt;
+  line-height: 1.2;
+  font-variation-settings: "opsz" 24;
+  color: var(--ink);
+  margin-bottom: 2mm;
+  margin-top: 5mm;
+}
+
+.h3:first-child { margin-top: 0; }
+
+.h4 {
+  font-family: var(--font-mono);
+  font-size: 7.5pt;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--forest);
+  margin-bottom: 2mm;
+  margin-top: 4mm;
+  padding-bottom: 1.5mm;
+  border-bottom: 0.5pt solid var(--ink-faint);
+}
+
+.deck {
+  font-family: var(--font-display);
+  font-size: 12pt;
+  font-style: italic;
+  font-weight: 350;
+  line-height: 1.4;
+  font-variation-settings: "opsz" 14, "SOFT" 80;
+  color: var(--ink-soft);
+  margin-top: 5mm;
+  max-width: 130mm;
+}
+
+p { margin-bottom: 3mm; font-size: 9.5pt; line-height: 1.5; }
+
+p.lead {
+  font-size: 11pt;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+strong { font-weight: 600; color: var(--ink); }
+em { font-style: italic; }
+
+.mono { font-family: var(--font-mono); font-size: 8.5pt; letter-spacing: -0.01em; }
+
+.scientific { font-family: var(--font-display); font-style: italic; font-variation-settings: "opsz" 24, "SOFT" 80; }
+
+/* ============================================
+   GRID & LAYOUT HELPERS
+   ============================================ */
+.grid { display: grid; gap: 5mm; }
+.grid-2 { grid-template-columns: 1fr 1fr; }
+.grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+.grid-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+.grid-asym { grid-template-columns: 2fr 1fr; gap: 8mm; }
+.grid-asym-r { grid-template-columns: 1fr 2fr; gap: 8mm; }
+
+.divider {
+  height: 0.5pt;
+  background: var(--ink);
+  margin: 5mm 0;
+}
+
+.divider-thick {
+  height: 1.25pt;
+  background: var(--forest-deep);
+  margin: 5mm 0;
+}
+
+.spacer-sm { height: 3mm; }
+.spacer-md { height: 6mm; }
+.spacer-lg { height: 10mm; }
+
+/* ============================================
+   TABLES — Editorial / Data
+   ============================================ */
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+  margin: 3mm 0;
+}
+
+table.data th {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--forest);
+  padding: 2.5mm 3mm 2mm 0;
+  border-bottom: 1pt solid var(--ink);
+  vertical-align: bottom;
+}
+
+table.data th.right { text-align: right; }
+table.data th.center { text-align: center; }
+
+table.data td {
+  padding: 2.5mm 3mm 2.5mm 0;
+  border-bottom: 0.25pt solid var(--ink-faint);
+  vertical-align: top;
+  font-size: 9pt;
+  line-height: 1.4;
+}
+
+table.data td.right { text-align: right; font-family: var(--font-mono); font-size: 8.5pt; }
+table.data td.num { font-family: var(--font-mono); font-size: 8.5pt; font-variant-numeric: tabular-nums; }
+table.data td.center { text-align: center; }
+table.data tr:last-child td { border-bottom: 1pt solid var(--ink); }
+table.data tr.summary td { border-top: 0.5pt solid var(--ink); border-bottom: 1pt solid var(--ink); font-weight: 600; }
+
+table.data caption {
+  caption-side: top;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  padding-bottom: 2mm;
+}
+
+/* Spec table — vertical key/value */
+table.spec {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+}
+
+table.spec td {
+  padding: 1.8mm 2mm;
+  border-bottom: 0.25pt solid var(--paper-edge);
+  vertical-align: top;
+}
+
+table.spec td:first-child {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  width: 35%;
+  padding-right: 4mm;
+}
+
+table.spec td:last-child {
+  font-family: var(--font-body);
+  color: var(--ink);
+  font-size: 9pt;
+  font-weight: 400;
+}
+
+/* ============================================
+   COMPONENTS
+   ============================================ */
+
+/* Specimen card — used for product sheets */
+.specimen {
+  background: var(--paper-deep);
+  border: 0.5pt solid var(--ink);
+  padding: 8mm;
+  position: relative;
+}
+
+.specimen::before {
+  content: '';
+  position: absolute;
+  top: -1pt;
+  left: -1pt;
+  width: 8mm;
+  height: 8mm;
+  border-top: 1.5pt solid var(--rust);
+  border-left: 1.5pt solid var(--rust);
+}
+
+.specimen::after {
+  content: '';
+  position: absolute;
+  bottom: -1pt;
+  right: -1pt;
+  width: 8mm;
+  height: 8mm;
+  border-bottom: 1.5pt solid var(--rust);
+  border-right: 1.5pt solid var(--rust);
+}
+
+/* Stat — large number callout */
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 1mm;
+}
+
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 32pt;
+  font-weight: 350;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 1;
+  color: var(--forest-deep);
+}
+
+.stat-num em {
+  font-style: italic;
+  color: var(--rust);
+}
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-top: 1mm;
+}
+
+.stat-foot {
+  font-family: var(--font-display);
+  font-size: 8.5pt;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin-top: 1mm;
+  font-variation-settings: "opsz" 12, "SOFT" 80;
+}
+
+/* Function tag */
+.tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 6.5pt;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 1.5pt 5pt;
+  border: 0.5pt solid var(--ink);
+  margin-right: 4pt;
+  margin-bottom: 2pt;
+  color: var(--ink);
+}
+
+.tag-forest { background: var(--forest-deep); color: var(--paper); border-color: var(--forest-deep); }
+.tag-rust { background: var(--rust); color: var(--paper); border-color: var(--rust); }
+.tag-sage { background: var(--sage); color: var(--paper); border-color: var(--sage); }
+.tag-gold { background: var(--gold); color: var(--paper-deep); border-color: var(--gold); }
+.tag-outline { background: transparent; }
+
+/* Pull-quote / aside */
+.aside {
+  border-left: 1.5pt solid var(--rust);
+  padding: 0 0 0 5mm;
+  margin: 4mm 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 11pt;
+  line-height: 1.4;
+  font-variation-settings: "opsz" 14, "SOFT" 80;
+  color: var(--ink-soft);
+}
+
+.callout {
+  background: var(--paper-deep);
+  border: 0.5pt solid var(--ink-faint);
+  padding: 4mm 5mm;
+  margin: 3mm 0;
+  position: relative;
+}
+
+.callout-warn {
+  border-color: var(--rust);
+  border-left-width: 2pt;
+}
+
+.callout-good {
+  border-color: var(--sage);
+  border-left-width: 2pt;
+}
+
+.callout h5 {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 2mm;
+  font-weight: 500;
+}
+
+.callout-good h5 { color: var(--sage); }
+
+.callout p { font-size: 8.5pt; line-height: 1.5; margin: 0; }
+
+/* Index list (table of contents) */
+.toc {
+  list-style: none;
+  margin-top: 4mm;
+}
+
+.toc li {
+  display: flex;
+  align-items: baseline;
+  padding: 1.3mm 0;
+  border-bottom: 0.25pt solid var(--ink-faint);
+  font-size: 9pt;
+  line-height: 1.2;
+}
+
+.toc .num {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  color: var(--rust);
+  width: 9mm;
+  letter-spacing: 0.08em;
+}
+
+.toc .ttl {
+  flex: 1;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 9.5pt;
+  font-variation-settings: "opsz" 12, "SOFT" 30;
+  color: var(--ink);
+}
+
+.toc .meta {
+  font-family: var(--font-mono);
+  font-size: 6.5pt;
+  letter-spacing: 0.04em;
+  color: var(--ink-mute);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.toc .pg-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 9.5pt;
+  color: var(--forest);
+  margin-left: 3mm;
+  font-variation-settings: "opsz" 14, "SOFT" 100;
+  width: 12mm;
+  text-align: right;
+}
+
+/* Section divider page */
+.section-divider {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1;
+  padding-top: 50mm;
+}
+
+.section-divider .section-num {
+  font-family: var(--font-mono);
+  font-size: 11pt;
+  letter-spacing: 0.3em;
+  color: var(--rust);
+  margin-bottom: 6mm;
+}
+
+.section-divider .section-title {
+  font-family: var(--font-display);
+  font-size: 64pt;
+  font-weight: 300;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 1;
+  color: var(--forest-deep);
+  max-width: 160mm;
+}
+
+.section-divider .section-title em {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--sage);
+}
+
+.section-divider .section-blurb {
+  font-family: var(--font-display);
+  font-size: 12pt;
+  font-style: italic;
+  font-variation-settings: "opsz" 14, "SOFT" 80;
+  color: var(--ink-soft);
+  max-width: 130mm;
+  margin-top: 8mm;
+  line-height: 1.45;
+}
+
+/* ============================================
+   PRODUCT SHEET LAYOUT
+   ============================================ */
+.product-sheet .product-mast {
+  display: grid;
+  grid-template-columns: 1fr 70mm;
+  gap: 8mm;
+  align-items: start;
+  margin-bottom: 6mm;
+}
+
+.product-sheet .product-name {
+  font-family: var(--font-display);
+  font-weight: 350;
+  font-size: 44pt;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 1;
+  color: var(--forest-deep);
+  margin-top: 2mm;
+}
+
+.product-sheet .product-name em {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+}
+
+.product-sheet .product-strain {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 13pt;
+  color: var(--sage);
+  margin-top: 2mm;
+  font-variation-settings: "opsz" 24, "SOFT" 100";
+}
+
+.product-sheet .product-strain .strain-id {
+  font-family: var(--font-mono);
+  font-size: 8.5pt;
+  font-style: normal;
+  letter-spacing: 0.08em;
+  color: var(--ink-mute);
+  margin-left: 4mm;
+}
+
+.product-sheet .function-line {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 10.5pt;
+  color: var(--ink-soft);
+  margin-top: 4mm;
+  font-variation-settings: "opsz" 14, "SOFT" 80;
+}
+
+.product-sheet .product-emblem {
+  width: 70mm;
+  height: 70mm;
+  position: relative;
+}
+
+.product-sheet .product-data-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8mm;
+}
+
+/* Function diagram (SVG container) */
+.diagram {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Application chip strip */
+.chip-strip {
+  display: flex;
+  gap: 3mm;
+  flex-wrap: wrap;
+  margin: 3mm 0;
+}
+
+.chip {
+  font-family: var(--font-mono);
+  font-size: 7.5pt;
+  letter-spacing: 0.06em;
+  padding: 1.2mm 3mm;
+  background: var(--paper-deep);
+  border: 0.25pt solid var(--ink);
+  color: var(--ink);
+}
+
+/* ============================================
+   FORMS — Recommendation Record Sheet
+   ============================================ */
+.form-row {
+  display: grid;
+  gap: 4mm;
+  margin-bottom: 4mm;
+}
+
+.form-row.r-2 { grid-template-columns: 1fr 1fr; }
+.form-row.r-3 { grid-template-columns: 1fr 1fr 1fr; }
+.form-row.r-asym { grid-template-columns: 2fr 1fr; }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 1mm;
+}
+
+.field label {
+  font-family: var(--font-mono);
+  font-size: 6.5pt;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.field .blank {
+  height: 8mm;
+  border-bottom: 0.5pt solid var(--ink);
+}
+
+.field .blank-tall {
+  height: 18mm;
+  border-bottom: 0.5pt solid var(--ink);
+}
+
+.field .blank-grid {
+  height: 24mm;
+  background-image: linear-gradient(0deg, transparent calc(100% - 0.25pt), var(--ink-faint) 100%);
+  background-size: 100% 6mm;
+  border-bottom: 0.5pt solid var(--ink);
+}
+
+.checkbox-row {
+  display: flex;
+  gap: 6mm;
+  margin: 2mm 0;
+  flex-wrap: wrap;
+}
+
+.cb {
+  display: flex;
+  align-items: center;
+  gap: 2mm;
+  font-size: 9pt;
+}
+
+.cb-box {
+  width: 3.5mm;
+  height: 3.5mm;
+  border: 0.5pt solid var(--ink);
+  flex-shrink: 0;
+}
+
+/* ============================================
+   COVER PAGE
+   ============================================ */
+.cover {
+  padding: 0;
+  background: var(--paper);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.cover-header {
+  padding: 16mm 18mm 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cover-band {
+  margin: 12mm 0 0;
+  height: 1.5pt;
+  background: var(--forest-deep);
+  position: relative;
+}
+
+.cover-band::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 3pt;
+  width: 30mm;
+  height: 0.5pt;
+  background: var(--rust);
+}
+
+.cover-body {
+  padding: 0 18mm;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.cover-title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 80pt;
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+  font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 1;
+  color: var(--forest-deep);
+  margin-bottom: 8mm;
+}
+
+.cover-title em {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  color: var(--sage);
+  display: block;
+  font-size: 0.7em;
+}
+
+.cover-subtitle {
+  font-family: var(--font-display);
+  font-size: 16pt;
+  font-style: italic;
+  font-weight: 350;
+  line-height: 1.35;
+  font-variation-settings: "opsz" 24, "SOFT" 80;
+  color: var(--ink-soft);
+  max-width: 140mm;
+  margin-bottom: 12mm;
+}
+
+.cover-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6mm;
+  padding-top: 8mm;
+  border-top: 0.5pt solid var(--ink);
+  max-width: 160mm;
+}
+
+.cover-meta dt {
+  font-family: var(--font-mono);
+  font-size: 6.5pt;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 1mm;
+}
+
+.cover-meta dd {
+  font-family: var(--font-display);
+  font-size: 11pt;
+  font-style: italic;
+  font-variation-settings: "opsz" 14, "SOFT" 100;
+  color: var(--forest-deep);
+}
+
+.cover-foot {
+  padding: 10mm 18mm 16mm;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.cover-foot .reg {
+  text-align: right;
+  line-height: 1.6;
+}
+
+/* Decorative botanical mark */
+.botanical {
+  position: absolute;
+  pointer-events: none;
+}
+
+.cover-botanical {
+  right: 18mm;
+  top: 50%;
+  transform: translateY(-30%);
+  opacity: 0.85;
+}
+
+/* ============================================
+   COLOR ACCENTS
+   ============================================ */
+.text-forest { color: var(--forest-deep); }
+.text-sage { color: var(--sage); }
+.text-rust { color: var(--rust); }
+.text-mute { color: var(--ink-mute); }
+.text-soft { color: var(--ink-soft); }
+
+.bg-forest { background: var(--forest-deep); color: var(--paper); }
+.bg-sage { background: var(--sage); color: var(--paper); }
+.bg-cream { background: var(--paper-deep); }
+
+/* Function mini-icons (simple geometric) */
+.fn-icon {
+  width: 8mm;
+  height: 8mm;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* ============================================
+   PRINT
+   ============================================ */
+@page {
+  size: A4 portrait;
+  margin: 0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+@media print {
+  html, body {
+    background: white;
+    width: 210mm;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  body::before { display: none !important; }
+  body.screen-mode { padding-top: 0 !important; }
+  .page {
+    width: 210mm !important;
+    height: 295mm !important;
+    min-height: 295mm !important;
+    max-height: 295mm !important;
+    margin: 0 !important;
+    padding: 13mm 16mm 11mm !important;
+    box-shadow: none !important;
+    page-break-after: always;
+    break-after: page;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    overflow: hidden !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body > section.page:last-of-type,
+  body > section.page:last-child {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  .page::after { display: none !important; }
+  .no-print { display: none !important; }
+  /* Prevent footer / table breakage within a page */
+  .page-foot { page-break-inside: avoid; break-inside: avoid; }
+  table, tr, td, th, figure, img, svg { page-break-inside: avoid; break-inside: avoid; }
+  /* Section divider pages are screen-only — exclude from print to keep page count to 19 */
+  .page.page-divider { display: none !important; }
+}
+
+/* Screen-only navigation strip */
+.screen-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.screen-nav .nav-mark {
+  font-family: var(--font-display);
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--moss);
+}
+
+.screen-nav .nav-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.screen-nav button {
+  background: transparent;
+  border: 0.5px solid var(--paper);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.screen-nav button:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+@media print {
+  .screen-nav { display: none; }
+}
+
+body.screen-mode { padding-top: 32px; }
+
+/* ============================================
+   UTILITY
+   ============================================ */
+.flex { display: flex; }
+.flex-between { display: flex; justify-content: space-between; align-items: flex-start; }
+.flex-center { display: flex; align-items: center; }
+.gap-sm { gap: 3mm; }
+.gap-md { gap: 5mm; }
+.gap-lg { gap: 8mm; }
+.mt-sm { margin-top: 3mm; }
+.mt-md { margin-top: 5mm; }
+.mt-lg { margin-top: 10mm; }
+.mb-sm { margin-bottom: 3mm; }
+.mb-md { margin-bottom: 5mm; }
+.mb-lg { margin-bottom: 10mm; }
+
+.full-width { width: 100%; }
+
+.tiny {
+  font-size: 7pt;
+  line-height: 1.4;
+  color: var(--ink-mute);
+  font-style: italic;
+}
+
+ul.bullet, ol.bullet {
+  margin-left: 4mm;
+  margin-bottom: 3mm;
+  font-size: 9pt;
+  line-height: 1.5;
+}
+
+ul.bullet li, ol.bullet li {
+  margin-bottom: 1.5mm;
+}
+
+ul.bullet li::marker {
+  color: var(--rust);
+}
+
+ol.bullet li::marker {
+  font-family: var(--font-mono);
+  color: var(--rust);
+  font-size: 8pt;
+}
+
+ul.dash {
+  list-style: none;
+  margin-bottom: 3mm;
+  font-size: 9pt;
+  line-height: 1.55;
+}
+
+ul.dash li {
+  padding-left: 5mm;
+  position: relative;
+  margin-bottom: 1.5mm;
+}
+
+ul.dash li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4mm;
+  width: 3mm;
+  height: 0.5pt;
+  background: var(--rust);
+}
+
+</style>
+</head>
+
+<body class="screen-mode">
+
+<nav class="screen-nav no-print">
+  <span><span class="nav-mark">SPANEX</span>&nbsp;&nbsp;Agronomist Sales Pack · Edition 01 · April 2026</span>
+  <div class="nav-actions">
+    <button onclick="window.print()">Print → PDF</button>
+  </div>
+</nav>
+
+<!-- ============================================
+     PAGE 01 · COVER
+     ============================================ -->
+<section class="page cover">
+  <div class="cover-header">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">Microbial Soil Inoculants</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">Sales Pack 01</div>
+      <div>Edition · 2026/04</div>
+      <div>Confidential / For Agronomy Review</div>
+    </div>
+  </div>
+  <div class="cover-band"></div>
+
+  <div class="cover-body">
+    <svg class="botanical cover-botanical" width="80" height="180" viewBox="0 0 80 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M40 5 Q35 30 38 60 Q40 90 36 120 Q34 145 40 175" stroke="#0F4D3A" stroke-width="0.6" fill="none"/>
+      <path d="M40 30 Q22 28 12 38 Q22 36 40 35 Z" stroke="#0F4D3A" stroke-width="0.5" fill="none"/>
+      <path d="M40 30 Q58 28 68 38 Q58 36 40 35 Z" stroke="#0F4D3A" stroke-width="0.5" fill="none"/>
+      <path d="M40 60 Q18 58 6 70 Q20 65 40 65 Z" stroke="#0F4D3A" stroke-width="0.5" fill="none"/>
+      <path d="M40 60 Q62 58 74 70 Q60 65 40 65 Z" stroke="#0F4D3A" stroke-width="0.5" fill="none"/>
+      <path d="M40 95 Q22 92 10 105 Q24 100 40 100 Z" stroke="#0F4D3A" stroke-width="0.5" fill="none"/>
+      <path d="M40 95 Q58 92 70 105 Q56 100 40 100 Z" stroke="#0F4D3A" stroke-width="0.5" fill="none"/>
+      <path d="M40 130 Q26 128 16 138 Q28 134 40 134 Z" stroke="#0F4D3A" stroke-width="0.5" fill="none"/>
+      <path d="M40 130 Q54 128 64 138 Q52 134 40 134 Z" stroke="#0F4D3A" stroke-width="0.5" fill="none"/>
+      <circle cx="40" cy="5" r="2" fill="#B85C2F"/>
+    </svg>
+
+    <div style="font-family: var(--font-mono); font-size: 8pt; letter-spacing: 0.3em; text-transform: uppercase; color: var(--rust); margin-bottom: 8mm;">FILE 0011744619 · Australia · 2026 — 2028</div>
+
+    <h1 class="cover-title">
+      Field<br>
+      <em>Pack</em>
+    </h1>
+
+    <p class="cover-subtitle">A working reference for Australian agronomists evaluating SPANEX encapsulated microbial soil inoculants. Programme design, dose tables, application logistics, and field-trial evidence — without the calendars.</p>
+
+    <dl class="cover-meta">
+      <div>
+        <dt>Document set</dt>
+        <dd>14 sheets</dd>
+      </div>
+      <div>
+        <dt>SKU range</dt>
+        <dd>8 organisms</dd>
+      </div>
+      <div>
+        <dt>CFU per cap</dt>
+        <dd>10<sup>12</sup> activated</dd>
+      </div>
+      <div>
+        <dt>DAFF permit</dt>
+        <dd>0011744619</dd>
+      </div>
+    </dl>
+  </div>
+
+  <div class="cover-foot">
+    <div>
+      Meem International Pty Ltd<br>
+      ABN · Importer / Distributor
+    </div>
+    <div class="reg">
+      Patent IN 361021/CHE/2013<br>
+      ISO 9001:2015 · DAFF · ACO Pending
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     PAGE 02 · CONTENTS
+     ============================================ -->
+<section class="page">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">Microbial Soil Inoculants</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">Sales Pack · Index</div>
+      <div>Field Pack — 2026 / 04</div>
+      <div class="pg">02 · 19</div>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div class="eyebrow">A working index</div>
+    <h1 class="h1">What's <em>inside</em> this pack</h1>
+    <p class="deck">Read in order or pick up at any tab. Marketing materials sit at the front for context only — the agronomic substance starts at sheet 04 and lives in the data.</p>
+
+    <ol class="toc" style="counter-reset: list;">
+      <li>
+        <span class="num">01</span>
+        <span class="ttl">Cover · How this pack is structured</span>
+        <span class="meta">Reference</span>
+        <span class="pg-num">i</span>
+      </li>
+      <li>
+        <span class="num">02</span>
+        <span class="ttl">Index — what's inside this pack</span>
+        <span class="meta">Reference</span>
+        <span class="pg-num">ii</span>
+      </li>
+      <li>
+        <span class="num">03</span>
+        <span class="ttl">A note for the agronomist · Honest framing</span>
+        <span class="meta">Foreword</span>
+        <span class="pg-num">iii</span>
+      </li>
+      <li style="border-top: 1pt solid var(--ink); margin-top: 2mm; padding-top: 2mm;">
+        <span class="num">§ I</span>
+        <span class="ttl text-rust" style="font-style: italic;">The eight organisms</span>
+        <span class="meta">Product sheets</span>
+        <span class="pg-num">04 — 11</span>
+      </li>
+      <li>
+        <span class="num">04</span>
+        <span class="ttl">Azoto Caps · <em class="scientific">Azotobacter chroococcum</em></span>
+        <span class="meta">Free-living N-fix</span>
+        <span class="pg-num">04</span>
+      </li>
+      <li>
+        <span class="num">05</span>
+        <span class="ttl">Azoss Caps · <em class="scientific">Azospirillum brasilense</em></span>
+        <span class="meta">Associative N-fix</span>
+        <span class="pg-num">05</span>
+      </li>
+      <li>
+        <span class="num">06</span>
+        <span class="ttl">Aceto Caps · <em class="scientific">Gluconacetobacter diazotrophicus</em></span>
+        <span class="meta">Endophytic N-fix</span>
+        <span class="pg-num">06</span>
+      </li>
+      <li>
+        <span class="num">07</span>
+        <span class="ttl">Rhizo Caps · <em class="scientific">Rhizobium leguminosarum</em></span>
+        <span class="meta">Symbiotic N-fix</span>
+        <span class="pg-num">07</span>
+      </li>
+      <li>
+        <span class="num">08</span>
+        <span class="ttl">PSB Plus Caps · <em class="scientific">Bacillus megaterium</em></span>
+        <span class="meta">Phosphate solubilisation</span>
+        <span class="pg-num">08</span>
+      </li>
+      <li>
+        <span class="num">09</span>
+        <span class="ttl">Potash Grow Caps · <em class="scientific">Bacillus decolorationis</em></span>
+        <span class="meta">Potassium mobilisation</span>
+        <span class="pg-num">09</span>
+      </li>
+      <li>
+        <span class="num">10</span>
+        <span class="ttl">Zinc Grow Caps · <em class="scientific">Bacillus subtilis</em></span>
+        <span class="meta">Zn solubilisation + biocontrol</span>
+        <span class="pg-num">10</span>
+      </li>
+      <li>
+        <span class="num">11</span>
+        <span class="ttl">NPK Grow Caps · 3-strain consortium</span>
+        <span class="meta">Combined N + P + K</span>
+        <span class="pg-num">11</span>
+      </li>
+      <li style="border-top: 1pt solid var(--ink); margin-top: 2mm; padding-top: 2mm;">
+        <span class="num">§ II</span>
+        <span class="ttl text-rust" style="font-style: italic;">Application</span>
+        <span class="meta">Programme & logistics</span>
+        <span class="pg-num">12 — 14</span>
+      </li>
+      <li>
+        <span class="num">12</span>
+        <span class="ttl">Application guide — by crop, by growth stage</span>
+        <span class="meta">Logistics</span>
+        <span class="pg-num">12</span>
+      </li>
+      <li>
+        <span class="num">13</span>
+        <span class="ttl">Tank-mix compatibility statement</span>
+        <span class="meta">Reference</span>
+        <span class="pg-num">14</span>
+      </li>
+      <li>
+        <span class="num">14</span>
+        <span class="ttl">Recommendation record sheet · BLANK</span>
+        <span class="meta">Field tool</span>
+        <span class="pg-num">15</span>
+      </li>
+      <li style="border-top: 1pt solid var(--ink); margin-top: 2mm; padding-top: 2mm;">
+        <span class="num">§ III</span>
+        <span class="ttl text-rust" style="font-style: italic;">Evidence</span>
+        <span class="meta">Trial data</span>
+        <span class="pg-num">16 — 19</span>
+      </li>
+      <li>
+        <span class="num">15</span>
+        <span class="ttl">Indian field trial summary — statistical reframing</span>
+        <span class="meta">Field-IN</span>
+        <span class="pg-num">16</span>
+      </li>
+      <li>
+        <span class="num">16</span>
+        <span class="ttl">Tomato controlled trial — full data sheet</span>
+        <span class="meta">FTR #1</span>
+        <span class="pg-num">17</span>
+      </li>
+      <li>
+        <span class="num">17</span>
+        <span class="ttl">Grapes comparison trial · Disease suppression observations</span>
+        <span class="meta">FTR #2</span>
+        <span class="pg-num">18</span>
+      </li>
+      <li>
+        <span class="num">18</span>
+        <span class="ttl">What this evidence does NOT prove</span>
+        <span class="meta">Caveats</span>
+        <span class="pg-num">19</span>
+      </li>
+      <li style="border-top: 1pt solid var(--ink); margin-top: 2mm; padding-top: 2mm;">
+        <span class="num">§ IV</span>
+        <span class="ttl text-rust" style="font-style: italic;">Asks</span>
+        <span class="meta">Supply-chain letters</span>
+        <span class="pg-num">20 — 22</span>
+      </li>
+      <li>
+        <span class="num">19</span>
+        <span class="ttl">Letter to manufacturer — request for independent trials</span>
+        <span class="meta">Template</span>
+        <span class="pg-num">20</span>
+      </li>
+      <li>
+        <span class="num">20</span>
+        <span class="ttl">University outreach pack — co-funded research proposal</span>
+        <span class="meta">Template</span>
+        <span class="pg-num">22</span>
+      </li>
+    </ol>
+  </div>
+
+  <footer class="page-foot">
+    <span>Meem International Pty Ltd</span>
+    <span class="foot-mark">field reference</span>
+    <span>Edition 01 / 2026</span>
+  </footer>
+</section>
+
+
+<!-- ============================================
+     PAGE 03 · FOREWORD
+     ============================================ -->
+<section class="page">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">Microbial Soil Inoculants</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">Note · Foreword</div>
+      <div>Field Pack — 2026 / 04</div>
+      <div class="pg">03 · 19</div>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div class="eyebrow">A note before the data</div>
+    <h1 class="h1">Read this <em>first</em></h1>
+
+    <div class="grid grid-asym mt-lg">
+      <div>
+        <p class="lead" style="margin-bottom: 5mm;">SPANEX is an encapsulated soil microbial inoculant. It is <strong>not</strong> a fungicide, a fertiliser substitute, or a magic bullet. It is a delivery format for eight specific organisms with documented mechanisms of action and a peer-reviewed encapsulation patent.</p>
+
+        <p>This pack is structured the way an Australian agronomist would actually use it: organisms first, then how to apply them, then what we have evidence for, then what we are still building. The marketing-style summaries are at the back of the section dividers, not the front.</p>
+
+        <h3 class="h3">What you should expect from this pack</h3>
+        <ul class="dash">
+          <li>Eight one-page product sheets — strain identity, mechanism, per-strain CFU, agronomic threshold, crop fit.</li>
+          <li>An application guide that names water volumes, growth stages and re-entry intervals (nil, in our case).</li>
+          <li>A tank-mix compatibility statement that lists what we are <em>not</em> compatible with — because that's the bit you actually need.</li>
+          <li>A blank recommendation record sheet you can use in the paddock.</li>
+          <li>The five Indian field trials we have on file, statistically re-framed — not the farmer ratings.</li>
+          <li>Two open templates: our letter to the manufacturer asking for independent data, and our outreach to Australian universities.</li>
+        </ul>
+
+        <h3 class="h3">What this pack does not contain</h3>
+        <ul class="dash">
+          <li>Australian university trial data — we don't have it yet. The §IV section explains how we are commissioning it.</li>
+          <li>FRAC / HRAC / IRAC codes — SPANEX is not a pesticide, so they don't apply.</li>
+          <li>PHI / MRL data — biofertilisers carry no withholding period; this is stated where required.</li>
+          <li>Yield-uplift superlatives. The numbers in §III are reproducible from the source FTR PDFs.</li>
+        </ul>
+      </div>
+
+      <aside>
+        <div class="callout callout-warn">
+          <h5>Honest framing</h5>
+          <p>SPANEX has Indian field trial data and manufacturer CoAs. It does not yet have AU-specific independent trial data. We do not claim it does. We do recommend a paid pilot trial as the path to AU-specific data — terms on §20.</p>
+        </div>
+
+        <div class="callout">
+          <h5>How to use this pack</h5>
+          <p>The pack is print-bound. Tear out §14 (the recommendation record sheet) and use it in the paddock. Keep §15–18 as your evidence reference. Hand §20 (the letter / outreach) to your research lead if you want to co-fund a trial.</p>
+        </div>
+
+        <div class="aside" style="margin-top: 8mm;">
+          We brought the data, not the calendars.
+        </div>
+
+        <div style="margin-top: 8mm; font-family: var(--font-mono); font-size: 7pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-mute); line-height: 1.7;">
+          Meem International Pty Ltd<br>
+          Importer & Australian Distributor<br>
+          DAFF Permit 0011744619<br>
+          Manufactured by SRT Agro Science Pvt Ltd<br>
+          Under licence of ICAR-IISR Patent IN 361021/CHE/2013
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <footer class="page-foot">
+    <span>Foreword · Note for the agronomist</span>
+    <span class="foot-mark">field reference</span>
+    <span>03 · 19</span>
+  </footer>
+</section>
+
+
+<!-- ============================================
+     SECTION DIVIDER · I — ORGANISMS  (screen only)
+     ============================================ -->
+<section class="page page-divider">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">Microbial Soil Inoculants</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">§ I — Organisms</div>
+      <div>Field Pack — 2026 / 04</div>
+      <div class="pg">04 · 19</div>
+    </div>
+  </header>
+  <div class="section-divider">
+    <div class="section-num">§ I — 8 sheets</div>
+    <h1 class="section-title">The <em>eight</em><br>organisms</h1>
+    <p class="section-blurb">One sheet per SKU. Strain identity, mechanism, per-strain CFU, the published agronomic threshold the dose is calibrated against, and a one-line note on what this organism cannot do. No marketing — just specs.</p>
+  </div>
+  <footer class="page-foot">
+    <span>Section I · Eight organisms</span>
+    <span class="foot-mark">specimens</span>
+    <span>04 · 19</span>
+  </footer>
+</section>
+
+
+<!-- ============================================
+     SHEET 01 · AZOTO CAPS
+     ============================================ -->
+<section class="page product-sheet">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">Sheet 01 · Free-living N-fix</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">Azoto Caps</div>
+      <div>SKU · MTCC-equiv NCIM 2632</div>
+      <div class="pg">04 · 19</div>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div class="product-mast">
+      <div>
+        <div class="eyebrow">Sheet 01 of 8 — N-fixer (Aerobic / Free-living)</div>
+        <h1 class="product-name">Azoto<br><em>Caps</em></h1>
+        <div class="product-strain"><span class="scientific">Azotobacter chroococcum</span><span class="strain-id">NCIM 2632</span></div>
+        <p class="function-line">Burns oxygen at extreme respiratory rates to protect nitrogenase, fixing atmospheric N₂ → NH₄⁺ in the bulk soil and rhizosphere. Carbon-limited, broad-host.</p>
+
+        <div class="chip-strip mt-md">
+          <span class="chip">Aerobic</span>
+          <span class="chip">Free-living</span>
+          <span class="chip">Broad-host</span>
+          <span class="chip">Endospore-stable</span>
+          <span class="chip">BSL-1</span>
+        </div>
+      </div>
+      <div class="product-emblem">
+        <svg class="diagram" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="azoto-soil" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#FAF7EE"/>
+              <stop offset="100%" stop-color="#E8E1C8"/>
+            </radialGradient>
+          </defs>
+          <circle cx="100" cy="100" r="92" fill="url(#azoto-soil)" stroke="#0F4D3A" stroke-width="0.7"/>
+          <text x="100" y="22" text-anchor="middle" font-family="JetBrains Mono" font-size="6.5" letter-spacing="2" fill="#6a6f6a">N₂ ATMOSPHERIC</text>
+          <line x1="100" y1="30" x2="100" y2="55" stroke="#B85C2F" stroke-width="0.6" stroke-dasharray="2 2"/>
+          <polygon points="97,52 100,58 103,52" fill="#B85C2F"/>
+          <circle cx="100" cy="100" r="38" fill="none" stroke="#0F4D3A" stroke-width="0.4" stroke-dasharray="1 2"/>
+          <ellipse cx="100" cy="100" rx="6" ry="4" fill="#0F4D3A"/>
+          <ellipse cx="80" cy="92" rx="5" ry="3.5" fill="#5C7C3E"/>
+          <ellipse cx="118" cy="106" rx="5" ry="3.5" fill="#5C7C3E"/>
+          <ellipse cx="92" cy="118" rx="5" ry="3.5" fill="#5C7C3E"/>
+          <ellipse cx="112" cy="84" rx="5" ry="3.5" fill="#5C7C3E"/>
+          <text x="100" y="160" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="10" fill="#0F4D3A">A. chroococcum</text>
+          <text x="100" y="172" text-anchor="middle" font-family="JetBrains Mono" font-size="6" letter-spacing="2" fill="#6a6f6a">RHIZOSPHERE COLONISATION</text>
+          <text x="40" y="100" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#B85C2F">NH₄⁺</text>
+          <text x="160" y="100" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#B85C2F">NH₄⁺</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="product-data-grid">
+      <div>
+        <h4 class="h4">CFU & Dose</h4>
+        <table class="spec">
+          <tr><td>CFU per cap (post-activation)</td><td>1 × 10¹² (peak; 7 × 10¹² observed in batch CoA 203)</td></tr>
+          <tr><td>CFU as-supplied (in-cap)</td><td>min 5 × 10⁷ — activated by 6–8 hr soak</td></tr>
+          <tr><td>AU rate</td><td>1 capsule per hectare per application</td></tr>
+          <tr><td>Per-strain agronomic threshold</td><td>10¹¹ — 10¹² CFU / ha (LIT)</td></tr>
+          <tr><td>Safety factor over LIT minimum</td><td>1× — 10× depending on strain</td></tr>
+          <tr><td>Apps per cycle (annual cereal)</td><td>1 — at sowing</td></tr>
+          <tr><td>Re-application window</td><td>90 — 120 days controlled release</td></tr>
+        </table>
+
+        <h4 class="h4">Composition (per cap)</h4>
+        <table class="spec">
+          <tr><td>Active microbial culture</td><td>5 % w/w</td></tr>
+          <tr><td>Carrier — pharmaceutical talc</td><td>94 % w/w · 0.150–0.212 mm</td></tr>
+          <tr><td>Stabiliser — agar / alginate 50:50</td><td>0.5 % w/w</td></tr>
+          <tr><td>Residual moisture</td><td>≤ 1 % w/w</td></tr>
+          <tr><td>Capsule shell — HPMC vegetal</td><td>0.12 g · CAS 9004-65-3</td></tr>
+          <tr><td>Total mass</td><td>0.9 — 1.0 g + shell</td></tr>
+        </table>
+      </div>
+
+      <div>
+        <h4 class="h4">Crop fit & exclusions</h4>
+        <table class="data" style="margin-top: 1mm;">
+          <thead>
+            <tr>
+              <th>Crop family</th>
+              <th class="right">Programme role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Cereals — wheat, barley, oats</td><td class="right">Lead N-fixer</td></tr>
+            <tr><td>Cotton</td><td class="right">Lead N-fixer + PSB</td></tr>
+            <tr><td>Tree fruit · vine · berries</td><td class="right">Lead N-fixer</td></tr>
+            <tr><td>Tomato · cucurbits · veg</td><td class="right">Co-N (with Azoss)</td></tr>
+            <tr><td>Pasture (grass-only)</td><td class="right">Co-N (with Azoss)</td></tr>
+            <tr><td><em>Legumes (any host)</em></td><td class="right text-mute">Use Rhizo, not Azoto</td></tr>
+            <tr><td><em>Sugarcane</em></td><td class="right text-mute">Use Aceto, not Azoto</td></tr>
+          </tbody>
+        </table>
+
+        <h4 class="h4">Storage & handling</h4>
+        <table class="spec">
+          <tr><td>Temperature tolerance</td><td>5 °C — 50 °C (optimum 25–30 °C)</td></tr>
+          <tr><td>Storage</td><td>Cool / dry, ambient · &lt; 25 °C</td></tr>
+          <tr><td>Shelf life (CoA-stamped)</td><td>16 months from MFG · 19 mo tested</td></tr>
+          <tr><td>Cold chain</td><td>Not required</td></tr>
+          <tr><td>Re-entry interval</td><td>Nil</td></tr>
+          <tr><td>Withholding period</td><td>Nil</td></tr>
+          <tr><td>Regulatory category</td><td>Biofertiliser · NOT APVMA</td></tr>
+        </table>
+
+        <div class="callout callout-warn" style="margin-top: 4mm;">
+          <h5>What Azoto cannot do</h5>
+          <p>Heavy synthetic urea suppresses nitrogenase activity — Azoto is most effective when partial-rate N is run, not full-rate. On low-OC sandy soils (&lt;1 % SOC), carbon limitation reduces fixation; pair with humic acid input.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-foot">
+    <span>Sheet 01 · Azoto Caps · <em class="scientific" style="font-style:italic;">A. chroococcum</em></span>
+    <span class="foot-mark">free-living N-fix</span>
+    <span>04 · 19</span>
+  </footer>
+</section>
+
+
+<!-- ============================================
+     SHEET 02 · AZOSS CAPS
+     ============================================ -->
+<section class="page product-sheet">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">Sheet 02 · Associative N-fix</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">Azoss Caps</div>
+      <div>SKU · NCIM 5135</div>
+      <div class="pg">05 · 19</div>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div class="product-mast">
+      <div>
+        <div class="eyebrow">Sheet 02 of 8 — N-fixer (Microaerobic / Associative)</div>
+        <h1 class="product-name">Azoss<br><em>Caps</em></h1>
+        <div class="product-strain"><span class="scientific">Azospirillum brasilense</span><span class="strain-id">NCIM 5135</span></div>
+        <p class="function-line">Hides in the microaerobic film 1 — 2 mm against grass-family roots. Lower energy intake, lower biomass; advantage is host-specific colonisation of grass rhizospheres including paddy, cane and pasture grasses.</p>
+
+        <div class="chip-strip mt-md">
+          <span class="chip">Microaerobic</span>
+          <span class="chip">Associative</span>
+          <span class="chip">Grass-family</span>
+          <span class="chip">Rhizosphere niche</span>
+          <span class="chip">BSL-1</span>
+        </div>
+      </div>
+      <div class="product-emblem">
+        <svg class="diagram" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="92" fill="#FAF7EE" stroke="#0F4D3A" stroke-width="0.7"/>
+          <rect x="92" y="20" width="16" height="160" fill="#5C7C3E" opacity="0.15"/>
+          <line x1="100" y1="20" x2="100" y2="180" stroke="#0F4D3A" stroke-width="0.8"/>
+          <line x1="100" y1="50" x2="80" y2="40" stroke="#0F4D3A" stroke-width="0.5"/>
+          <line x1="100" y1="80" x2="78" y2="74" stroke="#0F4D3A" stroke-width="0.5"/>
+          <line x1="100" y1="110" x2="76" y2="108" stroke="#0F4D3A" stroke-width="0.5"/>
+          <line x1="100" y1="140" x2="78" y2="146" stroke="#0F4D3A" stroke-width="0.5"/>
+          <line x1="100" y1="50" x2="120" y2="40" stroke="#0F4D3A" stroke-width="0.5"/>
+          <line x1="100" y1="80" x2="122" y2="74" stroke="#0F4D3A" stroke-width="0.5"/>
+          <line x1="100" y1="110" x2="124" y2="108" stroke="#0F4D3A" stroke-width="0.5"/>
+          <line x1="100" y1="140" x2="122" y2="146" stroke="#0F4D3A" stroke-width="0.5"/>
+          <ellipse cx="92" cy="65" rx="3" ry="1.5" fill="#B85C2F" transform="rotate(15 92 65)"/>
+          <ellipse cx="108" cy="95" rx="3" ry="1.5" fill="#B85C2F" transform="rotate(-15 108 95)"/>
+          <ellipse cx="90" cy="125" rx="3" ry="1.5" fill="#B85C2F" transform="rotate(15 90 125)"/>
+          <ellipse cx="110" cy="155" rx="3" ry="1.5" fill="#B85C2F" transform="rotate(-15 110 155)"/>
+          <text x="20" y="100" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#6a6f6a" transform="rotate(-90 20 100)">GRASS ROOT</text>
+          <text x="100" y="14" text-anchor="middle" font-family="JetBrains Mono" font-size="6" letter-spacing="2" fill="#6a6f6a">SHOOT</text>
+          <text x="100" y="194" text-anchor="middle" font-family="JetBrains Mono" font-size="6" letter-spacing="2" fill="#6a6f6a">DEPTH</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="product-data-grid">
+      <div>
+        <h4 class="h4">CFU & Dose</h4>
+        <table class="spec">
+          <tr><td>CFU per cap (post-activation)</td><td>1 × 10¹² peak</td></tr>
+          <tr><td>AU rate</td><td>1 capsule per hectare per application</td></tr>
+          <tr><td>Per-strain threshold</td><td>10¹¹ — 10¹² CFU / ha</td></tr>
+          <tr><td>Apps per cycle</td><td>Cereals 1 (sowing); paddy 2 (transplant + tillering); pasture 3 / yr</td></tr>
+          <tr><td>Re-application window</td><td>90 — 120 days SRT</td></tr>
+        </table>
+
+        <h4 class="h4">Mechanism — N-fixation, kg N/ha/yr</h4>
+        <table class="data">
+          <thead><tr><th>Crop context</th><th class="right">Range (LIT)</th></tr></thead>
+          <tbody>
+            <tr><td>Cereals · paddy</td><td class="num right">5 — 25</td></tr>
+            <tr><td>Mixed pasture grasses</td><td class="num right">5 — 20</td></tr>
+            <tr><td>Sorghum · maize</td><td class="num right">10 — 25</td></tr>
+            <tr class="summary"><td>Plant-uptake basis (Y1)</td><td class="num right">30 — 60 % of above</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <h4 class="h4">Crop fit & exclusions</h4>
+        <table class="data" style="margin-top: 1mm;">
+          <thead><tr><th>Crop family</th><th class="right">Programme role</th></tr></thead>
+          <tbody>
+            <tr><td>Paddy (rice)</td><td class="right">Lead N-fixer</td></tr>
+            <tr><td>Sorghum · maize · oats forage</td><td class="right">Lead N-fixer</td></tr>
+            <tr><td>Pasture grass component</td><td class="right">Lead — pair Rhizo (clover)</td></tr>
+            <tr><td>Cereals (wheat, barley)</td><td class="right">Co-N (with Azoto)</td></tr>
+            <tr><td>Sugarcane</td><td class="right">Co-N (with Aceto)</td></tr>
+            <tr><td><em>Tree fruit · vine · berries</em></td><td class="right text-mute">Use Azoto, not Azoss</td></tr>
+            <tr><td><em>Legumes</em></td><td class="right text-mute">Use Rhizo</td></tr>
+          </tbody>
+        </table>
+
+        <h4 class="h4">Standard parameters</h4>
+        <table class="spec">
+          <tr><td>Cell weight per cap</td><td>0.9 — 1.0 g + 0.12 g shell</td></tr>
+          <tr><td>Shelf life</td><td>16 months CoA · 19 mo tested</td></tr>
+          <tr><td>Storage</td><td>Cool / dry · &lt;25 °C</td></tr>
+          <tr><td>Cold chain</td><td>Not required</td></tr>
+          <tr><td>Re-entry interval</td><td>Nil</td></tr>
+          <tr><td>Regulatory</td><td>Biofertiliser · NOT APVMA</td></tr>
+        </table>
+
+        <div class="callout">
+          <h5>Operational note</h5>
+          <p>Azoss is microaerobic — apply <em>after</em> first irrigation onto moist soil, not into dry seedbed. Better through fertigation than pre-sowing broadcast.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-foot">
+    <span>Sheet 02 · Azoss Caps · <em class="scientific" style="font-style:italic;">A. brasilense</em></span>
+    <span class="foot-mark">associative N-fix</span>
+    <span>05 · 19</span>
+  </footer>
+</section>
+
+
+<!-- ============================================
+     SHEET 03 · ACETO CAPS
+     ============================================ -->
+<section class="page product-sheet">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">Sheet 03 · Endophytic N-fix</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">Aceto Caps</div>
+      <div>SKU · NCIM 5348</div>
+      <div class="pg">06 · 19</div>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div class="product-mast">
+      <div>
+        <div class="eyebrow">Sheet 03 of 8 — N-fixer (Endophytic / Sugarcane signature)</div>
+        <h1 class="product-name">Aceto<br><em>Caps</em></h1>
+        <div class="product-strain"><span class="scientific">Gluconacetobacter diazotrophicus</span><span class="strain-id">NCIM 5348</span></div>
+        <p class="function-line">Lives <em>inside</em> sugarcane stem and root tissues — host regulates oxygen, host supplies sucrose. Highest energy supply of the four N-fix lifestyles in the SPANEX range. The single most differentiated SKU.</p>
+
+        <div class="chip-strip mt-md">
+          <span class="chip tag-forest">Sugarcane signature</span>
+          <span class="chip">Endophytic</span>
+          <span class="chip">Microaerobic (host-controlled)</span>
+          <span class="chip">Sucrose-fed</span>
+          <span class="chip">BSL-1</span>
+        </div>
+      </div>
+      <div class="product-emblem">
+        <svg class="diagram" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="92" fill="#FAF7EE" stroke="#0F4D3A" stroke-width="0.7"/>
+          <rect x="74" y="30" width="52" height="140" fill="#5C7C3E" opacity="0.18" stroke="#0F4D3A" stroke-width="0.5"/>
+          <line x1="74" y1="60" x2="126" y2="60" stroke="#0F4D3A" stroke-width="0.4"/>
+          <line x1="74" y1="100" x2="126" y2="100" stroke="#0F4D3A" stroke-width="0.4"/>
+          <line x1="74" y1="140" x2="126" y2="140" stroke="#0F4D3A" stroke-width="0.4"/>
+          <ellipse cx="92" cy="50" rx="3" ry="2" fill="#B85C2F"/>
+          <ellipse cx="108" cy="78" rx="3" ry="2" fill="#B85C2F"/>
+          <ellipse cx="90" cy="120" rx="3" ry="2" fill="#B85C2F"/>
+          <ellipse cx="112" cy="155" rx="3" ry="2" fill="#B85C2F"/>
+          <ellipse cx="100" cy="92" rx="3" ry="2" fill="#B85C2F"/>
+          <ellipse cx="86" cy="160" rx="3" ry="2" fill="#B85C2F"/>
+          <text x="100" y="22" text-anchor="middle" font-family="JetBrains Mono" font-size="6" letter-spacing="2" fill="#6a6f6a">SUGARCANE STEM</text>
+          <text x="100" y="186" text-anchor="middle" font-family="JetBrains Mono" font-size="6" letter-spacing="2" fill="#6a6f6a">INTERNODE TISSUE</text>
+          <text x="160" y="100" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#B85C2F" transform="rotate(90 160 100)">ENDOPHYTIC</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="product-data-grid">
+      <div>
+        <h4 class="h4">CFU & Dose</h4>
+        <table class="spec">
+          <tr><td>CFU per cap (post-activation)</td><td>1 × 10¹² peak</td></tr>
+          <tr><td>AU rate</td><td>1 capsule per hectare per application</td></tr>
+          <tr><td>Apps per cane cycle</td><td>2 — at planting + grand-growth (~5 mo)</td></tr>
+          <tr><td>Per-strain threshold</td><td>10¹¹ — 10¹² CFU / ha</td></tr>
+        </table>
+
+        <h4 class="h4">N-fixation potential — kg N/ha/yr</h4>
+        <table class="data">
+          <thead><tr><th>Crop</th><th class="right">Range</th><th class="right">% of crop demand</th></tr></thead>
+          <tbody>
+            <tr><td>Sugarcane (signature host)</td><td class="num right">30 — 150</td><td class="num right">up to 60 %</td></tr>
+            <tr><td>Rice (paddy, secondary host)</td><td class="num right">10 — 40</td><td class="num right">15 — 30 %</td></tr>
+            <tr><td>Sorghum (rare host)</td><td class="num right">5 — 20</td><td class="num right">5 — 15 %</td></tr>
+          </tbody>
+        </table>
+        <p class="tiny">Source — published <em>G. diazotrophicus</em> literature in Indian and Brazilian cane production. Australia-specific cultivar validation pending.</p>
+      </div>
+
+      <div>
+        <h4 class="h4">Crop fit & exclusions</h4>
+        <table class="data" style="margin-top: 1mm;">
+          <thead><tr><th>Crop family</th><th class="right">Programme role</th></tr></thead>
+          <tbody>
+            <tr><td>Sugarcane (Burdekin · Mackay · Bundaberg · Herbert)</td><td class="right">Lead — irreplaceable</td></tr>
+            <tr><td>Paddy / rice</td><td class="right">Co-N (with Azoss)</td></tr>
+            <tr><td>Sorghum (selected hosts)</td><td class="right">Trial-only</td></tr>
+            <tr><td><em>Cereals · cotton · tree fruit · vine · pasture · veg</em></td><td class="right text-mute">Out of host range</td></tr>
+          </tbody>
+        </table>
+
+        <h4 class="h4">Storage & handling</h4>
+        <table class="spec">
+          <tr><td>Shelf life</td><td>16 months CoA</td></tr>
+          <tr><td>Storage</td><td>Cool / dry · &lt;25 °C</td></tr>
+          <tr><td>Cold chain</td><td>Not required</td></tr>
+          <tr><td>Re-entry interval</td><td>Nil</td></tr>
+        </table>
+
+        <div class="callout callout-good">
+          <h5>The strongest unique-strain story in SPANEX</h5>
+          <p>Aceto is the only SKU with a truly unique host-strain relationship. Sugarcane growers cannot achieve this N-fix mode with any other SPANEX SKU — and Australia has no comparable Aceto-format competitor product.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-foot">
+    <span>Sheet 03 · Aceto Caps · <em class="scientific" style="font-style:italic;">G. diazotrophicus</em></span>
+    <span class="foot-mark">endophytic N-fix</span>
+    <span>06 · 19</span>
+  </footer>
+</section>
+
+
+<!-- ============================================
+     SHEET 04 · RHIZO CAPS
+     ============================================ -->
+<section class="page product-sheet">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">Sheet 04 · Symbiotic N-fix</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">Rhizo Caps</div>
+      <div>SKU · MTCC 10096</div>
+      <div class="pg">07 · 19</div>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div class="product-mast">
+      <div>
+        <div class="eyebrow">Sheet 04 of 8 — N-fixer (Symbiotic / Legume nodule)</div>
+        <h1 class="product-name">Rhizo<br><em>Caps</em></h1>
+        <div class="product-strain"><span class="scientific">Rhizobium leguminosarum</span><span class="strain-id">MTCC 10096</span></div>
+        <p class="function-line">Forms nodules in legume roots — host builds the dedicated organ, leghaemoglobin scavenges O₂. Highest-yielding biological N-fix system known. Group E biovar — clover, lucerne, leucaena, pea, lentil, faba.</p>
+
+        <div class="chip-strip mt-md">
+          <span class="chip tag-rust">Group E biovar only</span>
+          <span class="chip">Symbiotic</span>
+          <span class="chip">Anaerobic in nodule</span>
+          <span class="chip">Plant-fed</span>
+          <span class="chip">BSL-1</span>
+        </div>
+      </div>
+      <div class="product-emblem">
+        <svg class="diagram" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="92" fill="#FAF7EE" stroke="#0F4D3A" stroke-width="0.7"/>
+          <line x1="100" y1="20" x2="100" y2="180" stroke="#0F4D3A" stroke-width="0.8"/>
+          <path d="M100,55 Q70,55 65,75" stroke="#0F4D3A" stroke-width="0.5" fill="none"/>
+          <path d="M100,90 Q130,90 138,108" stroke="#0F4D3A" stroke-width="0.5" fill="none"/>
+          <path d="M100,125 Q72,125 65,145" stroke="#0F4D3A" stroke-width="0.5" fill="none"/>
+          <ellipse cx="62" cy="78" rx="9" ry="6" fill="#B85C2F" opacity="0.85"/>
+          <ellipse cx="142" cy="112" rx="9" ry="6" fill="#B85C2F" opacity="0.85"/>
+          <ellipse cx="62" cy="148" rx="9" ry="6" fill="#B85C2F" opacity="0.85"/>
+          <text x="62" y="80" text-anchor="middle" font-family="Fraunces" font-size="5.5" font-style="italic" fill="#FAF7EE">N₂</text>
+          <text x="142" y="114" text-anchor="middle" font-family="Fraunces" font-size="5.5" font-style="italic" fill="#FAF7EE">N₂</text>
+          <text x="62" y="150" text-anchor="middle" font-family="Fraunces" font-size="5.5" font-style="italic" fill="#FAF7EE">N₂</text>
+          <text x="100" y="14" text-anchor="middle" font-family="JetBrains Mono" font-size="6" letter-spacing="2" fill="#6a6f6a">LEGUME ROOT</text>
+          <text x="100" y="194" text-anchor="middle" font-family="JetBrains Mono" font-size="6" letter-spacing="2" fill="#6a6f6a">NODULES · SYMBIOSIS</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="product-data-grid">
+      <div>
+        <h4 class="h4">CFU & Dose</h4>
+        <table class="spec">
+          <tr><td>CFU per cap (post-activation)</td><td>1 × 10¹² peak</td></tr>
+          <tr><td>AU rate</td><td>1 capsule per hectare per application</td></tr>
+          <tr><td>Apps — pulse seed-coat</td><td>1 at sowing</td></tr>
+          <tr><td>Apps — perennial legume / pasture</td><td>Establishment + biennial top-up</td></tr>
+        </table>
+
+        <h4 class="h4">Host range — biovar Group E only</h4>
+        <table class="data">
+          <thead><tr><th>Host</th><th class="right">Compatibility</th></tr></thead>
+          <tbody>
+            <tr><td>White / red / sub clover</td><td class="right">✓ Yes</td></tr>
+            <tr><td>Lucerne (alfalfa)</td><td class="right">✓ Yes</td></tr>
+            <tr><td>Leucaena</td><td class="right">✓ Yes</td></tr>
+            <tr><td>Field pea · lentil · faba bean</td><td class="right">✓ Yes</td></tr>
+            <tr><td>Common vetch</td><td class="right">✓ Yes</td></tr>
+            <tr><td><em>Chickpea</em></td><td class="right text-rust">✗ Wrong biovar</td></tr>
+            <tr><td><em>Lupin · soybean · peanut · mungbean</em></td><td class="right text-rust">✗ Wrong species</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <h4 class="h4">N-fixation potential</h4>
+        <table class="data">
+          <thead><tr><th>System</th><th class="right">kg N/ha/yr</th></tr></thead>
+          <tbody>
+            <tr><td>Lucerne stand</td><td class="num right">200 — 400</td></tr>
+            <tr><td>Leucaena (tropical)</td><td class="num right">150 — 300</td></tr>
+            <tr><td>Clover-based pasture</td><td class="num right">50 — 200</td></tr>
+            <tr><td>Pulse crop (pea, lentil, faba)</td><td class="num right">80 — 200</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-warn">
+          <h5>Honest competitive position</h5>
+          <p>SPANEX Rhizo Caps does not currently hold AIRG <strong>Green Tick</strong> Australian quality certification. For pulse seed-coat applications competing with EasyRhiz™ / NoduleN™ — concede. Position Rhizo for <em>perennial legume</em> programmes (pasture, lucerne, leucaena) where the SRT release window is the differentiator and competitors lose.</p>
+        </div>
+
+        <h4 class="h4">Storage</h4>
+        <table class="spec">
+          <tr><td>Shelf life</td><td>16 months CoA</td></tr>
+          <tr><td>Cold chain</td><td>Not required</td></tr>
+          <tr><td>Re-entry · Withholding</td><td>Nil · Nil</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-foot">
+    <span>Sheet 04 · Rhizo Caps · <em class="scientific" style="font-style:italic;">R. leguminosarum</em></span>
+    <span class="foot-mark">symbiotic N-fix</span>
+    <span>07 · 19</span>
+  </footer>
+</section>
+
+
+<!-- ============================================
+     SHEET 05 · PSB PLUS
+     ============================================ -->
+<section class="page product-sheet">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">Sheet 05 · Phosphate solubilisation</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">PSB Plus Caps</div>
+      <div>SKU · NCIM 2032</div>
+      <div class="pg">08 · 19</div>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div class="product-mast">
+      <div>
+        <div class="eyebrow">Sheet 05 of 8 — Solubiliser (P)</div>
+        <h1 class="product-name">PSB Plus<br><em>Caps</em></h1>
+        <div class="product-strain"><span class="scientific">Bacillus megaterium</span><span class="strain-id">NCIM 2032</span></div>
+        <p class="function-line">Secretes gluconic, citric, oxalic and lactic acids that chelate Ca²⁺ / Fe³⁺ / Al³⁺ holding bound P. Phytase / phosphatase release P from organic phytate. Endospore-forming — survives drought, freeze, UV.</p>
+
+        <div class="chip-strip mt-md">
+          <span class="chip">Solubiliser</span>
+          <span class="chip">Endospore</span>
+          <span class="chip">Universal crop fit</span>
+          <span class="chip">Acid-secreting</span>
+          <span class="chip">BSL-1</span>
+        </div>
+      </div>
+      <div class="product-emblem">
+        <svg class="diagram" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="92" fill="#FAF7EE" stroke="#0F4D3A" stroke-width="0.7"/>
+          <polygon points="60,70 75,55 90,70 75,85" fill="none" stroke="#0F4D3A" stroke-width="0.5"/>
+          <polygon points="115,75 135,65 145,80 130,90" fill="none" stroke="#0F4D3A" stroke-width="0.5"/>
+          <polygon points="55,120 70,108 85,118 75,135" fill="none" stroke="#0F4D3A" stroke-width="0.5"/>
+          <polygon points="130,130 148,118 158,135 140,148" fill="none" stroke="#0F4D3A" stroke-width="0.5"/>
+          <text x="75" y="73" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#6a6f6a">Ca-P</text>
+          <text x="130" y="80" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#6a6f6a">Fe-P</text>
+          <text x="70" y="123" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#6a6f6a">Al-P</text>
+          <text x="144" y="135" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#6a6f6a">Ca-P</text>
+          <ellipse cx="100" cy="100" rx="6" ry="4" fill="#B85C2F"/>
+          <line x1="100" y1="100" x2="75" y2="70" stroke="#B85C2F" stroke-width="0.5" stroke-dasharray="1 1"/>
+          <line x1="100" y1="100" x2="130" y2="80" stroke="#B85C2F" stroke-width="0.5" stroke-dasharray="1 1"/>
+          <line x1="100" y1="100" x2="73" y2="120" stroke="#B85C2F" stroke-width="0.5" stroke-dasharray="1 1"/>
+          <line x1="100" y1="100" x2="142" y2="135" text-anchor="middle" stroke="#B85C2F" stroke-width="0.5" stroke-dasharray="1 1"/>
+          <text x="100" y="170" text-anchor="middle" font-family="JetBrains Mono" font-size="5.5" letter-spacing="2" fill="#6a6f6a">ORGANIC ACIDS · CHELATION</text>
+          <text x="100" y="186" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="9" fill="#0F4D3A">→ H₂PO₄⁻ root-available</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="product-data-grid">
+      <div>
+        <h4 class="h4">P released — kg/ha/season</h4>
+        <table class="data">
+          <thead><tr><th>Soil class</th><th class="right">P released</th></tr></thead>
+          <tbody>
+            <tr><td>Vertosol (high Ca-P)</td><td class="num right">15 — 30</td></tr>
+            <tr><td>Ferrosol (high Fe-P · Al-P)</td><td class="num right">10 — 25</td></tr>
+            <tr><td>Calcarosol (high Ca-P)</td><td class="num right">10 — 25</td></tr>
+            <tr><td>Sandy / low-OC</td><td class="num right">5 — 15</td></tr>
+            <tr><td>Acidic / Sodosol</td><td class="num right">5 — 15</td></tr>
+          </tbody>
+        </table>
+
+        <h4 class="h4">Mode of action</h4>
+        <ul class="dash">
+          <li>Gluconic, citric, oxalic, lactic acid secretion → 0.5–1.0 unit pH drop in rhizosphere</li>
+          <li>Chelation of Ca²⁺ / Fe³⁺ / Al³⁺ binding bound P</li>
+          <li>Phytase + phosphatase enzymes — release organic P (phytate)</li>
+          <li>Bonus: co-releases Zn / Fe in same chelation reaction</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="h4">Crop fit</h4>
+        <table class="data" style="margin-top: 1mm;">
+          <thead><tr><th>Application</th><th class="right">Priority</th></tr></thead>
+          <tbody>
+            <tr><td>P-locked Vertosols (cotton, leucaena, sorghum)</td><td class="right">Critical</td></tr>
+            <tr><td>P-fixing Ferrosols (apples, banana, citrus, berries)</td><td class="right">Critical</td></tr>
+            <tr><td>Ca-rich calcarosols (SA, Sunraysia)</td><td class="right">High</td></tr>
+            <tr><td>All other crop-soil combinations</td><td class="right">Standard</td></tr>
+          </tbody>
+        </table>
+
+        <h4 class="h4">Programme role</h4>
+        <p style="font-size: 9pt;">PSB Plus is the universal phosphate-economy SKU — included in every multi-SKU programme. On Vertosols and Ferrosols, double dose is justified by the soil P-fixation capacity.</p>
+
+        <h4 class="h4">Storage</h4>
+        <table class="spec">
+          <tr><td>Shelf life</td><td>16 months CoA</td></tr>
+          <tr><td>Endospore stability</td><td>Highest in SPANEX range — survives temperature excursions in transit</td></tr>
+          <tr><td>Cold chain</td><td>Not required</td></tr>
+          <tr><td>Re-entry · Withholding</td><td>Nil · Nil</td></tr>
+        </table>
+
+        <div class="callout">
+          <h5>Suppression note</h5>
+          <p>High soluble P fertiliser (DAP/MAP at full rate) feedback-inhibits acid secretion. Best results when synthetic P is partial-rate or strategically timed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-foot">
+    <span>Sheet 05 · PSB Plus Caps · <em class="scientific" style="font-style:italic;">B. megaterium</em></span>
+    <span class="foot-mark">phosphate solubilisation</span>
+    <span>08 · 19</span>
+  </footer>
+</section>
+
+
+<!-- ============================================
+     SHEET 06 · POTASH GROW
+     ============================================ -->
+<section class="page product-sheet">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">Sheet 06 · Potassium mobilisation</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">Potash Grow Caps</div>
+      <div>SKU · IARI-SL-18</div>
+      <div class="pg">09 · 19</div>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div class="product-mast">
+      <div>
+        <div class="eyebrow">Sheet 06 of 8 — Mobiliser (K)</div>
+        <h1 class="product-name">Potash<br>Grow <em>Caps</em></h1>
+        <div class="product-strain"><span class="scientific">Bacillus decolorationis</span><span class="strain-id">IARI-SL-18</span></div>
+        <p class="function-line">Weathers K-bearing minerals (mica, feldspar, illite) via citric / oxalic / tartaric acid + extracellular polysaccharide chelation of K⁺ from clay lattices. Co-releases silicon — bonus cell-wall strength.</p>
+
+        <div class="chip-strip mt-md">
+          <span class="chip">Mobiliser</span>
+          <span class="chip">Mineral weathering</span>
+          <span class="chip">EPS-producing</span>
+          <span class="chip">Silicon co-release</span>
+          <span class="chip">BSL-1</span>
+        </div>
+      </div>
+      <div class="product-emblem">
+        <svg class="diagram" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="92" fill="#FAF7EE" stroke="#0F4D3A" stroke-width="0.7"/>
+          <g stroke="#0F4D3A" stroke-width="0.4" fill="#5C7C3E" opacity="0.3">
+            <rect x="50" y="50" width="32" height="6"/>
+            <rect x="50" y="58" width="32" height="6"/>
+            <rect x="50" y="66" width="32" height="6"/>
+            <rect x="50" y="74" width="32" height="6"/>
+            <rect x="50" y="82" width="32" height="6"/>
+          </g>
+          <g stroke="#0F4D3A" stroke-width="0.4" fill="#5C7C3E" opacity="0.3">
+            <rect x="118" y="120" width="32" height="6"/>
+            <rect x="118" y="128" width="32" height="6"/>
+            <rect x="118" y="136" width="32" height="6"/>
+            <rect x="118" y="144" width="32" height="6"/>
+          </g>
+          <text x="66" y="48" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#6a6f6a">CLAY MINERAL</text>
+          <text x="134" y="118" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#6a6f6a">MICA</text>
+          <text x="66" y="58" text-anchor="middle" font-family="JetBrains Mono" font-size="5" font-weight="bold" fill="#B85C2F">K⁺</text>
+          <text x="66" y="74" text-anchor="middle" font-family="JetBrains Mono" font-size="5" font-weight="bold" fill="#B85C2F">K⁺</text>
+          <text x="134" y="130" text-anchor="middle" font-family="JetBrains Mono" font-size="5" font-weight="bold" fill="#B85C2F">K⁺</text>
+          <ellipse cx="100" cy="100" rx="6" ry="4" fill="#0F4D3A"/>
+          <text x="100" y="180" text-anchor="middle" font-family="JetBrains Mono" font-size="5.5" letter-spacing="2" fill="#6a6f6a">ORGANIC ACID + EPS</text>
+          <text x="100" y="190" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="9" fill="#0F4D3A">→ K⁺ + Si⁴⁺ root-available</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="product-data-grid">
+      <div>
+        <h4 class="h4">K released — kg/ha/season</h4>
+        <table class="data">
+          <thead><tr><th>Soil class</th><th class="right">K released</th></tr></thead>
+          <tbody>
+            <tr><td>Vertosol / clay-rich</td><td class="num right">10 — 20</td></tr>
+            <tr><td>Granite-derived sandy soils</td><td class="num right">5 — 12</td></tr>
+            <tr><td>Mica / illite-rich (north QLD)</td><td class="num right">12 — 22</td></tr>
+            <tr><td>Calcarosol</td><td class="num right">5 — 12</td></tr>
+            <tr><td>Highly weathered (low K)</td><td class="num right">2 — 8</td></tr>
+          </tbody>
+        </table>
+
+        <h4 class="h4">Mode of action</h4>
+        <ul class="dash">
+          <li>Citric, oxalic, tartaric, gluconic acid weathering of K-feldspar, mica, illite</li>
+          <li>Extracellular polysaccharide (EPS) chelation of K⁺ from clay interlayers</li>
+          <li>Capsule layer accelerates mineral dissolution kinetics</li>
+          <li>Co-releases Si⁴⁺ → cell-wall strength and drought tolerance bonus</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="h4">Crop fit (highest ROI)</h4>
+        <table class="data" style="margin-top: 1mm;">
+          <thead><tr><th>Crop</th><th class="right">Priority</th></tr></thead>
+          <tbody>
+            <tr><td>Cotton</td><td class="right">Critical</td></tr>
+            <tr><td>Sugarcane</td><td class="right">Critical</td></tr>
+            <tr><td>Banana · plantain</td><td class="right">Critical</td></tr>
+            <tr><td>Potato · tubers</td><td class="right">High</td></tr>
+            <tr><td>Tree fruit · citrus · vine</td><td class="right">High</td></tr>
+            <tr><td>Pasture · cereals</td><td class="right">Standard</td></tr>
+          </tbody>
+        </table>
+
+        <h4 class="h4">Storage</h4>
+        <table class="spec">
+          <tr><td>Shelf life</td><td>16 months CoA</td></tr>
+          <tr><td>Cold chain</td><td>Not required</td></tr>
+          <tr><td>Re-entry · Withholding</td><td>Nil · Nil</td></tr>
+        </table>
+
+        <div class="callout">
+          <h5>Best ROI per cap</h5>
+          <p>Highest measurable agronomic response on K-demanding crops (cotton, cane, banana, potato). For pasture and cereals, response is moderate but consistent.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-foot">
+    <span>Sheet 06 · Potash Grow Caps · <em class="scientific" style="font-style:italic;">B. decolorationis</em></span>
+    <span class="foot-mark">potassium mobilisation</span>
+    <span>09 · 19</span>
+  </footer>
+</section>
+
+
+<!-- ============================================
+     SHEET 07 · ZINC GROW
+     ============================================ -->
+<section class="page product-sheet">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">Sheet 07 · Zinc + biocontrol</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">Zinc Grow Caps</div>
+      <div>SKU · MTCC 8141</div>
+      <div class="pg">10 · 19</div>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div class="product-mast">
+      <div>
+        <div class="eyebrow">Sheet 07 of 8 — Solubiliser (Zn) + Biocontrol PGPR</div>
+        <h1 class="product-name">Zinc Grow<br><em>Caps</em></h1>
+        <div class="product-strain"><span class="scientific">Bacillus subtilis</span><span class="strain-id">MTCC 8141</span></div>
+        <p class="function-line">Two functions in one cap. Solubilises Zn-oxide / Zn-carbonate / Zn-phosphate via gluconic + 2-ketogluconic acid. <strong>Plus</strong> secretes surfactin / iturin / fengycin lipopeptides — antifungal against <em class="scientific">Fusarium · Rhizoctonia · Pythium · Botrytis</em>.</p>
+
+        <div class="chip-strip mt-md">
+          <span class="chip">Zn solubiliser</span>
+          <span class="chip tag-rust">Biocontrol</span>
+          <span class="chip">Lipopeptide-secreting</span>
+          <span class="chip">Endospore</span>
+          <span class="chip">BSL-1</span>
+        </div>
+      </div>
+      <div class="product-emblem">
+        <svg class="diagram" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="92" fill="#FAF7EE" stroke="#0F4D3A" stroke-width="0.7"/>
+          <ellipse cx="100" cy="100" rx="8" ry="5" fill="#0F4D3A"/>
+          <g stroke="#B85C2F" stroke-width="0.5" fill="none">
+            <path d="M100,100 L62,68"/>
+            <path d="M100,100 L132,72"/>
+            <path d="M100,100 L65,128"/>
+            <path d="M100,100 L138,134"/>
+          </g>
+          <text x="58" y="65" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#B85C2F">Zn²⁺</text>
+          <text x="138" y="68" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#B85C2F">Zn²⁺</text>
+          <g fill="none" stroke="#B85C2F" stroke-width="0.6" stroke-dasharray="1 1.5">
+            <circle cx="50" cy="135" r="9"/>
+            <circle cx="148" cy="138" r="9"/>
+            <line x1="44" y1="129" x2="56" y2="141"/>
+            <line x1="56" y1="129" x2="44" y2="141"/>
+            <line x1="142" y1="132" x2="154" y2="144"/>
+            <line x1="154" y1="132" x2="142" y2="144"/>
+          </g>
+          <text x="50" y="155" text-anchor="middle" font-family="JetBrains Mono" font-size="4.5" fill="#B85C2F">Fusarium ✗</text>
+          <text x="148" y="158" text-anchor="middle" font-family="JetBrains Mono" font-size="4.5" fill="#B85C2F">Pythium ✗</text>
+          <text x="100" y="20" text-anchor="middle" font-family="JetBrains Mono" font-size="6" letter-spacing="2" fill="#6a6f6a">DUAL FUNCTION</text>
+          <text x="100" y="186" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="9" fill="#0F4D3A">Zn nutrition + lipopeptide biocontrol</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="product-data-grid">
+      <div>
+        <h4 class="h4">Zn released + biocontrol activity</h4>
+        <table class="data">
+          <thead><tr><th>Activity</th><th class="right">Range</th></tr></thead>
+          <tbody>
+            <tr><td>Zn released — kg/ha/season</td><td class="num right">0.2 — 2.0</td></tr>
+            <tr><td>Crop Zn demand</td><td class="num right">0.3 — 0.5 kg/ha</td></tr>
+            <tr><td>Surfactin / iturin / fengycin secretion</td><td class="right">Documented LIT</td></tr>
+            <tr><td><em class="scientific">Fusarium</em> suppression (in-vitro)</td><td class="right">Yes</td></tr>
+            <tr><td><em class="scientific">Rhizoctonia</em> suppression</td><td class="right">Yes</td></tr>
+            <tr><td><em class="scientific">Pythium</em> suppression</td><td class="right">Yes</td></tr>
+            <tr><td><em class="scientific">Botrytis</em> suppression</td><td class="right">Yes</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <h4 class="h4">Highest-value contexts</h4>
+        <table class="data" style="margin-top: 1mm;">
+          <thead><tr><th>Context</th><th class="right">Priority</th></tr></thead>
+          <tbody>
+            <tr><td>SA Eyre Peninsula · Mid-North · Mallee</td><td class="right">Critical (Zn-locked Calcarosols)</td></tr>
+            <tr><td>WA wheatbelt — Zn-deficient zones</td><td class="right">Critical</td></tr>
+            <tr><td>Sunraysia / Riverland (citrus, vine)</td><td class="right">Critical (calcareous + Zn deficient)</td></tr>
+            <tr><td>NSW cotton (alkaline Vertosols)</td><td class="right">High</td></tr>
+            <tr><td>Berries (Botrytis pressure)</td><td class="right">High — biocontrol value</td></tr>
+            <tr><td>Cut flowers (Fusarium pressure)</td><td class="right">High — biocontrol value</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-good">
+          <h5>The biocontrol bonus</h5>
+          <p>For premium horticulture (berries, flowers, tomato, tree fruit), the lipopeptide biocontrol activity is often more economically significant than the Zn nutrition. Frame as a fungicide-replacement story for hort, not just a micronutrient.</p>
+        </div>
+
+        <h4 class="h4">Storage</h4>
+        <table class="spec">
+          <tr><td>Shelf life</td><td>16 months CoA</td></tr>
+          <tr><td>Endospore stability</td><td>Among the most robust soil bacteria</td></tr>
+          <tr><td>Cold chain</td><td>Not required</td></tr>
+          <tr><td>Re-entry · Withholding</td><td>Nil · Nil</td></tr>
+          <tr><td>APVMA status</td><td>Not registered as a fungicide — biocontrol is incidental, not labelled</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-foot">
+    <span>Sheet 07 · Zinc Grow Caps · <em class="scientific" style="font-style:italic;">B. subtilis</em></span>
+    <span class="foot-mark">Zn solubilisation + biocontrol</span>
+    <span>10 · 19</span>
+  </footer>
+</section>
+
+
+<!-- ============================================
+     SHEET 08 · NPK GROW
+     ============================================ -->
+<section class="page product-sheet">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">Sheet 08 · NPK consortium</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">NPK Grow Caps</div>
+      <div>SKU · 3-strain consortium</div>
+      <div class="pg">11 · 19</div>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div class="product-mast">
+      <div>
+        <div class="eyebrow">Sheet 08 of 8 — All-in-one consortium SKU</div>
+        <h1 class="product-name">NPK Grow<br><em>Caps</em></h1>
+        <div class="product-strain">3-strain consortium · combined N + P + K</div>
+        <p class="function-line">Single capsule containing three SPANEX strains pre-blended at 3.3 × 10¹¹ CFU each. The simplification SKU — used as the entry / drop-in product when a multi-SKU programme is operationally too complex.</p>
+
+        <div class="chip-strip mt-md">
+          <span class="chip tag-forest">Entry SKU</span>
+          <span class="chip">Consortium</span>
+          <span class="chip">N + P + K combined</span>
+          <span class="chip">Apply 3 caps/ha</span>
+        </div>
+      </div>
+      <div class="product-emblem">
+        <svg class="diagram" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="92" fill="#FAF7EE" stroke="#0F4D3A" stroke-width="0.7"/>
+          <ellipse cx="80" cy="80" rx="22" ry="14" fill="#0F4D3A" opacity="0.85"/>
+          <ellipse cx="125" cy="85" rx="22" ry="14" fill="#5C7C3E" opacity="0.85"/>
+          <ellipse cx="100" cy="125" rx="22" ry="14" fill="#B85C2F" opacity="0.85"/>
+          <text x="80" y="83" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="9" fill="#FAF7EE">N</text>
+          <text x="125" y="88" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="9" fill="#FAF7EE">P</text>
+          <text x="100" y="128" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="9" fill="#FAF7EE">K</text>
+          <text x="100" y="170" text-anchor="middle" font-family="JetBrains Mono" font-size="5.5" letter-spacing="2" fill="#6a6f6a">3 STRAINS · 1 CAPSULE</text>
+          <text x="100" y="186" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="9" fill="#0F4D3A">3.3 × 10¹¹ CFU per strain</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="product-data-grid">
+      <div>
+        <h4 class="h4">Composition (per consortium cap)</h4>
+        <table class="spec">
+          <tr><td>N — <em class="scientific">Azospirillum brasilense</em> NCIM 5135</td><td>3.3 × 10¹¹ CFU</td></tr>
+          <tr><td>P — <em class="scientific">Bacillus megaterium</em> NCIM 2032</td><td>3.3 × 10¹¹ CFU</td></tr>
+          <tr><td>K — <em class="scientific">Bacillus decolorationis</em> IARI-SL-18</td><td>3.3 × 10¹¹ CFU</td></tr>
+          <tr><td>Total CFU per cap</td><td>1 × 10¹² (split 3 ways)</td></tr>
+        </table>
+
+        <h4 class="h4">Why 3 caps/ha (not 1)</h4>
+        <p style="font-size: 9pt;">Each strain in NPK Grow is at 3.3 × 10¹¹ CFU per cap — one third of the per-strain agronomic threshold. Apply <strong>3 caps/ha</strong> to bring each individual strain to 10¹² CFU/ha threshold. Single-strain SPANEX SKUs require only 1 cap/ha.</p>
+      </div>
+
+      <div>
+        <h4 class="h4">When to use NPK Grow vs full multi-SKU</h4>
+        <table class="data" style="margin-top: 1mm;">
+          <thead><tr><th>Decision driver</th><th class="right">Choose</th></tr></thead>
+          <tbody>
+            <tr><td>First-time customer · simplification needed</td><td class="right">NPK Grow</td></tr>
+            <tr><td>Distributor with limited shelf SKUs</td><td class="right">NPK Grow</td></tr>
+            <tr><td>Premium hort needing dialled-in dosing</td><td class="right">Full multi-SKU</td></tr>
+            <tr><td>Sugarcane (needs Aceto)</td><td class="right">NPK Grow + Aceto</td></tr>
+            <tr><td>Legumes (needs Rhizo)</td><td class="right">NPK Grow + Rhizo</td></tr>
+            <tr><td>Zn-deficient soil</td><td class="right">NPK Grow + Zinc Grow</td></tr>
+          </tbody>
+        </table>
+
+        <h4 class="h4">Crop fit</h4>
+        <p style="font-size: 9pt;">Universal entry product. Default for cereals, pasture, cotton, hort. Add specialty SKUs (Aceto, Rhizo, Zinc Grow) where crop biology requires it.</p>
+
+        <div class="callout callout-warn">
+          <h5>NPK Grow cannot replace</h5>
+          <p>Aceto (sugarcane endophyte), Rhizo (legume symbiont), or Zinc Grow (Zn solubilisation + biocontrol) — these strains are not in the NPK consortium. For those crop families, supplement NPK Grow with the relevant single-strain SKU.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-foot">
+    <span>Sheet 08 · NPK Grow Caps · 3-strain consortium</span>
+    <span class="foot-mark">entry SKU</span>
+    <span>11 · 19</span>
+  </footer>
+</section>
+
+
+<!-- ============================================
+     SECTION DIVIDER · II — APPLICATION  (screen only)
+     ============================================ -->
+<section class="page page-divider">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">Microbial Soil Inoculants</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">§ II — Application</div>
+      <div>Field Pack — 2026 / 04</div>
+      <div class="pg">12 · 19</div>
+    </div>
+  </header>
+  <div class="section-divider">
+    <div class="section-num">§ II — 3 sheets</div>
+    <h1 class="section-title">How it<br>goes <em>down</em><br>the line</h1>
+    <p class="section-blurb">Crop programme by growth stage. Tank-mix exclusions. A blank record sheet you can tear out and use. Water rates are stated for the activated capsule solution — the dose itself is delivered through whatever your normal application method allows.</p>
+  </div>
+  <footer class="page-foot">
+    <span>Section II · Application</span>
+    <span class="foot-mark">programme & logistics</span>
+    <span>12 · 19</span>
+  </footer>
+</section>
+
+
+<!-- ============================================
+     PAGE 13 · APPLICATION GUIDE
+     ============================================ -->
+<section class="page">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">Application guide · by crop</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">Application Guide</div>
+      <div>Programme by growth stage</div>
+      <div class="pg">13 · 19</div>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div class="eyebrow">Sheet 12 — Programme by crop</div>
+    <h1 class="h2">Application by growth stage <em>—</em> water · timing · method</h1>
+
+    <p style="font-size: 9pt; max-width: 160mm; margin-bottom: 4mm;">All rates are 1 capsule per hectare per SKU per application. Activate every cap by soaking 6–8 hr in 5 L clean chlorine-free water before dilution. Apply within 4 hours of dilution. Maintain 3–4 day gap from chemical fertilisers.</p>
+
+    <table class="data">
+      <thead>
+        <tr>
+          <th>Crop family</th>
+          <th>Growth stage / timing</th>
+          <th>Programme — full multi-SKU</th>
+          <th>Programme — NPK Grow shortcut</th>
+          <th class="right">Water L/ha</th>
+          <th class="right">Method</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Cereals</strong><br>Wheat · barley · oats</td>
+          <td>At sowing — single dose</td>
+          <td>Azoto 1 + Azoss 1 + PSB 1 + Potash 1 + Zinc 1 = <strong>5 caps</strong></td>
+          <td>NPK Grow 3 + Zinc Grow 1 = <strong>4 caps</strong></td>
+          <td class="num right">500</td>
+          <td class="right">Seed slurry · in-furrow</td>
+        </tr>
+        <tr>
+          <td><strong>Sorghum / maize / oats forage</strong></td>
+          <td>Sowing + V6 booster</td>
+          <td>5 caps × 2 apps = <strong>10 caps/cycle</strong></td>
+          <td>4 caps × 2 = <strong>8 caps</strong></td>
+          <td class="num right">500</td>
+          <td class="right">Fertigation · drench</td>
+        </tr>
+        <tr>
+          <td><strong>Paddy (rice)</strong></td>
+          <td>Transplant + tillering (2 apps)</td>
+          <td>Azoto 1 + Azoss 1 + PSB 1 + Potash 1 = <strong>4 caps</strong> × 2</td>
+          <td>NPK Grow 3 + Azoss 1 × 2 apps = <strong>8</strong></td>
+          <td class="num right">500</td>
+          <td class="right">Soil drench</td>
+        </tr>
+        <tr>
+          <td><strong>Cotton</strong></td>
+          <td>Sowing + squaring (~90 d)</td>
+          <td>5 caps × 2 = <strong>10 caps</strong></td>
+          <td>4 caps × 2 = <strong>8 caps</strong></td>
+          <td class="num right">500</td>
+          <td class="right">In-furrow + side-dress</td>
+        </tr>
+        <tr>
+          <td><strong>Sugarcane</strong></td>
+          <td>Planting + grand-growth (~5 mo)</td>
+          <td>Aceto 1 + PSB 1 + Potash 1 = <strong>3 caps × 2</strong> = 6</td>
+          <td>Aceto 1 + NPK Grow 3 × 2 = <strong>8</strong></td>
+          <td class="num right">500</td>
+          <td class="right">Setts + fertigation</td>
+        </tr>
+        <tr>
+          <td><strong>Pasture — Y1 establishment</strong></td>
+          <td>Spring + summer + autumn (3 apps)</td>
+          <td>Rhizo 1 + Azoss 1 + PSB 1 + Potash 1 = <strong>4 × 3</strong> = 12</td>
+          <td>Rhizo 1 + NPK Grow 3 × 3 = <strong>12</strong></td>
+          <td class="num right">500</td>
+          <td class="right">Boom spray on moist soil</td>
+        </tr>
+        <tr>
+          <td><strong>Pasture — Y2+ maintenance</strong></td>
+          <td>1–2 apps / yr (start of growth season)</td>
+          <td>4 caps × 1–2 = <strong>4–8 caps</strong></td>
+          <td>4 caps × 1–2 = <strong>4–8</strong></td>
+          <td class="num right">500</td>
+          <td class="right">Boom · oversow with seed</td>
+        </tr>
+        <tr>
+          <td><strong>Lucerne (perennial)</strong></td>
+          <td>Spring post-cut + autumn post-cut (2 apps)</td>
+          <td>Rhizo 1 + PSB 1 + Potash 1 = <strong>3 × 2 = 6</strong></td>
+          <td>Rhizo 1 + NPK Grow 3 × 2 = <strong>8</strong></td>
+          <td class="num right">500</td>
+          <td class="right">Drench · fertigation</td>
+        </tr>
+        <tr>
+          <td><strong>Leucaena (AACO)</strong></td>
+          <td>Establishment + biennial top-up</td>
+          <td>3 caps × 2 = <strong>6 caps</strong></td>
+          <td>4 caps × 2 = <strong>8 caps</strong></td>
+          <td class="num right">500</td>
+          <td class="right">Seed slurry establishment + boom for top-up</td>
+        </tr>
+        <tr>
+          <td><strong>Pulses — chickpea, lentil, faba</strong></td>
+          <td>Seed-coat at sowing (single)</td>
+          <td>Rhizo 1 + PSB 1 + Potash 1 = <strong>3 caps</strong></td>
+          <td>Rhizo 1 + NPK Grow 3 = <strong>4 caps</strong></td>
+          <td class="num right">500</td>
+          <td class="right">Seed slurry</td>
+        </tr>
+        <tr>
+          <td><strong>Tree fruit · vine</strong></td>
+          <td>Bud-break + summer + post-harvest (3 apps)</td>
+          <td>Azoto 1 + PSB 1 + Potash 1 + Zinc 1 = <strong>4 × 3 = 12</strong></td>
+          <td>NPK Grow 3 + Zinc 1 × 3 = <strong>12</strong></td>
+          <td class="num right">500</td>
+          <td class="right">Drip / fertigation</td>
+        </tr>
+        <tr>
+          <td><strong>Berries (perennial)</strong></td>
+          <td>Pre-flower + post-harvest (± summer)</td>
+          <td>5 caps × 2–3 = <strong>10–15 caps</strong></td>
+          <td>4 caps × 2–3 = <strong>8–12</strong></td>
+          <td class="num right">500</td>
+          <td class="right">Drip / fertigation</td>
+        </tr>
+        <tr>
+          <td><strong>Tomato · veg</strong></td>
+          <td>Transplant + fruit-set (1–2 apps)</td>
+          <td>5 caps × 1–2 = <strong>5–10 caps</strong></td>
+          <td>4 caps × 1–2 = <strong>4–8</strong></td>
+          <td class="num right">500</td>
+          <td class="right">Drench · drip</td>
+        </tr>
+        <tr>
+          <td><strong>Cut flowers</strong></td>
+          <td>Pre-flower + post-flower (3 apps)</td>
+          <td>5 caps × 3 = <strong>15 caps</strong></td>
+          <td>4 caps × 3 = <strong>12</strong></td>
+          <td class="num right">500</td>
+          <td class="right">Glasshouse drip · fertigation</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid grid-2 mt-md">
+      <div class="callout">
+        <h5>Activation procedure (every cap, every time)</h5>
+        <p>1 — Soak capsule(s) in 5 L lukewarm clean chlorine-free water · 6–8 hours (overnight). 2 — Stir / shake intermittently. 3 — Microbe count multiplies ~10× during activation. 4 — Dilute to 500 L total carrier water. 5 — Apply within 4 hours of dilution.</p>
+      </div>
+      <div class="callout callout-warn">
+        <h5>Conditions to avoid</h5>
+        <p>Direct sunlight on mixed solution. Hot midday application. Chlorinated municipal water. Tank-mix with bactericides, copper-based fungicides, hydrogen peroxide. Apply before dry spell or onto cracked dry soil. Maintain 3–4 day gap from urea / DAP / MAP synthetic fertiliser application.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-foot">
+    <span>Sheet 12 · Application guide</span>
+    <span class="foot-mark">programme by crop</span>
+    <span>13 · 19</span>
+  </footer>
+</section>
+
+
+<!-- ============================================
+     PAGE 14 · TANK MIX COMPATIBILITY
+     ============================================ -->
+<section class="page">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">Tank-mix compatibility</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">Sheet 13 · Tank-Mix</div>
+      <div>What we are NOT compatible with</div>
+      <div class="pg">14 · 19</div>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div class="eyebrow">Sheet 13 — Compatibility statement</div>
+    <h1 class="h2">Tank-mix compatibility <em>—</em> the part you actually need</h1>
+
+    <div class="callout callout-warn mb-md">
+      <h5>Statement honesty</h5>
+      <p>This sheet lists what we have <strong>data</strong> on. Many farm-chemistry combinations have not been bench-tested with SPANEX. Treat anything not on this list as "test in a small jar before tank-loading". Manufacturer-supplied compatibility data is being expanded — see §IV letter to SRT.</p>
+    </div>
+
+    <div class="grid grid-2">
+      <div>
+        <h4 class="h4">DO NOT MIX — confirmed incompatible</h4>
+        <table class="data">
+          <thead><tr><th>Class</th><th class="right">Reason</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Bactericides (any)</td>
+              <td class="right">Kills inoculum directly</td>
+            </tr>
+            <tr>
+              <td>Copper-based fungicides<br><span class="tiny">— Cu(OH)₂ · CuSO₄ · Cu-oxychloride · Bordeaux</span></td>
+              <td class="right">Cu²⁺ ion toxic to <em class="scientific">Bacillus</em> spores</td>
+            </tr>
+            <tr>
+              <td>Chlorinated water (municipal · pool · superchlorinated)</td>
+              <td class="right">Free Cl₂ disinfects inoculum</td>
+            </tr>
+            <tr>
+              <td>Hydrogen peroxide / peracetic</td>
+              <td class="right">Oxidises microbial cells</td>
+            </tr>
+            <tr>
+              <td>Quaternary ammonium sanitisers</td>
+              <td class="right">Membrane disruption</td>
+            </tr>
+            <tr>
+              <td>Hot solution (&gt; 40 °C)</td>
+              <td class="right">Heat kills vegetative cells</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4 class="h4">SPACE BY 3–4 DAYS — synthetic fertiliser timing</h4>
+        <table class="data">
+          <thead><tr><th>Input</th><th class="right">Spacing</th></tr></thead>
+          <tbody>
+            <tr><td>Urea (full rate)</td><td class="right">3–4 days before/after</td></tr>
+            <tr><td>DAP / MAP</td><td class="right">3–4 days</td></tr>
+            <tr><td>MOP / SOP</td><td class="right">3–4 days</td></tr>
+            <tr><td>Anhydrous ammonia</td><td class="right">7+ days minimum</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <h4 class="h4">LIKELY COMPATIBLE — pending formal bench data</h4>
+        <table class="data">
+          <thead><tr><th>Class</th><th class="right">Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Most herbicides post-application</td><td class="right">Apply SPANEX after herbicide is rainfast</td></tr>
+            <tr><td>Most insecticides (non-bactericidal)</td><td class="right">Test small batch first</td></tr>
+            <tr><td>Humic / fulvic acid products</td><td class="right">✓ Synergistic — supports establishment</td></tr>
+            <tr><td>Seaweed / kelp extracts</td><td class="right">✓ Compatible</td></tr>
+            <tr><td>Compost extracts / teas</td><td class="right">✓ Compatible</td></tr>
+            <tr><td>Mycorrhizal inoculants</td><td class="right">✓ Compatible (often co-applied)</td></tr>
+            <tr><td>Foliar micronutrient chelates (Fe / Mn / B)</td><td class="right">Test compatibility for jar test</td></tr>
+            <tr><td>Sulfur (elemental, dustable)</td><td class="right">Apply 2–3 days apart</td></tr>
+          </tbody>
+        </table>
+
+        <h4 class="h4">Jar-test protocol (5 min in the shed)</h4>
+        <ol class="bullet">
+          <li>Mix the proposed tank-mix at the same dilution as paddock rate, in 250 mL clean water.</li>
+          <li>Add the activated SPANEX solution to the jar.</li>
+          <li>Cap, invert 5 ×, leave 30 min.</li>
+          <li>Check for: flocculation, clouding, layer separation, gas-off (foaming), heat.</li>
+          <li>If clear or only mild clouding — proceed at small batch first.</li>
+          <li>If precipitate, gas-off, heat, layer separation — DO NOT load tank.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h5>What we still need to bench-test</h5>
+      <p>SPANEX × glyphosate (most common AU broadacre tank partner). SPANEX × bifenthrin / chlorpyrifos. SPANEX × tebuconazole / propiconazole / mancozeb. SPANEX × calcium nitrate (fertigation). Pending formal compatibility data from manufacturer SRT — request submitted (see §IV).</p>
+    </div>
+  </div>
+
+  <footer class="page-foot">
+    <span>Sheet 13 · Tank-mix compatibility</span>
+    <span class="foot-mark">DO NOT MIX list</span>
+    <span>14 · 19</span>
+  </footer>
+</section>
+
+
+<!-- ============================================
+     PAGE 15 · BLANK RECOMMENDATION RECORD
+     ============================================ -->
+<section class="page">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">Recommendation Record · Blank</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">Sheet 14 · Field tool</div>
+      <div>Tear out · use in paddock</div>
+      <div class="pg">15 · 19</div>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div style="border: 1pt solid var(--ink); padding: 7mm; position: relative;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5mm; padding-bottom: 4mm; border-bottom: 0.5pt solid var(--ink);">
+        <div>
+          <div style="font-family: var(--font-mono); font-size: 6.5pt; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust);">Field-side worksheet · Edition 01</div>
+          <h2 class="h2" style="margin: 1mm 0 0; font-size: 28pt;">Recommendation <em>Record</em></h2>
+        </div>
+        <div class="head-meta" style="font-family: var(--font-mono); font-size: 7.5pt;">
+          <div style="font-family: var(--font-display); font-style: italic; font-size: 11pt; color: var(--forest); margin-bottom: 2mm;">Form RR-01</div>
+          <div>Date: ________________</div>
+          <div>Sheet ____ of ____</div>
+        </div>
+      </div>
+
+      <h4 class="h4" style="margin-top: 3mm;">A · Farm & paddock</h4>
+      <div class="form-row r-2">
+        <div class="field"><label>Farmer / business name</label><div class="blank"></div></div>
+        <div class="field"><label>Contact / phone</label><div class="blank"></div></div>
+      </div>
+      <div class="form-row r-3">
+        <div class="field"><label>Region / district</label><div class="blank"></div></div>
+        <div class="field"><label>Property name</label><div class="blank"></div></div>
+        <div class="field"><label>Paddock ID</label><div class="blank"></div></div>
+      </div>
+      <div class="form-row r-3">
+        <div class="field"><label>Paddock area (ha)</label><div class="blank"></div></div>
+        <div class="field"><label>Soil order (ASC)</label><div class="blank"></div></div>
+        <div class="field"><label>Last soil test (date)</label><div class="blank"></div></div>
+      </div>
+
+      <h4 class="h4">B · Crop & state</h4>
+      <div class="form-row r-3">
+        <div class="field"><label>Crop / cultivar</label><div class="blank"></div></div>
+        <div class="field"><label>Growth stage</label><div class="blank"></div></div>
+        <div class="field"><label>Sowing / transplant date</label><div class="blank"></div></div>
+      </div>
+      <div class="form-row r-2">
+        <div class="field"><label>Pest / disease pressure observed</label><div class="blank-tall"></div></div>
+        <div class="field"><label>Nutrient deficiency symptoms</label><div class="blank-tall"></div></div>
+      </div>
+
+      <h4 class="h4">C · SPANEX recommendation</h4>
+      <div class="checkbox-row">
+        <span class="cb"><span class="cb-box"></span> Azoto Caps</span>
+        <span class="cb"><span class="cb-box"></span> Azoss Caps</span>
+        <span class="cb"><span class="cb-box"></span> Aceto Caps</span>
+        <span class="cb"><span class="cb-box"></span> Rhizo Caps</span>
+        <span class="cb"><span class="cb-box"></span> PSB Plus Caps</span>
+        <span class="cb"><span class="cb-box"></span> Potash Grow Caps</span>
+        <span class="cb"><span class="cb-box"></span> Zinc Grow Caps</span>
+        <span class="cb"><span class="cb-box"></span> NPK Grow Caps</span>
+      </div>
+      <div class="form-row r-3">
+        <div class="field"><label>Total caps recommended</label><div class="blank"></div></div>
+        <div class="field"><label>Apps per cycle</label><div class="blank"></div></div>
+        <div class="field"><label>First app planned date</label><div class="blank"></div></div>
+      </div>
+      <div class="form-row r-asym">
+        <div class="field"><label>Application method</label><div class="blank"></div></div>
+        <div class="field"><label>Carrier water (L/ha)</label><div class="blank"></div></div>
+      </div>
+
+      <h4 class="h4">D · Tank-mix · timing constraints</h4>
+      <div class="form-row r-2">
+        <div class="field"><label>Other inputs in 7 days before / after</label><div class="blank-tall"></div></div>
+        <div class="field"><label>Jar-test result (if performed)</label><div class="blank-tall"></div></div>
+      </div>
+
+      <h4 class="h4">E · Expected outcome — written before, signed off after</h4>
+      <div class="form-row r-2">
+        <div class="field"><label>Expected response (specific, measurable)</label><div class="blank-grid"></div></div>
+        <div class="field"><label>Observation date / outcome</label><div class="blank-grid"></div></div>
+      </div>
+
+      <h4 class="h4">F · Sign-off</h4>
+      <div class="form-row r-3">
+        <div class="field"><label>Agronomist signature</label><div class="blank-tall"></div></div>
+        <div class="field"><label>Farmer / manager signature</label><div class="blank-tall"></div></div>
+        <div class="field"><label>SPANEX rep signature</label><div class="blank-tall"></div></div>
+      </div>
+
+      <p class="tiny" style="margin-top: 5mm;">Form RR-01 is a working field tool. Retain for paddock records and for SPANEX feedback if the paddock becomes a pilot reference site. SPANEX may use anonymised data from this sheet for product development and case study purposes — opt out by ticking here ☐.</p>
+    </div>
+  </div>
+
+  <footer class="page-foot">
+    <span>Sheet 14 · Recommendation Record · Form RR-01</span>
+    <span class="foot-mark">field tool</span>
+    <span>15 · 19</span>
+  </footer>
+</section>
+
+
+<!-- ============================================
+     SECTION DIVIDER · III — EVIDENCE  (screen only)
+     ============================================ -->
+<section class="page page-divider">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">Microbial Soil Inoculants</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">§ III — Evidence</div>
+      <div>Field Pack — 2026 / 04</div>
+      <div class="pg">16 · 19</div>
+    </div>
+  </header>
+  <div class="section-divider">
+    <div class="section-num">§ III — 4 sheets</div>
+    <h1 class="section-title">What we<br><em>do</em> have<br>data on.</h1>
+    <p class="section-blurb">Five Indian field trial reports. Two of them are controlled paired-paddock comparisons. Three are farmer demonstrations. They are real, they are signed, and they do not yet replace Australian field validation. We tell you which is which.</p>
+  </div>
+  <footer class="page-foot">
+    <span>Section III · Evidence</span>
+    <span class="foot-mark">field-IN data</span>
+    <span>16 · 19</span>
+  </footer>
+</section>
+
+
+<!-- ============================================
+     PAGE 17 · STATISTICAL FTR SUMMARY
+     ============================================ -->
+<section class="page">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">Indian field-trial summary</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">Sheet 15 · Field-IN data</div>
+      <div>Statistical reframing</div>
+      <div class="pg">17 · 19</div>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div class="eyebrow">Sheet 15 — five FTRs at a glance</div>
+    <h1 class="h2">Indian field-trial summary <em>—</em> statistical reframing</h1>
+    <p class="deck">The original FTRs are written as farmer satisfaction reports. This sheet re-states the evidence in the form an agronomist can audit.</p>
+
+    <table class="data mt-md">
+      <thead>
+        <tr>
+          <th>FTR</th>
+          <th>Farmer · Location</th>
+          <th>Crop · cultivar</th>
+          <th>Period · area</th>
+          <th>Design</th>
+          <th class="right">Result</th>
+          <th class="right">n</th>
+          <th class="right">Evidence class</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>#1 Tomato</strong></td>
+          <td>Mr. Prakhar Varu · Sirsa, Bhilai-3, Durg, Chhattisgarh</td>
+          <td>Tomato (Saaho)</td>
+          <td>Nov 2022 – Mar 2023 · 2.5 ac</td>
+          <td>Paired Trial vs Non-Trial · full fertigation logs both</td>
+          <td class="num right">+8–9 % yield · −19–20 % cost</td>
+          <td class="num right">1 × 1</td>
+          <td class="right"><strong>FIELD-IN · MED</strong></td>
+        </tr>
+        <tr>
+          <td><strong>#2 Grapes</strong></td>
+          <td>Mr. Mahaveer Patil · Takali, Miraj, Sangli, Maharashtra</td>
+          <td>Grape (Thomson)</td>
+          <td>Period not stated · 1 ac</td>
+          <td>Paired comparison · visual + farmer report</td>
+          <td class="num right">+20 % yield · 0 disease</td>
+          <td class="num right">1 × 1</td>
+          <td class="right"><strong>FIELD-IN · MED-LOW</strong></td>
+        </tr>
+        <tr>
+          <td><strong>#3 Chickpea</strong></td>
+          <td>Mr. Nutan Verma · Khangar Patt, Berla, Chhattisgarh</td>
+          <td>Chickpea</td>
+          <td>Nov 2023 – Mar 2024 · 4 ac</td>
+          <td>Single demo, no control</td>
+          <td class="num right">3,025 kg/ha</td>
+          <td class="num right">1 demo</td>
+          <td class="right">FIELD-IN · LOW</td>
+        </tr>
+        <tr>
+          <td><strong>#4 Wheat</strong></td>
+          <td>Mr. Nutan Verma · same farm</td>
+          <td>Wheat</td>
+          <td>Nov 2024 – Mar 2025 · 3 ac</td>
+          <td>Single demo, no control · repeat customer</td>
+          <td class="num right">2,594 kg/ha</td>
+          <td class="num right">1 demo</td>
+          <td class="right">FIELD-IN · LOW</td>
+        </tr>
+        <tr>
+          <td><strong>#5 Tomato (dup)</strong></td>
+          <td>Same as #1</td>
+          <td>Same</td>
+          <td>Same</td>
+          <td>Duplicate PDF on file</td>
+          <td class="right">— see #1</td>
+          <td class="right">—</td>
+          <td class="right">—</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid grid-3 mt-md">
+      <div class="stat">
+        <div class="stat-label">Tomato — paired field</div>
+        <div class="stat-num"><em>+8–9 %</em></div>
+        <div class="stat-foot">yield over Non-Trial @ 78.43 vs 72.06 MT/acre</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Tomato — programme cost</div>
+        <div class="stat-num"><em>−19–20 %</em></div>
+        <div class="stat-foot">₹80,120 vs ₹98,711 per acre</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Grapes — disease incidence</div>
+        <div class="stat-num"><em>0</em></div>
+        <div class="stat-foot">bacterial / fungal infections in trial; vs patches of damage in non-trial</div>
+      </div>
+    </div>
+
+    <div class="callout callout-warn mt-md">
+      <h5>Statistical disclosures the agronomist will ask about</h5>
+      <p><strong>n</strong>: One paired comparison per FTR. No replication within or across seasons. <strong>Confidence interval</strong>: Cannot be calculated from n=1 paired data — these are <em>point estimates</em>, not statistically significant differences. <strong>Programme isolation</strong>: All trials use combined SRT programmes (SPANEX bio-capsules + PROM phosphorus manure + mycorrhiza + biocontrol kits + foliar micronutrients) — SPANEX in isolation has not been tested. <strong>Soil class</strong>: Indian Black Soil (Vertisol-equivalent) only. <strong>Australian transferability</strong>: Indicative — pending paid-pilot trial confirmation.</p>
+    </div>
+  </div>
+
+  <footer class="page-foot">
+    <span>Sheet 15 · FTR statistical summary</span>
+    <span class="foot-mark">field-IN data</span>
+    <span>17 · 19</span>
+  </footer>
+</section>
+
+
+<!-- ============================================
+     PAGE 18 · TOMATO FTR DEEP DIVE
+     ============================================ -->
+<section class="page">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">FTR #1 — Tomato controlled trial</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">Sheet 16 · Field-IN #1</div>
+      <div>Mr. Prakhar Varu · 2022–23</div>
+      <div class="pg">18 · 19</div>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div class="eyebrow">Sheet 16 — FTR #1 deep dive</div>
+    <h1 class="h2">Tomato controlled trial <em>—</em> full data sheet</h1>
+
+    <table class="spec mt-md" style="max-width: 130mm;">
+      <tr><td>Farmer</td><td>Mr. Prakhar Varu, DOB 28 March 1994</td></tr>
+      <tr><td>Address</td><td>Kumhari, Durg, Chhattisgarh, India</td></tr>
+      <tr><td>Property</td><td>30 acres total · 2.5 acres demonstration</td></tr>
+      <tr><td>Crop · cultivar</td><td>Tomato — Saaho variety</td></tr>
+      <tr><td>Soil class</td><td>Black Soil (Vertisol-equivalent)</td></tr>
+      <tr><td>Previous crop</td><td>Pumpkin</td></tr>
+      <tr><td>Cropping method</td><td>Transplantation</td></tr>
+      <tr><td>Irrigation</td><td>Drip</td></tr>
+      <tr><td>Trial start · end</td><td>20 Nov 2022 — 13 Feb 2023</td></tr>
+      <tr><td>Declaration signed</td><td>29 March 2023 by farmer</td></tr>
+      <tr><td>Design</td><td>Paired Trial Field vs Non-Trial Field with full fertigation logs both</td></tr>
+    </table>
+
+    <h4 class="h4">Programme — SRT Trial Field</h4>
+    <table class="data">
+      <thead>
+        <tr><th>Component</th><th>Active</th><th class="right">Quantity / ha</th><th class="right">Mode</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>IBP Kit</td><td><em class="scientific">Trichoderma viride · Pseudomonas fluorescens · Paecilomyces lilacinus</em></td><td class="num right">1 kit</td><td class="right">Soil drench</td></tr>
+        <tr><td>Mycorrhiza Granule</td><td>Mycorrhiza fungi</td><td class="num right">7.5 kg</td><td class="right">Basal</td></tr>
+        <tr><td>Mycorrhiza NP</td><td>Mycorrhiza nano-powder</td><td class="num right">200 g</td><td class="right">Soil</td></tr>
+        <tr><td>Amavasya Kit</td><td>5-bacteria pest/fungal control</td><td class="num right">2 kits</td><td class="right">Foliar</td></tr>
+        <tr><td><strong>Poornima Kit</strong></td><td>NPK Consortia + Zinc Grow + nano-powders + mycorrhiza</td><td class="num right">0.5 kit</td><td class="right">Drip</td></tr>
+        <tr><td><strong>NPK Grow capsules</strong></td><td>NPK Consortia (SPANEX)</td><td class="num right">16 caps</td><td class="right">Soil</td></tr>
+        <tr><td><strong>Azoto + PSB Plus + Potash Grow</strong></td><td>SPANEX bio-capsules</td><td class="num right">2 + 2 + 2 caps</td><td class="right">Soil</td></tr>
+        <tr><td>ALP + Sonha-Bihan</td><td>Chelated multi-micronutrient + PGR</td><td class="num right">2.5 L + 3 kg</td><td class="right">Foliar</td></tr>
+        <tr><td>Humigrow + Cropforce</td><td>Humic acid + bio-zhyme</td><td class="num right">900 g + 300 g</td><td class="right">Soil</td></tr>
+      </tbody>
+    </table>
+
+    <h4 class="h4">Documented outcomes</h4>
+    <table class="data">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th class="right">Non-Trial Field</th>
+          <th class="right">SRT Trial Field</th>
+          <th class="right">Δ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Yield</td>
+          <td class="num right">72.06 MT / acre</td>
+          <td class="num right">78.43 MT / acre</td>
+          <td class="num right text-rust"><strong>+8–9 %</strong></td>
+        </tr>
+        <tr>
+          <td>Total programme cost</td>
+          <td class="num right">₹98,711 / acre</td>
+          <td class="num right">₹80,120 / acre</td>
+          <td class="num right text-rust"><strong>−19–20 %</strong></td>
+        </tr>
+        <tr>
+          <td>Farmer rating</td>
+          <td class="right">—</td>
+          <td class="right"><strong>GOOD</strong></td>
+          <td class="right">Signed declaration</td>
+        </tr>
+        <tr>
+          <td>Best-feature feedback</td>
+          <td colspan="3" class="right"><em>"Easy to use, transport, and fast result"</em></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <h5>Defensible customer-facing claim from FTR #1</h5>
+      <p><em>"In a 2022-23 controlled paired-paddock comparison on 2.5 acres of tomato (Saaho variety) on Indian Black Soil at Mr. Prakhar Varu's farm in Sirsa, Bhilai-3, Chhattisgarh, the integrated SRT/SPANEX programme delivered an 8–9 % yield increase and 19–20 % programme cost reduction vs the farmer's conventional programme. Full fertigation logs available."</em></p>
+    </div>
+    <p class="tiny">SPANEX-isolated efficacy not separable from the integrated programme. Statistical replication and Australian-conditions trial pending.</p>
+  </div>
+
+  <footer class="page-foot">
+    <span>Sheet 16 · FTR #1 Tomato</span>
+    <span class="foot-mark">field-IN data</span>
+    <span>18 · 19</span>
+  </footer>
+</section>
+
+
+<!-- ============================================
+     PAGE 19 · GRAPES + CAVEATS
+     ============================================ -->
+<section class="page">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">FTR #2 + Honest caveats</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">Sheet 17–18 · Field-IN</div>
+      <div>Grapes + What FTRs do not prove</div>
+      <div class="pg">19 · 19</div>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div class="grid grid-2">
+      <div>
+        <div class="eyebrow">Sheet 17 — FTR #2</div>
+        <h2 class="h2" style="margin-bottom: 4mm;">Grapes <em>—</em> Maharashtra</h2>
+
+        <table class="spec">
+          <tr><td>Farmer</td><td>Mr. Mahaveer Patil</td></tr>
+          <tr><td>Address</td><td>Takali, Miraj, Sangli, Maharashtra</td></tr>
+          <tr><td>Crop · cultivar</td><td>Grape (Thomson)</td></tr>
+          <tr><td>Trial area</td><td>1 acre (rest = farmer regular practice)</td></tr>
+          <tr><td>Inspecting authority</td><td>Mr. Shirish Taunk, MD, SRT Agro Science</td></tr>
+        </table>
+
+        <h4 class="h4">Pre-trial field condition</h4>
+        <ul class="dash">
+          <li>Poor vegetative growth — plants not producing new branches or healthy leaves</li>
+          <li>Disease & pest pressure — fungal + bacterial infections + nematode attacks</li>
+          <li>Soil health — low microbial activity, poor nutrient availability</li>
+          <li>Reduced yield in previous seasons</li>
+        </ul>
+
+        <h4 class="h4">Programme applied</h4>
+        <ol class="bullet">
+          <li>IBP Kit (Trichoderma + Pseudomonas + Paecilomyces) — drip drench, repeated 15 d due to disease pressure</li>
+          <li>NPK Grow 2 caps + Humigrow 500 mL + Mycorrhiza Nano 100 g — drip, 1 wk after IBP</li>
+          <li>NPK Grow 2 caps + Humigrow 500 mL — drip, 1 mo later</li>
+          <li>ALP 250 mL + Sonha-Bihan 250 g — foliar at flowering</li>
+          <li>ALP 250 mL + Sonha-Bihan 250 g — drip at fruit-set</li>
+        </ol>
+
+        <h4 class="h4">Documented outcomes</h4>
+        <ul class="dash">
+          <li><strong>+20 %</strong> farmer-reported yield increase</li>
+          <li><strong>0</strong> bacterial / fungal infections in trial field</li>
+          <li>Patches of bacterial damage in non-trial field</li>
+          <li>Visible difference photographed at multiple growth stages</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="eyebrow">Sheet 18 — Honest caveats</div>
+        <h2 class="h2" style="margin-bottom: 4mm;">What the FTRs <em>do not</em> prove</h2>
+
+        <div class="callout callout-warn">
+          <h5>Reproducibility limits</h5>
+          <p>None of the 5 FTRs are statistically replicated. n = 1 farmer per trial. The two paired comparisons (Tomato, Grapes) are point estimates, not significance-tested differences. They are demonstrations, not proofs.</p>
+        </div>
+
+        <div class="callout callout-warn">
+          <h5>Programme isolation</h5>
+          <p>All trials apply combined SRT programmes — SPANEX bio-capsules <em>plus</em> PROM, mycorrhiza, biocontrol kits, foliar sprays, humic / fulvic acid. SPANEX-isolated efficacy in isolation is not measured. The 8–9 % tomato yield uplift is attributable to <em>the integrated programme</em>, not to SPANEX alone.</p>
+        </div>
+
+        <div class="callout callout-warn">
+          <h5>Geographic transferability</h5>
+          <p>All trials on Indian Black Soil (Vertisol-equivalent) in Chhattisgarh and Maharashtra. Australian regional / soil / climate / cultivar transferability is plausible but unverified.</p>
+        </div>
+
+        <div class="callout callout-warn">
+          <h5>What the disease-suppression in FTR #2 actually means</h5>
+          <p>The Grapes trial documents zero bacterial / fungal infections in SPANEX-treated. <em>However</em> the IBP Kit (containing <em class="scientific">Trichoderma · Pseudomonas · Paecilomyces</em>) is the dedicated biocontrol component of the programme — these strains, not the SPANEX bio-fertilisers, are likely doing most of the disease suppression work.</p>
+        </div>
+
+        <div class="callout">
+          <h5>Path to AU validation</h5>
+          <p>See §IV (page 22) — university outreach pack template + paid pilot trial offer. Recommended first AU pilot: a single-region single-crop paired-paddock trial mirroring the Indian Tomato design, in Vertosol cotton country (Liverpool Plains or Darling Downs) or in AACO Vertosol leucaena country.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-foot">
+    <span>Sheet 17–18 · FTR #2 Grapes + Caveats</span>
+    <span class="foot-mark">field-IN data</span>
+    <span>19 · 19</span>
+  </footer>
+</section>
+
+
+<!-- ============================================
+     SECTION DIVIDER · IV — ASKS  (screen only)
+     ============================================ -->
+<section class="page page-divider">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">Microbial Soil Inoculants</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">§ IV — Asks</div>
+      <div>Field Pack — 2026 / 04</div>
+      <div class="pg">20 · 19</div>
+    </div>
+  </header>
+  <div class="section-divider">
+    <div class="section-num">§ IV — 2 templates</div>
+    <h1 class="section-title">What we<br>are <em>asking</em><br>for next.</h1>
+    <p class="section-blurb">Two open letters. The first to our manufacturer requesting harder data. The second to Australian universities offering co-funded pilot trials. Both are templates an agronomist or research lead can sign and send.</p>
+  </div>
+  <footer class="page-foot">
+    <span>Section IV · Asks</span>
+    <span class="foot-mark">supply chain · research</span>
+    <span>20 · 19</span>
+  </footer>
+</section>
+
+
+<!-- ============================================
+     PAGE 21 · LETTER TO MANUFACTURER
+     ============================================ -->
+<section class="page">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">Letter · Request to manufacturer</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">Sheet 19 · Template</div>
+      <div>Form L-01</div>
+      <div class="pg">21 · 19</div>
+    </div>
+  </header>
+
+  <div class="page-body" style="font-family: var(--font-display); font-variation-settings: 'opsz' 14, 'SOFT' 30;">
+    <div style="max-width: 165mm;">
+      <div style="text-align: right; font-family: var(--font-mono); font-size: 7.5pt; letter-spacing: 0.06em; color: var(--ink-mute); margin-bottom: 8mm;">
+        Meem International Pty Ltd<br>
+        ABN — Australian distributor<br>
+        Date: ____________________
+      </div>
+
+      <p style="font-size: 10pt; line-height: 1.5;">
+        SRT Agro Science Pvt. Ltd.<br>
+        Village Funda, Tah: Patan<br>
+        District Durg, Chhattisgarh<br>
+        491 111, India<br>
+        <em style="font-style: italic;">Attn: Mr. Shirish Taunk, Managing Director</em>
+      </p>
+
+      <h3 class="h3" style="font-family: var(--font-display); font-size: 18pt; font-style: italic; margin-top: 8mm; margin-bottom: 4mm;">Re: Request for additional product data — Australian agronomist channel</h3>
+
+      <p style="font-size: 10pt; line-height: 1.55;">Dear Mr. Taunk,</p>
+
+      <p style="font-size: 10pt; line-height: 1.55;">As Australian distributor of the SPANEX biocapsule range, we are presenting your products to professional agronomy teams at AACO, Costa Group, Sugar Research Australia and major distributors. To meet their technical-review thresholds we require additional manufacturer-supplied data items, which we believe SRT already holds or can prepare quickly.</p>
+
+      <h4 class="h4" style="font-family: var(--font-mono); font-size: 8pt; letter-spacing: 0.16em; color: var(--rust); margin-top: 6mm; margin-bottom: 3mm; padding-bottom: 2mm;">Specifically requested</h4>
+
+      <ol style="font-size: 10pt; line-height: 1.65; margin-left: 8mm; font-family: var(--font-display); font-variation-settings: 'opsz' 14;">
+        <li style="margin-bottom: 3mm;"><strong>Updated Certificates of Analysis</strong> for the HPMC-shell version of all eight SKUs (the CoA on file dated 7 Dec 2023 references the legacy Hard Gelatin shell). One CoA per SKU for the most recent manufacturing batch.</li>
+        <li style="margin-bottom: 3mm;"><strong>Per-strain CFU breakdown</strong> for NPK Grow Caps — confirming the assumed equal-split (3.3 × 10¹¹ per strain) or stating the actual split.</li>
+        <li style="margin-bottom: 3mm;"><strong>Extended stability data</strong> at 18, 22 and 30 months under ambient (&lt; 25 °C) storage to support a longer Australian shelf-life claim than the current 16-month CoA stamp.</li>
+        <li style="margin-bottom: 3mm;"><strong>SRT release-rate curve</strong> documenting the controlled microbial release profile under standard soil moisture / temperature conditions.</li>
+        <li style="margin-bottom: 3mm;"><strong>Tank-mix bench compatibility data</strong> for SPANEX × the following Australian-relevant chemistry: glyphosate, paraquat, bifenthrin, chlorpyrifos, mancozeb, tebuconazole, propiconazole, and calcium nitrate.</li>
+        <li style="margin-bottom: 3mm;"><strong>Independent third-party trial reports</strong> — any ICAR, IISR or Indian state-agricultural-university trials of SPANEX (separate from on-farm SRT demonstration FTRs) that can be cited as independent evidence.</li>
+        <li style="margin-bottom: 3mm;"><strong>Comprehensive FTR archive</strong> beyond the five we currently hold (wheat, chickpea, tomato, grapes) — particularly any sugarcane, cotton, paddy, lucerne or pasture FTRs available.</li>
+      </ol>
+
+      <p style="font-size: 10pt; line-height: 1.55; margin-top: 5mm;">Items 1 and 2 are blocking immediate Australian Tier-1 customer engagement. Items 3–5 are required within 90 days. Items 6 and 7 are valuable but non-blocking.</p>
+
+      <p style="font-size: 10pt; line-height: 1.55;">In return we will share back: customer-facing technical sheets, the field demonstration evidence pack we have built around your FTRs, and feedback from the Australian agronomy reviewers.</p>
+
+      <p style="font-size: 10pt; line-height: 1.55;">Please confirm timelines for each item by reply.</p>
+
+      <p style="font-size: 10pt; line-height: 1.55; margin-top: 6mm;">With sincere regards,</p>
+
+      <div style="margin-top: 14mm; font-family: var(--font-display); font-style: italic; font-size: 11pt;">
+        ____________________________________________
+      </div>
+      <p style="font-family: var(--font-mono); font-size: 7.5pt; letter-spacing: 0.06em; color: var(--ink-mute); margin-top: 1mm; line-height: 1.5;">
+        For Meem International Pty Ltd<br>
+        Australian Distributor · DAFF Permit 0011744619
+      </p>
+    </div>
+  </div>
+
+  <footer class="page-foot">
+    <span>Sheet 19 · Letter L-01 to manufacturer</span>
+    <span class="foot-mark">supply chain ask</span>
+    <span>21 · 19</span>
+  </footer>
+</section>
+
+
+<!-- ============================================
+     PAGE 22 · UNIVERSITY OUTREACH
+     ============================================ -->
+<section class="page">
+  <header class="page-head">
+    <div>
+      <div class="wordmark">SPANEX<sup>™</sup>
+        <span class="wordmark-tag">University outreach pack</span>
+      </div>
+    </div>
+    <div class="head-meta">
+      <div class="doc-id">Sheet 20 · Template</div>
+      <div>Form U-01 · Co-funded pilot</div>
+      <div class="pg">22 · 19</div>
+    </div>
+  </header>
+
+  <div class="page-body">
+    <div class="eyebrow">Sheet 20 — Co-funded research outreach</div>
+    <h1 class="h2">University outreach pack <em>—</em> co-funded pilot proposal</h1>
+
+    <p class="deck" style="margin-bottom: 6mm;">For research leads at Murdoch · UQ · La Trobe · Sydney · Adelaide · CSIRO. SPANEX is offering co-funded paid-pilot AU field trials in exchange for independently authored data and publication rights.</p>
+
+    <div class="grid grid-2">
+      <div>
+        <h4 class="h4">What we offer</h4>
+        <ul class="dash">
+          <li>Free product (full SKU range) at trial dose</li>
+          <li>Cash co-funding ($25–$80K depending on scope)</li>
+          <li>R&D Tax Incentive eligibility (43.5 % refundable for SME co-funding portion)</li>
+          <li>GRDC / AgriFutures / MLA Donor Co. / CSIRO Innovation Connections grant alignment</li>
+          <li>Anonymised farmer-cooperator network (Mr. Verma, Mr. Varu, Mr. Patil — Indian reference + AU pilot prospects)</li>
+          <li>Publication rights to all data — university authored</li>
+          <li>SPANEX agreement to publish negative results unedited</li>
+        </ul>
+
+        <h4 class="h4">What we ask</h4>
+        <ul class="dash">
+          <li>One paired-paddock trial in priority region (see §III for region selection)</li>
+          <li>Full statistical reporting including CI and α=0.05</li>
+          <li>Quarterly progress data shares</li>
+          <li>Right of first review on draft publications (5 working days)</li>
+          <li>If trial succeeds — co-authored case study for SPANEX customer-facing material</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="h4">Priority trial regions (rank order)</h4>
+        <table class="data" style="margin-top: 1mm;">
+          <thead><tr><th>Region</th><th class="right">Crop</th><th class="right">Soil order</th></tr></thead>
+          <tbody>
+            <tr><td>QLD/NT Mitchell Grass Downs (AACO core)</td><td class="right">Leucaena</td><td class="right">Vertosol</td></tr>
+            <tr><td>QLD Burdekin / Mackay</td><td class="right">Sugarcane</td><td class="right">Vertosol / Dermosol</td></tr>
+            <tr><td>NSW / QLD Cotton Belt</td><td class="right">Cotton</td><td class="right">Vertosol</td></tr>
+            <tr><td>VIC Gippsland · Tas Northern</td><td class="right">Dairy pasture</td><td class="right">Dermosol / Ferrosol</td></tr>
+            <tr><td>SA Eyre + Mid-North</td><td class="right">Wheat</td><td class="right">Calcarosol</td></tr>
+            <tr><td>Sunraysia · Riverland</td><td class="right">Wine grape</td><td class="right">Calcarosol</td></tr>
+          </tbody>
+        </table>
+
+        <h4 class="h4">Trial designs SPANEX is open to</h4>
+        <ol class="bullet">
+          <li>Paired-paddock — Trial vs farmer's existing programme (mirrors Indian FTR #1 design)</li>
+          <li>Replicated split-plot — 3 reps × 2 seasons, single farm</li>
+          <li>Multi-site — same crop across 3+ farms in one region</li>
+          <li>Dose-response — 0, 0.5, 1, 2, 4 caps/ha across 4–6 plots; generates the missing efficacy curve</li>
+        </ol>
+
+        <div class="callout callout-good">
+          <h5>What we will not do</h5>
+          <p>Constrain publication. Edit unfavourable findings. Pressure for positive-only reporting. Withhold negative results. Misrepresent trial methodology in marketing.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-thick mt-md"></div>
+
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 6mm;">
+      <div>
+        <div style="font-family: var(--font-mono); font-size: 7pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 2mm;">Express interest — return signed to:</div>
+        <div style="font-family: var(--font-display); font-style: italic; font-size: 11pt; color: var(--forest);">
+          Meem International Pty Ltd<br>
+          Email: bsn-group@outlook.com<br>
+          DAFF Permit 0011744619
+        </div>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-family: var(--font-mono); font-size: 7pt; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 2mm;">Signed</div>
+        <div style="border-bottom: 0.5pt solid var(--ink); width: 60mm; height: 12mm;"></div>
+        <div style="font-family: var(--font-mono); font-size: 7pt; letter-spacing: 0.06em; color: var(--ink-mute); margin-top: 2mm;">Research lead · institution · date</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-foot">
+    <span>Sheet 20 · Form U-01 University outreach</span>
+    <span class="foot-mark">co-funded pilot</span>
+    <span>22 · 19</span>
+  </footer>
+</section>
+
+
+</body>
+</html>
